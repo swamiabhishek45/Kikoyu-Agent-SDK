@@ -12,13 +12,13 @@
 
 ## Key Features
 
-- ⚡ **Zero-Overhead Model Resolution**: Route completions internally via **Kikoyu API Key** without importing external model provider libraries.
-- 🛡️ **Zero-Latency Concurrent Guardrails**: Run input safety checks in parallel (`Promise.all`) with model requests.
-- 🛠️ **Type-Safe Zod Tools**: Define tools with strict Zod schemas and automatic JSON Schema conversion for model function calling.
-- 🔐 **Isolated RunContext**: Thread sensitive session metadata (`userId`, `orgId`) to tools without exposing context to LLM prompts.
-- 🔄 **Multi-Agent Handoffs**: Decompose complex workflows into modular specialist agents with seamless control transfers.
-- 🧠 **Storage-Agnostic Session Memory**: Retain multi-turn conversation turn history using `Session` and `MemoryStore`.
-- 🌊 **Async Generator Streaming**: Stream token text deltas, tool execution events, and handoff state changes in real time.
+- **Zero-Overhead Model Resolution**: Route completions internally via **Kikoyu API Key** without importing external model provider libraries.
+- **Zero-Latency Concurrent Guardrails**: Run input safety checks in parallel (`Promise.all`) with model requests.
+- **Type-Safe Zod Tools**: Define tools with strict Zod schemas and automatic JSON Schema conversion for model function calling.
+- **Isolated RunContext**: Thread sensitive session metadata (`userId`, `orgId`) to tools without exposing context to LLM prompts.
+- **Multi-Agent Handoffs**: Decompose complex workflows into modular specialist agents with seamless control transfers.
+- **Storage-Agnostic Session Memory**: Retain multi-turn conversation turn history using `Session` and `MemoryStore`.
+- **Async Generator Streaming**: Stream token text deltas, tool execution events, and handoff state changes in real time.
 
 ---
 
@@ -267,7 +267,7 @@ for await (const event of runner.stream(agent, 'Write a poem about rain')) {
 ## Documentation & API Reference
 
 For full API documentation, primitives, and TypeDoc references, visit our documentation site:
-👉 **[https://github.com/swamiabhishek45/Kikoyu-Agent-SDK](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK)**
+**[https://github.com/swamiabhishek45/Kikoyu-Agent-SDK](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK)**
 
 ---
 

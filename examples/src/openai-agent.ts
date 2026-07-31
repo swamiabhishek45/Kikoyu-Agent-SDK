@@ -1,34 +1,31 @@
-import 'dotenv/config';
-import { Agent, OpenAIProvider, Runner } from '@kikoyu/core';
+import { Agent, Runner } from '@kikoyu/core';
 
 async function main() {
-  const apiKey = process.env.OPENAI_API_KEY;
+  const apiKey = process.env.KIKOYU_API_KEY || process.env.OPENAI_API_KEY;
 
   if (!apiKey) {
+    console.log('OPENAI_API_KEY environment variable is not set.');
     console.log(
-      '⚠️ OPENAI_API_KEY environment variable is not set.'
+      'To run live against OpenAI, set OPENAI_API_KEY=your_key or KIKOYU_API_KEY=your_key'
     );
-    console.log('To run this live against OpenAI, set your key in .env or run:');
-    console.log('  $env:OPENAI_API_KEY="your_key"; pnpm --filter @kikoyu/examples example:openai');
     return;
   }
 
-  console.log('🤖 Initializing Agent with Agent.builder()...');
-  const provider = new OpenAIProvider({ apiKey, model: 'gpt-4o-mini' });
+  console.log('Initializing Agent with Agent.builder()...');
 
   const agent = Agent.builder()
-    .setName('Haiku Assistant')
-    .setInstructions('You are a helpful assistant that responds strictly in 2-line haikus.')
-    .setModel(provider)
+    .setName('Assistant')
+    .setInstructions('You are a helpful AI assistant that responds in concise sentences.')
+    .setApiKey(apiKey)
     .build();
 
   const runner = new Runner();
-  console.log('🚀 Running Agent...');
-  const result = await runner.run(agent, 'Tell me about coding.');
 
-  console.log('\n--- Result ---');
-  console.log('Text Response:\n', result.text);
-  console.log('\nFull Message Trace:', JSON.stringify(result.messages, null, 2));
+  console.log('Running Agent...');
+  const result = await runner.run(agent, 'Hello! Introduce yourself in one sentence.');
+
+  console.log('\nResult:');
+  console.log(result.text);
 }
 
 main().catch(console.error);

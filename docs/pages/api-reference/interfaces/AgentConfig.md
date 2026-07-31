@@ -1,0 +1,67 @@
+[**Kikoyu Core API Reference**](../README.md)
+
+***
+
+[Kikoyu Core API Reference](../README.md) / AgentConfig
+
+# Interface: AgentConfig
+
+## Properties
+
+### guardrails?
+
+> `optional` **guardrails**: [`Guardrail`](Guardrail.md)\<`any`\>[]
+
+#### Defined in
+
+[types.ts:91](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/types.ts#L91)
+
+***
+
+### handoffs?
+
+> `optional` **handoffs**: `any`[]
+
+#### Defined in
+
+[types.ts:93](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/types.ts#L93)
+
+***
+
+### instructions
+
+> **instructions**: `string`
+
+#### Defined in
+
+[types.ts:88](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/types.ts#L88)
+
+***
+
+### model
+
+> **model**: [`ModelProvider`](ModelProvider.md)
+
+#### Defined in
+
+[types.ts:89](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/types.ts#L89)
+
+***
+
+### name
+
+> **name**: `string`
+
+#### Defined in
+
+[types.ts:87](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/types.ts#L87)
+
+***
+
+### tools?
+
+> `optional` **tools**: [`Tool`](Tool.md)\<`any`, `any`, `any`\>[]
+
+#### Defined in
+
+[types.ts:90](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/types.ts#L90)

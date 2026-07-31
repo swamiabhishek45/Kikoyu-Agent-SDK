@@ -1,6 +1,7 @@
 import { Agent } from './agent.js';
 import type { Guardrail } from './guardrail.js';
 import type { Handoff } from './handoff.js';
+import { OpenAIProvider } from './providers/openai.js';
 import type { ModelProvider, Tool } from './types.js';
 
 /**
@@ -11,7 +12,7 @@ import type { ModelProvider, Tool } from './types.js';
  * const agent = Agent.builder()
  *   .setName('Support Agent')
  *   .setInstructions('Help users resolve issues.')
- *   .setModel(new OpenAIProvider())
+ *   .setApiKey(process.env.KIKOYU_API_KEY)
  *   .addTool(myTool)
  *   .build();
  * ```
@@ -48,6 +49,15 @@ export class AgentBuilder {
    */
   setModel(model: ModelProvider): this {
     this.model = model;
+    return this;
+  }
+
+  /**
+   * Convenience helper to set up OpenAIProvider / Kikoyu API Key.
+   * @param apiKey - API key string.
+   */
+  setApiKey(apiKey: string): this {
+    this.model = new OpenAIProvider({ apiKey });
     return this;
   }
 

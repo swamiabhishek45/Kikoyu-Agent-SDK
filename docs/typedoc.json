@@ -10,6 +10,5 @@
   "skipErrorChecking": true,
   "excludeExternals": true,
   "excludePrivate": true,
-  "excludeInternal": true,
-  "fileExtension": ".mdx"
+  "excludeInternal": true
 }

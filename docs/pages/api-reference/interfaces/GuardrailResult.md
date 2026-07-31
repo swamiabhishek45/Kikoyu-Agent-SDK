@@ -1,0 +1,37 @@
+[**Kikoyu Core API Reference**](../README.md)
+
+***
+
+[Kikoyu Core API Reference](../README.md) / GuardrailResult
+
+# Interface: GuardrailResult
+
+## Properties
+
+### metadata?
+
+> `optional` **metadata**: `Record`\<`string`, `unknown`\>
+
+#### Defined in
+
+[guardrail.ts:8](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/guardrail.ts#L8)
+
+***
+
+### pass
+
+> **pass**: `boolean`
+
+#### Defined in
+
+[guardrail.ts:6](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/guardrail.ts#L6)
+
+***
+
+### reasoning?
+
+> `optional` **reasoning**: `string`
+
+#### Defined in
+
+[guardrail.ts:7](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/guardrail.ts#L7)

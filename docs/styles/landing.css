@@ -1,25 +1,110 @@
-/* Vercel Dark Mode Design System - Pure Vanilla CSS */
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200;0,8..60,400;0,8..60,600&display=swap');
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Nextra Theme Documentation Orange Accent Overrides */
 :root {
-  --vk-bg: #000000;
-  --vk-card-bg: #0a0a0a;
-  --vk-card-hover: #121212;
-  --vk-border: #222222;
-  --vk-border-hover: #444444;
-  --vk-text: #ffffff;
-  --vk-text-muted: #888888;
-  --vk-blue: #0070f3;
-  --vk-purple: #7928ca;
-  --vk-cyan: #50e3c2;
+  --nextra-primary-hue: 24deg !important;
+  --nextra-primary-saturation: 95% !important;
+  --nextra-primary-lightness: 53% !important;
+}
+
+[data-theme='dark'], .dark {
+  --nextra-primary-hue: 24deg !important;
+  --nextra-primary-saturation: 95% !important;
+  --nextra-primary-lightness: 53% !important;
+}
+
+/* Sidebar Active Items & Hover Colors */
+.nextra-sidebar a:hover,
+.nextra-sidebar [data-active="true"] {
+  color: #f97316 !important;
+}
+
+.nextra-sidebar [data-active="true"] {
+  background-color: rgba(249, 115, 22, 0.12) !important;
+  border-left: 3px solid #f97316 !important;
+  font-weight: 600 !important;
+}
+
+/* Table of Contents Active Links */
+.nextra-toc a[data-active="true"],
+.nextra-toc a:hover {
+  color: #f97316 !important;
+  font-weight: 600 !important;
+}
+
+/* Content Links & Focus Rings */
+article a {
+  color: #f97316 !important;
+}
+
+article code {
+  border-color: rgba(249, 115, 22, 0.3) !important;
+}
+
+/* Warm Orange ChaiCode-Inspired Theme System */
+
+:root, [data-theme='dark'] {
+  --vk-bg: #09090b;
+  --vk-bg-radial: radial-gradient(circle at 70% 10%, rgba(249, 115, 22, 0.15), rgba(9, 9, 11, 0) 60%),
+                  radial-gradient(circle at 20% 80%, rgba(234, 88, 12, 0.08), rgba(9, 9, 11, 0) 50%);
+  --vk-header-bg: rgba(9, 9, 11, 0.88);
+  --vk-card-bg: #121215;
+  --vk-card-hover: #1a1a20;
+  --vk-border: #27272a;
+  --vk-border-hover: #f97316;
+  --vk-text: #fafafa;
+  --vk-text-muted: #a1a1aa;
+  --vk-orange: #f97316;
+  --vk-orange-hover: #ea580c;
+  --vk-orange-glow: rgba(249, 115, 22, 0.35);
+  --vk-code-bg: #030304;
+  --vk-code-header-bg: #141417;
+  --vk-terminal-bg: #000000;
+  --vk-btn-primary-bg: #f97316;
+  --vk-btn-primary-text: #ffffff;
+  --vk-btn-secondary-bg: rgba(255, 255, 255, 0.05);
+  --vk-btn-secondary-text: #fafafa;
+  --vk-table-th: #a1a1aa;
+  --vk-table-td-border: #27272a;
+}
+
+[data-theme='light'] {
+  --vk-bg: #fdfbf7;
+  --vk-bg-radial: radial-gradient(circle at 70% 10%, rgba(249, 115, 22, 0.18), rgba(253, 251, 247, 0) 60%),
+                  radial-gradient(circle at 20% 80%, rgba(251, 146, 60, 0.12), rgba(253, 251, 247, 0) 50%);
+  --vk-header-bg: rgba(253, 251, 247, 0.9);
+  --vk-card-bg: #ffffff;
+  --vk-card-hover: #fffaf5;
+  --vk-border: #fed7aa;
+  --vk-border-hover: #ea580c;
+  --vk-text: #1c1917;
+  --vk-text-muted: #78716c;
+  --vk-orange: #ea580c;
+  --vk-orange-hover: #c2410c;
+  --vk-orange-glow: rgba(234, 88, 12, 0.25);
+  --vk-code-bg: #1c1917;
+  --vk-code-header-bg: #292524;
+  --vk-terminal-bg: #0c0a09;
+  --vk-btn-primary-bg: #ea580c;
+  --vk-btn-primary-text: #ffffff;
+  --vk-btn-secondary-bg: #ffedd5;
+  --vk-btn-secondary-text: #9a3412;
+  --vk-table-th: #78716c;
+  --vk-table-td-border: #fed7aa;
 }
 
 body {
   background-color: var(--vk-bg) !important;
   color: var(--vk-text) !important;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-family: 'Source Serif 4', Georgia, serif !important;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 *, *:before, *:after {
@@ -31,9 +116,9 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: radial-gradient(circle at 50% 0%, rgba(120, 119, 198, 0.12), rgba(0, 0, 0, 0) 70%),
-              radial-gradient(circle at 80% 20%, rgba(0, 112, 243, 0.1), rgba(0, 0, 0, 0) 50%);
-  background-color: #000000;
+  background: var(--vk-bg-radial);
+  background-color: var(--vk-bg);
+  transition: background 0.3s ease;
 }
 
 /* Navbar Header */
@@ -41,10 +126,11 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(5, 5, 5, 0.85);
-  backdrop-filter: blur(12px);
+  background: var(--vk-header-bg);
+  backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--vk-border);
   padding: 1rem 1.5rem;
+  transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 .vk-header-content {
@@ -60,32 +146,34 @@ body {
   align-items: center;
   gap: 0.75rem;
   text-decoration: none;
-  color: #ffffff;
+  color: var(--vk-text);
 }
 
 .vk-brand-icon {
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border-radius: 8px;
-  background: linear-gradient(135deg, #0070f3 0%, #7928ca 100%);
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 800;
-  font-size: 1.1rem;
-  box-shadow: 0 0 15px rgba(0, 112, 243, 0.4);
+  font-size: 1.15rem;
+  color: #ffffff;
+  box-shadow: 0 0 16px var(--vk-orange-glow);
 }
 
 .vk-brand-name {
-  font-weight: 700;
+  font-weight: 800;
   font-size: 1.25rem;
   letter-spacing: -0.02em;
+  color: var(--vk-text);
 }
 
 .vk-brand-tag {
   font-size: 0.8rem;
   color: var(--vk-text-muted);
-  font-weight: 400;
+  font-weight: 500;
   margin-left: 0.25rem;
 }
 
@@ -104,7 +192,32 @@ body {
 }
 
 .vk-nav-link:hover {
-  color: #ffffff;
+  color: var(--vk-orange);
+}
+
+.vk-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.vk-theme-toggle {
+  background: var(--vk-btn-secondary-bg);
+  border: 1px solid var(--vk-border);
+  color: var(--vk-text);
+  font-size: 1.1rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vk-theme-toggle:hover {
+  border-color: var(--vk-orange);
+  transform: scale(1.05);
 }
 
 /* Main Container */
@@ -118,7 +231,7 @@ body {
 /* Hero Section */
 .vk-hero {
   text-align: center;
-  max-width: 800px;
+  max-width: 820px;
   margin: 0 auto 4rem auto;
   display: flex;
   flex-direction: column;
@@ -130,31 +243,31 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 0.4rem 1.1rem;
+  background: var(--vk-btn-secondary-bg);
+  border: 1px solid var(--vk-border);
+  border-top: 2px solid var(--vk-orange);
+  padding: 0.4rem 1.2rem;
   border-radius: 9999px;
   font-size: 0.85rem;
-  color: #dddddd;
-  backdrop-filter: blur(10px);
+  font-weight: 600;
+  color: var(--vk-text);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .vk-badge-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: var(--vk-cyan);
-  box-shadow: 0 0 10px var(--vk-cyan);
+  background-color: var(--vk-orange);
+  box-shadow: 0 0 10px var(--vk-orange);
 }
 
 .vk-hero-title {
-  font-size: 3.5rem;
+  font-size: 3.75rem;
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.03em;
-  background: linear-gradient(180deg, #ffffff 0%, #a1a1a1 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--vk-text);
   margin: 0;
 }
 
@@ -182,31 +295,32 @@ body {
 }
 
 .vk-btn-primary {
-  background: #ffffff;
-  color: #000000;
-  font-weight: 600;
-  padding: 0.8rem 1.6rem;
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  color: var(--vk-btn-primary-text);
+  font-weight: 700;
+  padding: 0.8rem 1.7rem;
   border-radius: 9999px;
   text-decoration: none;
   font-size: 0.95rem;
   transition: all 0.2s ease;
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 25px var(--vk-orange-glow);
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  border: none;
 }
 
 .vk-btn-primary:hover {
-  background: #e5e5e5;
   transform: translateY(-2px);
-  box-shadow: 0 0 35px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 35px var(--vk-orange-glow);
+  opacity: 0.95;
 }
 
 .vk-btn-secondary {
-  background: rgba(255, 255, 255, 0.05);
-  color: #ffffff;
+  background: var(--vk-btn-secondary-bg);
+  color: var(--vk-text);
   border: 1px solid var(--vk-border);
-  font-weight: 500;
+  font-weight: 600;
   padding: 0.8rem 1.6rem;
   border-radius: 9999px;
   font-size: 0.95rem;
@@ -219,23 +333,22 @@ body {
 }
 
 .vk-btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: var(--vk-border-hover);
+  border-color: var(--vk-orange);
   transform: translateY(-2px);
 }
 
 /* Code Editor Window */
 .vk-code-window {
-  background: #050505;
+  background: var(--vk-code-bg);
   border: 1px solid var(--vk-border);
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 112, 243, 0.1);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 30px var(--vk-orange-glow);
   margin-bottom: 5rem;
 }
 
 .vk-code-header {
-  background: #0e0e0e;
+  background: var(--vk-code-header-bg);
   border-bottom: 1px solid var(--vk-border);
   padding: 0.75rem 1.25rem;
   display: flex;
@@ -262,7 +375,7 @@ body {
   display: flex;
   align-items: center;
   gap: 4px;
-  background: #161616;
+  background: rgba(0, 0, 0, 0.3);
   padding: 4px;
   border-radius: 8px;
   border: 1px solid var(--vk-border);
@@ -281,26 +394,26 @@ body {
 }
 
 .vk-tab-btn:hover {
-  color: #ffffff;
+  color: var(--vk-orange);
 }
 
 .vk-tab-btn-active {
-  background: #262626;
+  background: var(--vk-orange);
   color: #ffffff;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .vk-run-btn {
-  background: linear-gradient(135deg, #0070f3 0%, #7928ca 100%);
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
   border: none;
   color: #ffffff;
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 700;
   padding: 6px 14px;
   border-radius: 6px;
   cursor: pointer;
   transition: opacity 0.2s ease;
-  box-shadow: 0 0 15px rgba(0, 112, 243, 0.4);
+  box-shadow: 0 0 15px var(--vk-orange-glow);
 }
 
 .vk-run-btn:hover {
@@ -309,7 +422,7 @@ body {
 
 .vk-code-body {
   padding: 1.5rem;
-  background-color: #030303;
+  background-color: var(--vk-code-bg);
   margin: 0;
   overflow-x: auto;
 }
@@ -318,12 +431,12 @@ body {
   margin: 0;
   font-family: 'Fira Code', Consolas, Monaco, monospace;
   font-size: 0.9rem;
-  color: #e1e1e1;
+  color: #f4f4f5;
   line-height: 1.6;
 }
 
 .vk-terminal {
-  background-color: #000000;
+  background-color: var(--vk-terminal-bg);
   border-top: 1px solid var(--vk-border);
   padding: 1.25rem;
   font-family: 'Fira Code', Consolas, Monaco, monospace;
@@ -335,15 +448,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: #666666;
+  color: #71717a;
   font-size: 0.75rem;
   margin-bottom: 0.75rem;
-  border-bottom: 1px solid #161616;
+  border-bottom: 1px solid #27272a;
   padding-bottom: 0.5rem;
 }
 
 .vk-terminal-log {
-  color: #00e676;
+  color: #f97316;
   margin-bottom: 4px;
 }
 
@@ -380,7 +493,7 @@ body {
 /* Bento Grid */
 .vk-section-title {
   text-align: center;
-  max-width: 600px;
+  max-width: 620px;
   margin: 0 auto 3rem auto;
 }
 
@@ -389,6 +502,7 @@ body {
   font-weight: 800;
   letter-spacing: -0.02em;
   margin: 0 0 0.75rem 0;
+  color: var(--vk-text);
 }
 
 .vk-section-title p {
@@ -422,17 +536,17 @@ body {
 }
 
 .vk-bento-card:hover {
-  border-color: var(--vk-border-hover);
+  border-color: var(--vk-orange);
   transform: translateY(-4px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 15px 40px rgba(249, 115, 22, 0.15);
 }
 
 .vk-bento-icon {
   width: 44px;
   height: 44px;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(249, 115, 22, 0.1);
+  border: 1px solid rgba(249, 115, 22, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -443,7 +557,7 @@ body {
   font-size: 1.25rem;
   font-weight: 700;
   margin: 0;
-  color: #ffffff;
+  color: var(--vk-text);
 }
 
 .vk-bento-card p {
@@ -472,24 +586,25 @@ body {
 .vk-table th {
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--vk-border);
-  color: var(--vk-text-muted);
+  color: var(--vk-table-th);
   font-weight: 600;
 }
 
 .vk-table td {
   padding: 1.2rem 0;
-  border-bottom: 1px solid #181818;
+  border-bottom: 1px solid var(--vk-table-td-border);
+  color: var(--vk-text);
 }
 
 .vk-table-highlight {
-  color: var(--vk-cyan);
-  font-weight: 600;
+  color: var(--vk-orange);
+  font-weight: 700;
 }
 
 /* Footer */
 .vk-footer {
   border-top: 1px solid var(--vk-border);
-  background: #050505;
+  background: var(--vk-header-bg);
   padding: 2.5rem 1.5rem;
 }
 

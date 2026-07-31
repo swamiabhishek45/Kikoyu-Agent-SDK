@@ -4,7 +4,7 @@
 
 ---
 
-## 📦 Monorepo Architecture
+## Monorepo Architecture
 
 This repository is managed as a `pnpm` workspace with `Turborepo`:
 
@@ -17,7 +17,7 @@ This repository is managed as a `pnpm` workspace with `Turborepo`:
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Prerequisites
 
@@ -38,7 +38,7 @@ pnpm install
 
 ---
 
-## 🛠️ Environment Configuration
+## Environment Configuration
 
 Create a `.env` file in the workspace root or inside `examples/` / `packages/api/`:
 
@@ -53,7 +53,7 @@ API_KEY=kikoyu-secret-key
 
 ---
 
-## 🏃 Workspace Commands
+## Workspace Commands
 
 All workspace commands are managed via `pnpm` and `turbo`:
 
@@ -77,7 +77,7 @@ Runs `tsc --noEmit` type compilation verification across all 4 monorepo packages
 
 ---
 
-## 🧪 Running Example Scripts
+## Running Example Scripts
 
 Execute standalone example scripts in `examples/src/`:
 
@@ -106,7 +106,7 @@ pnpm --filter @kikoyu/examples example:stream
 
 ---
 
-## 🌐 Running HTTP API Server (`packages/api`)
+## Running HTTP API Server (`packages/api`)
 
 Launch the Next.js App Router API server locally:
 
@@ -121,7 +121,7 @@ pnpm --filter @kikoyu/api dev
 
 ---
 
-## 📚 Running Documentation Site (`docs`)
+## Running Documentation Site (`docs`)
 
 Launch the Nextra documentation site locally:
 
@@ -133,7 +133,7 @@ pnpm --filter @kikoyu/docs dev
 
 ---
 
-## 🚢 Publishing to npm & CI/CD Pipeline
+## Publishing to npm & CI/CD Pipeline
 
 The monorepo includes automated GitHub Actions CI/CD in `.github/workflows/ci.yml`.
 
@@ -153,6 +153,6 @@ git push origin v0.1.0
 
 ---
 
-## 📄 License
+## License
 
 [MIT](LICENSE) © Kikoyu Team

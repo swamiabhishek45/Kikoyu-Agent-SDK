@@ -1,45 +1,40 @@
-import 'dotenv/config';
-import { Agent, InMemoryStore, OpenAIProvider, Runner, Session } from '@kikoyu/core';
+import { Agent, InMemoryStore, Runner, Session } from '@kikoyu/core';
 
 async function main() {
-  const apiKey = process.env.OPENAI_API_KEY;
+  const apiKey = process.env.KIKOYU_API_KEY || process.env.OPENAI_API_KEY;
 
   if (!apiKey) {
-    console.log('⚠️ OPENAI_API_KEY environment variable is not set.');
-    console.log('To run this live against OpenAI with Session Persistence, set your key in .env or run:');
-    console.log('  $env:OPENAI_API_KEY="your_key"; pnpm --filter @kikoyu/examples example:session');
+    console.log('OPENAI_API_KEY environment variable is not set.');
     return;
   }
 
-  console.log('🤖 Initializing Agent with Agent.builder()...');
-  const provider = new OpenAIProvider({ apiKey, model: 'gpt-4o-mini' });
+  console.log('Initializing Agent with Agent.builder()...');
+
+  const memoryStore = new InMemoryStore();
+  const session = new Session({
+    sessionId: 'session_demo_99',
+    store: memoryStore,
+  });
 
   const agent = Agent.builder()
     .setName('Memory Assistant')
-    .setInstructions('You are a helpful assistant with memory of past turns.')
-    .setModel(provider)
+    .setInstructions('Remember user details across multiple conversation turns.')
+    .setApiKey(apiKey)
     .build();
-
-  const memoryStore = new InMemoryStore();
-  const session = new Session({ sessionId: 'session_demo_99', store: memoryStore });
 
   const runner = new Runner();
 
-  console.log('\n--- Turn 1 ---');
-  console.log('User: "My favorite color is cerulean blue."');
-  const res1 = await runner.run(agent, 'My favorite color is cerulean blue.', { session });
+  console.log('\n--- Turn 1: Storing Memory ---');
+  const res1 = await runner.run(agent, 'My favorite color is cerulean blue and I live in Seattle.', {
+    session,
+  });
   console.log('Assistant:', res1.text);
 
-  console.log('\n--- Turn 2 ---');
-  console.log('User: "What is my favorite color?"');
-  const res2 = await runner.run(agent, 'What is my favorite color?', { session });
+  console.log('\n--- Turn 2: Recalling Memory ---');
+  const res2 = await runner.run(agent, 'What is my favorite color and where do I live?', {
+    session,
+  });
   console.log('Assistant:', res2.text);
-
-  console.log('\n--- Stored Session Turn History ---');
-  const history = await session.getMessages();
-  for (const [idx, msg] of history.entries()) {
-    console.log(`[History ${idx}] (${msg.role}): ${msg.content}`);
-  }
 }
 
 main().catch(console.error);

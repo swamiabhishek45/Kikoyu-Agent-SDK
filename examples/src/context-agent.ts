@@ -1,5 +1,4 @@
-import 'dotenv/config';
-import { Agent, createTool, OpenAIProvider, Runner, z } from '@kikoyu/core';
+import { Agent, createTool, Runner, z } from '@kikoyu/core';
 
 interface AppContext {
   userId: string;
@@ -9,62 +8,61 @@ interface AppContext {
 
 const getUserAccountTool = createTool<
   z.ZodObject<Record<string, never>>,
-  Record<string, unknown>,
+  unknown,
   AppContext
 >({
   name: 'get_user_account',
-  description: 'Fetches the current user account details based on session context.',
+  description: 'Returns account status and balance information for the context user.',
   parameters: z.object({}),
   execute: async (_args, ctx) => {
     const userId = ctx.get('userId');
     const userRole = ctx.get('userRole');
     const orgId = ctx.get('orgId');
 
-    console.log(`\n  🔐 [Context Tool Executed] Reading session context: userId="${userId}", role="${userRole}", orgId="${orgId}"`);
+    console.log(`\n  [Context Accessed] User: ${userId}, Role: ${userRole}, Org: ${orgId}`);
 
     return {
       userId,
       userRole,
       orgId,
-      accountBalance: '$4,250.00',
-      status: 'Active Premium',
+      accountStatus: 'Active',
+      tier: 'Enterprise',
+      balance: '$12,450.00',
     };
   },
 });
 
 async function main() {
-  const apiKey = process.env.OPENAI_API_KEY;
+  const apiKey = process.env.KIKOYU_API_KEY || process.env.OPENAI_API_KEY;
 
   if (!apiKey) {
-    console.log('⚠️ OPENAI_API_KEY environment variable is not set.');
-    console.log('To run this live against OpenAI with RunContext, set your key in .env or run:');
-    console.log('  $env:OPENAI_API_KEY="your_key"; pnpm --filter @kikoyu/examples example:context');
+    console.log('OPENAI_API_KEY environment variable is not set.');
     return;
   }
 
-  console.log('🤖 Initializing Agent with Agent.builder()...');
-  const provider = new OpenAIProvider({ apiKey, model: 'gpt-4o-mini' });
+  console.log('Initializing Agent with Agent.builder()...');
 
   const agent = Agent.builder()
-    .setName('Account Concierge')
-    .setInstructions('You are an internal account concierge. Use the get_user_account tool to check user details when requested.')
-    .setModel(provider)
+    .setName('Account Agent')
+    .setInstructions('Help users inspect their account balance using the get_user_account tool.')
+    .setApiKey(apiKey)
     .addTool(getUserAccountTool)
     .build();
 
   const runner = new Runner();
 
-  console.log('🚀 Running Agent with RunContext: { userId: "usr_42", userRole: "admin", orgId: "org_enterprise" }');
+  const userContext: AppContext = {
+    userId: 'usr_89213',
+    userRole: 'admin',
+    orgId: 'org_acme_corp',
+  };
 
-  const result = await runner.run(agent, 'What is my account status and balance?', {
-    context: {
-      userId: 'usr_42',
-      userRole: 'admin',
-      orgId: 'org_enterprise',
-    },
+  console.log('Running Agent with isolated context...');
+  const result = await runner.run(agent, 'Check my current account balance.', {
+    context: userContext,
   });
 
-  console.log('\n--- Final Text Response ---');
+  console.log('\nFinal Answer:');
   console.log(result.text);
 }
 

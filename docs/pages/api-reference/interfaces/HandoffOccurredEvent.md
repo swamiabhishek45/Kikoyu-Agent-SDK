@@ -1,0 +1,37 @@
+[**Kikoyu Core API Reference**](../README.md)
+
+***
+
+[Kikoyu Core API Reference](../README.md) / HandoffOccurredEvent
+
+# Interface: HandoffOccurredEvent
+
+## Properties
+
+### fromAgent
+
+> **fromAgent**: `string`
+
+#### Defined in
+
+[stream-event.ts:23](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/stream-event.ts#L23)
+
+***
+
+### toAgent
+
+> **toAgent**: `string`
+
+#### Defined in
+
+[stream-event.ts:24](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/stream-event.ts#L24)
+
+***
+
+### type
+
+> **type**: `"handoff_occurred"`
+
+#### Defined in
+
+[stream-event.ts:22](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/stream-event.ts#L22)
