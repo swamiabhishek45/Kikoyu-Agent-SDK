@@ -7,10 +7,12 @@
     "build": "tsc --noEmit",
     "test": "vitest run",
     "lint": "tsc --noEmit",
-    "example:openai": "tsx src/openai-agent.ts"
+    "example:openai": "tsx src/openai-agent.ts",
+    "example:tool": "tsx src/tool-agent.ts"
   },
   "dependencies": {
-    "@kikoyu/core": "workspace:*"
+    "@kikoyu/core": "workspace:*",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "tsx": "^4.10.0",

@@ -1,9 +1,11 @@
 import type { Agent } from './agent.js';
-import type { ModelMessage, RunResult } from './types.js';
+import type { ModelMessage, RunResult, ToolContext } from './types.js';
 
 export interface RunOptions {
   temperature?: number;
   maxTokens?: number;
+  maxIterations?: number;
+  context?: ToolContext;
 }
 
 export class Runner {
@@ -12,30 +14,95 @@ export class Runner {
     input: string | ModelMessage[],
     options?: RunOptions
   ): Promise<RunResult> {
+    const maxIterations = options?.maxIterations ?? 10;
     const inputMessages: ModelMessage[] =
       typeof input === 'string'
         ? [{ role: 'user', content: input }]
         : [...input];
 
-    // Build complete message trace starting with agent system instructions
-    const messages: ModelMessage[] = [
+    const currentMessages: ModelMessage[] = [
       { role: 'system', content: agent.instructions },
       ...inputMessages,
     ];
 
-    const response = await agent.model.complete(messages, options);
+    let iteration = 0;
 
-    const assistantMessage: ModelMessage = {
-      role: 'assistant',
-      content: response.text,
-    };
+    while (iteration < maxIterations) {
+      iteration++;
 
-    const finalMessages = [...messages, assistantMessage];
+      const toolDefinitions = agent.toolRegistry.toModelDefinitions();
+      const modelOptions = {
+        temperature: options?.temperature,
+        maxTokens: options?.maxTokens,
+        tools: toolDefinitions.length > 0 ? toolDefinitions : undefined,
+      };
 
-    return {
-      text: response.text,
-      messages: finalMessages,
-      agent,
-    };
+      const response = await agent.model.complete(currentMessages, modelOptions);
+
+      // Record assistant turn (including tool calls if requested)
+      const assistantMessage: ModelMessage = {
+        role: 'assistant',
+        content: response.text,
+        toolCalls: response.toolCalls,
+      };
+
+      currentMessages.push(assistantMessage);
+
+      // If no tool calls requested by model, execution loop is complete
+      if (!response.toolCalls || response.toolCalls.length === 0) {
+        return {
+          text: response.text,
+          messages: currentMessages,
+          agent,
+        };
+      }
+
+      // Execute requested tool calls sequentially
+      for (const toolCall of response.toolCalls) {
+        const tool = agent.toolRegistry.get(toolCall.name);
+        let toolOutputContent: string;
+
+        if (!tool) {
+          toolOutputContent = JSON.stringify({
+            error: `Tool "${toolCall.name}" is not registered on this agent.`,
+          });
+        } else {
+          const parseResult = tool.parameters.safeParse(toolCall.args);
+          if (!parseResult.success) {
+            toolOutputContent = JSON.stringify({
+              error: `Invalid parameters for tool "${toolCall.name}": ${parseResult.error.message}`,
+            });
+          } else {
+            try {
+              const rawResult = await tool.execute(
+                parseResult.data,
+                options?.context
+              );
+              toolOutputContent =
+                typeof rawResult === 'string'
+                  ? rawResult
+                  : JSON.stringify(rawResult ?? null);
+            } catch (err: unknown) {
+              const errorMessage =
+                err instanceof Error ? err.message : String(err);
+              toolOutputContent = JSON.stringify({
+                error: `Tool "${toolCall.name}" execution failed: ${errorMessage}`,
+              });
+            }
+          }
+        }
+
+        currentMessages.push({
+          role: 'tool',
+          name: toolCall.name,
+          toolCallId: toolCall.id,
+          content: toolOutputContent,
+        });
+      }
+    }
+
+    throw new Error(
+      `Agent execution loop exceeded maximum iterations limit (${maxIterations}).`
+    );
   }
 }

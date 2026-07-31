@@ -1,9 +1,11 @@
 import OpenAI from 'openai';
+import type { ChatCompletionMessageParam, ChatCompletionTool } from 'openai/resources/chat/completions';
 import type {
   ModelMessage,
   ModelProvider,
   ModelRequestOptions,
   ModelResponse,
+  ToolCall,
 } from '../types.js';
 
 export interface OpenAIProviderOptions {
@@ -32,12 +34,53 @@ export class OpenAIProvider implements ModelProvider {
     messages: ModelMessage[],
     options?: ModelRequestOptions
   ): Promise<ModelResponse> {
+    const formattedMessages: ChatCompletionMessageParam[] = messages.map(
+      (msg) => {
+        if (msg.role === 'tool') {
+          return {
+            role: 'tool',
+            tool_call_id: msg.toolCallId ?? '',
+            content: msg.content,
+          };
+        }
+
+        if (msg.role === 'assistant' && msg.toolCalls && msg.toolCalls.length > 0) {
+          return {
+            role: 'assistant',
+            content: msg.content || null,
+            tool_calls: msg.toolCalls.map((tc) => ({
+              id: tc.id,
+              type: 'function' as const,
+              function: {
+                name: tc.name,
+                arguments: JSON.stringify(tc.args),
+              },
+            })),
+          };
+        }
+
+        return {
+          role: msg.role as 'system' | 'user' | 'assistant',
+          content: msg.content,
+        };
+      }
+    );
+
+    const formattedTools: ChatCompletionTool[] | undefined = options?.tools
+      ? options.tools.map((t) => ({
+          type: 'function' as const,
+          function: {
+            name: t.name,
+            description: t.description,
+            parameters: t.parameters,
+          },
+        }))
+      : undefined;
+
     const response = await this.client.chat.completions.create({
       model: this.defaultModel,
-      messages: messages.map((m) => ({
-        role: m.role,
-        content: m.content,
-      })),
+      messages: formattedMessages,
+      tools: formattedTools,
       temperature: options?.temperature,
       max_tokens: options?.maxTokens,
       stop: options?.stop,
@@ -46,8 +89,27 @@ export class OpenAIProvider implements ModelProvider {
     const choice = response.choices[0];
     const text = choice?.message?.content ?? '';
 
+    let toolCalls: ToolCall[] | undefined;
+
+    if (choice?.message?.tool_calls && choice.message.tool_calls.length > 0) {
+      toolCalls = choice.message.tool_calls.map((tc) => {
+        let parsedArgs: Record<string, unknown> = {};
+        try {
+          parsedArgs = JSON.parse(tc.function.arguments || '{}');
+        } catch {
+          parsedArgs = {};
+        }
+        return {
+          id: tc.id,
+          name: tc.function.name,
+          args: parsedArgs,
+        };
+      });
+    }
+
     return {
       text,
+      toolCalls,
       finishReason: choice?.finish_reason ?? undefined,
       usage: response.usage
         ? {

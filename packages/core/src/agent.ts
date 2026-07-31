@@ -1,10 +1,12 @@
-import type { AgentConfig, ModelProvider } from './types.js';
+import { ToolRegistry } from './tool-registry.js';
+import type { AgentConfig, ModelProvider, Tool } from './types.js';
 
 export class Agent {
   readonly name: string;
   readonly instructions: string;
   readonly model: ModelProvider;
-  readonly tools: unknown[];
+  readonly tools: Tool[];
+  readonly toolRegistry: ToolRegistry;
   readonly guardrails: unknown[];
   readonly handoffs: unknown[];
 
@@ -23,6 +25,7 @@ export class Agent {
     this.instructions = config.instructions;
     this.model = config.model;
     this.tools = config.tools ?? [];
+    this.toolRegistry = new ToolRegistry(this.tools);
     this.guardrails = config.guardrails ?? [];
     this.handoffs = config.handoffs ?? [];
   }

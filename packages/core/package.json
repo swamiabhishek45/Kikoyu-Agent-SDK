@@ -26,7 +26,9 @@
     "lint": "tsc --noEmit"
   },
   "dependencies": {
-    "openai": "^4.52.0"
+    "openai": "^4.52.0",
+    "zod": "^3.23.8",
+    "zod-to-json-schema": "^3.23.1"
   },
   "devDependencies": {
     "tsup": "^8.0.0",
