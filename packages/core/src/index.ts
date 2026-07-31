@@ -1,5 +1,6 @@
 export * from './types.js';
 export * from './agent.js';
+export * from './agent-builder.js';
 export * from './runner.js';
 export * from './tool.js';
 export * from './tool-registry.js';

@@ -10,34 +10,33 @@ async function main() {
     return;
   }
 
-  console.log('🤖 Initializing Specialist Agents and Triage Router Agent...');
+  console.log('🤖 Initializing Specialist Agents and Triage Router Agent with Agent.builder()...');
   const provider = new OpenAIProvider({ apiKey, model: 'gpt-4o-mini' });
 
   // 1. Math Specialist Agent
-  const mathSpecialistAgent = new Agent({
-    name: 'Math Specialist',
-    instructions: 'You are a mathematics expert. Solve complex math expressions step-by-step.',
-    model: provider,
-  });
+  const mathSpecialistAgent = Agent.builder()
+    .setName('Math Specialist')
+    .setInstructions('You are a mathematics expert. Solve complex math expressions step-by-step.')
+    .setModel(provider)
+    .build();
 
   // 2. Code Specialist Agent
-  const codeSpecialistAgent = new Agent({
-    name: 'Code Specialist',
-    instructions: 'You are a senior software engineering expert. Provide clean code snippets.',
-    model: provider,
-  });
+  const codeSpecialistAgent = Agent.builder()
+    .setName('Code Specialist')
+    .setInstructions('You are a senior software engineering expert. Provide clean code snippets.')
+    .setModel(provider)
+    .build();
 
   // 3. Triage Router Agent with Handoffs
-  const triageRouterAgent = new Agent({
-    name: 'Triage Router',
-    instructions:
-      'You are a triage receptionist. Inspect user requests and immediately use handoff tools to transfer control to the Math Specialist for math questions or Code Specialist for coding questions.',
-    model: provider,
-    handoffs: [
+  const triageRouterAgent = Agent.builder()
+    .setName('Triage Router')
+    .setInstructions('You are a triage receptionist. Inspect user requests and immediately use handoff tools to transfer control to the Math Specialist for math questions or Code Specialist for coding questions.')
+    .setModel(provider)
+    .withHandoffs(
       createHandoff(mathSpecialistAgent, { description: 'Transfer math questions to Math Specialist' }),
-      createHandoff(codeSpecialistAgent, { description: 'Transfer coding questions to Code Specialist' }),
-    ],
-  });
+      createHandoff(codeSpecialistAgent, { description: 'Transfer coding questions to Code Specialist' })
+    )
+    .build();
 
   const runner = new Runner();
 

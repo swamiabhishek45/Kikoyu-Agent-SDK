@@ -12,14 +12,14 @@ async function main() {
     return;
   }
 
-  console.log('🤖 Initializing Agent with OpenAIProvider...');
+  console.log('🤖 Initializing Agent with Agent.builder()...');
   const provider = new OpenAIProvider({ apiKey, model: 'gpt-4o-mini' });
 
-  const agent = new Agent({
-    name: 'Haiku Assistant',
-    instructions: 'You are a helpful assistant that responds strictly in 2-line haikus.',
-    model: provider,
-  });
+  const agent = Agent.builder()
+    .setName('Haiku Assistant')
+    .setInstructions('You are a helpful assistant that responds strictly in 2-line haikus.')
+    .setModel(provider)
+    .build();
 
   const runner = new Runner();
   console.log('🚀 Running Agent...');

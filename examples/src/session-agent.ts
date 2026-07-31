@@ -10,14 +10,14 @@ async function main() {
     return;
   }
 
-  console.log('🤖 Initializing Agent and Persistent Session...');
+  console.log('🤖 Initializing Agent with Agent.builder()...');
   const provider = new OpenAIProvider({ apiKey, model: 'gpt-4o-mini' });
 
-  const agent = new Agent({
-    name: 'Memory Assistant',
-    instructions: 'You are a helpful assistant with memory of past turns.',
-    model: provider,
-  });
+  const agent = Agent.builder()
+    .setName('Memory Assistant')
+    .setInstructions('You are a helpful assistant with memory of past turns.')
+    .setModel(provider)
+    .build();
 
   const memoryStore = new InMemoryStore();
   const session = new Session({ sessionId: 'session_demo_99', store: memoryStore });

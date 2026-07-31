@@ -17,15 +17,15 @@ async function main() {
     return;
   }
 
-  console.log('🤖 Initializing Agent with Streaming Support...');
+  console.log('🤖 Initializing Agent with Agent.builder()...');
   const provider = new OpenAIProvider({ apiKey, model: 'gpt-4o-mini' });
 
-  const agent = new Agent({
-    name: 'Streaming Assistant',
-    instructions: 'You are a helpful assistant. Use get_current_time tool if asked about time.',
-    model: provider,
-    tools: [getTimeTool],
-  });
+  const agent = Agent.builder()
+    .setName('Streaming Assistant')
+    .setInstructions('You are a helpful assistant. Use get_current_time tool if asked about time.')
+    .setModel(provider)
+    .addTool(getTimeTool)
+    .build();
 
   const runner = new Runner();
 

@@ -41,15 +41,15 @@ async function main() {
     return;
   }
 
-  console.log('🤖 Initializing Agent with Context-Aware Tool...');
+  console.log('🤖 Initializing Agent with Agent.builder()...');
   const provider = new OpenAIProvider({ apiKey, model: 'gpt-4o-mini' });
 
-  const agent = new Agent({
-    name: 'Account Concierge',
-    instructions: 'You are an internal account concierge. Use the get_user_account tool to check user details when requested.',
-    model: provider,
-    tools: [getUserAccountTool],
-  });
+  const agent = Agent.builder()
+    .setName('Account Concierge')
+    .setInstructions('You are an internal account concierge. Use the get_user_account tool to check user details when requested.')
+    .setModel(provider)
+    .addTool(getUserAccountTool)
+    .build();
 
   const runner = new Runner();
 

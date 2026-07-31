@@ -6,7 +6,6 @@ import {
   Runner,
 } from '@kikoyu/core';
 
-// Input Guardrail: Block prompt injection attempts or credit card patterns
 const inputSafetyGuardrail = createGuardrail({
   name: 'input_safety_filter',
   type: 'input',
@@ -22,7 +21,6 @@ const inputSafetyGuardrail = createGuardrail({
   },
 });
 
-// Output Guardrail: Block profane words or secret token leakage
 const outputSafetyGuardrail = createGuardrail({
   name: 'output_pii_filter',
   type: 'output',
@@ -48,15 +46,15 @@ async function main() {
     return;
   }
 
-  console.log('🤖 Initializing Agent with Input & Output Guardrails...');
+  console.log('🤖 Initializing Agent with Agent.builder()...');
   const provider = new OpenAIProvider({ apiKey, model: 'gpt-4o-mini' });
 
-  const agent = new Agent({
-    name: 'Safe Concierge',
-    instructions: 'You are a safe assistant.',
-    model: provider,
-    guardrails: [inputSafetyGuardrail, outputSafetyGuardrail],
-  });
+  const agent = Agent.builder()
+    .setName('Safe Concierge')
+    .setInstructions('You are a safe assistant.')
+    .setModel(provider)
+    .withGuardrails(inputSafetyGuardrail, outputSafetyGuardrail)
+    .build();
 
   const runner = new Runner();
 

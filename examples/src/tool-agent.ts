@@ -9,7 +9,6 @@ const getWeatherTool = createTool({
   }),
   execute: async ({ location, unit }) => {
     console.log(`\n  ⚙️ [Tool Executed] get_weather(location="${location}", unit="${unit ?? 'celsius'}")`);
-    // Simulated weather API response stub
     const weatherData = {
       location,
       temperature: unit === 'fahrenheit' ? '72°F' : '22°C',
@@ -30,15 +29,15 @@ async function main() {
     return;
   }
 
-  console.log('🤖 Initializing Tool Agent with OpenAIProvider...');
+  console.log('🤖 Initializing Tool Agent with Agent.builder()...');
   const provider = new OpenAIProvider({ apiKey, model: 'gpt-4o-mini' });
 
-  const agent = new Agent({
-    name: 'Weather Assistant',
-    instructions: 'You are a helpful travel assistant. Always use the get_weather tool to look up weather before answering questions about city conditions.',
-    model: provider,
-    tools: [getWeatherTool],
-  });
+  const agent = Agent.builder()
+    .setName('Weather Assistant')
+    .setInstructions('You are a helpful travel assistant. Always use the get_weather tool to look up weather before answering questions about city conditions.')
+    .setModel(provider)
+    .addTool(getWeatherTool)
+    .build();
 
   const runner = new Runner();
   console.log('🚀 Running Agent: "What is the weather in Tokyo right now?"');

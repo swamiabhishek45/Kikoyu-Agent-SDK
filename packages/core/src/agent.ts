@@ -1,3 +1,4 @@
+import { AgentBuilder } from './agent-builder.js';
 import type { Guardrail } from './guardrail.js';
 import { createHandoff, type Handoff } from './handoff.js';
 import { ToolRegistry } from './tool-registry.js';
@@ -41,5 +42,9 @@ export class Agent {
     // Combine standard tools and handoff tools into ToolRegistry
     const handoffTools = this.handoffs.map((h) => h.tool);
     this.toolRegistry = new ToolRegistry([...this.tools, ...handoffTools]);
+  }
+
+  static builder(): AgentBuilder {
+    return new AgentBuilder();
   }
 }
