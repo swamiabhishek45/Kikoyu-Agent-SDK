@@ -6,7 +6,7 @@
 
 # Interface: ToolCallStartedEvent
 
-Defined in: [packages/core/src/stream-event.ts:8](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/stream-event.ts#L8)
+Defined in: [packages/core/src/stream-event.ts:8](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/stream-event.ts#L8)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/core/src/stream-event.ts:8](https://github.com/swamiabhish
 
 > **toolCall**: [`ToolCall`](ToolCall.md)
 
-Defined in: [packages/core/src/stream-event.ts:10](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/stream-event.ts#L10)
+Defined in: [packages/core/src/stream-event.ts:10](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/stream-event.ts#L10)
 
 ***
 
@@ -22,4 +22,4 @@ Defined in: [packages/core/src/stream-event.ts:10](https://github.com/swamiabhis
 
 > **type**: `"tool_call_started"`
 
-Defined in: [packages/core/src/stream-event.ts:9](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/stream-event.ts#L9)
+Defined in: [packages/core/src/stream-event.ts:9](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/stream-event.ts#L9)

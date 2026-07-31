@@ -6,7 +6,7 @@
 
 # Interface: SessionOptions
 
-Defined in: [packages/core/src/session.ts:4](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/session.ts#L4)
+Defined in: [packages/core/src/session.ts:4](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/session.ts#L4)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/core/src/session.ts:4](https://github.com/swamiabhishek45/
 
 > **sessionId**: `string`
 
-Defined in: [packages/core/src/session.ts:5](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/session.ts#L5)
+Defined in: [packages/core/src/session.ts:5](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/session.ts#L5)
 
 ***
 
@@ -22,4 +22,4 @@ Defined in: [packages/core/src/session.ts:5](https://github.com/swamiabhishek45/
 
 > `optional` **store?**: [`MemoryStore`](MemoryStore.md)
 
-Defined in: [packages/core/src/session.ts:6](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/session.ts#L6)
+Defined in: [packages/core/src/session.ts:6](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/session.ts#L6)

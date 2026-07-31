@@ -6,7 +6,7 @@
 
 # Interface: RunOptions\<TContext\>
 
-Defined in: [packages/core/src/runner.ts:9](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/runner.ts#L9)
+Defined in: [packages/core/src/runner.ts:9](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/runner.ts#L9)
 
 ## Type Parameters
 
@@ -20,7 +20,7 @@ Defined in: [packages/core/src/runner.ts:9](https://github.com/swamiabhishek45/K
 
 > `optional` **context?**: `TContext` \| [`RunContext`](../classes/RunContext.md)\<`TContext`\>
 
-Defined in: [packages/core/src/runner.ts:13](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/runner.ts#L13)
+Defined in: [packages/core/src/runner.ts:13](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/runner.ts#L13)
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: [packages/core/src/runner.ts:13](https://github.com/swamiabhishek45/
 
 > `optional` **maxIterations?**: `number`
 
-Defined in: [packages/core/src/runner.ts:12](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/runner.ts#L12)
+Defined in: [packages/core/src/runner.ts:12](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/runner.ts#L12)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: [packages/core/src/runner.ts:12](https://github.com/swamiabhishek45/
 
 > `optional` **maxTokens?**: `number`
 
-Defined in: [packages/core/src/runner.ts:11](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/runner.ts#L11)
+Defined in: [packages/core/src/runner.ts:11](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/runner.ts#L11)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [packages/core/src/runner.ts:11](https://github.com/swamiabhishek45/
 
 > `optional` **session?**: `string` \| [`Session`](../classes/Session.md)
 
-Defined in: [packages/core/src/runner.ts:14](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/runner.ts#L14)
+Defined in: [packages/core/src/runner.ts:14](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/runner.ts#L14)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [packages/core/src/runner.ts:14](https://github.com/swamiabhishek45/
 
 > `optional` **store?**: [`MemoryStore`](MemoryStore.md)
 
-Defined in: [packages/core/src/runner.ts:15](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/runner.ts#L15)
+Defined in: [packages/core/src/runner.ts:15](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/runner.ts#L15)
 
 ***
 
@@ -60,4 +60,4 @@ Defined in: [packages/core/src/runner.ts:15](https://github.com/swamiabhishek45/
 
 > `optional` **temperature?**: `number`
 
-Defined in: [packages/core/src/runner.ts:10](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/runner.ts#L10)
+Defined in: [packages/core/src/runner.ts:10](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/runner.ts#L10)

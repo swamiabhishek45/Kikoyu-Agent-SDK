@@ -6,7 +6,7 @@
 
 # Interface: MemoryStore
 
-Defined in: [packages/core/src/memory.ts:1](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/memory.ts#L1)
+Defined in: [packages/core/src/memory.ts:1](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/memory.ts#L1)
 
 ## Methods
 
@@ -14,7 +14,7 @@ Defined in: [packages/core/src/memory.ts:1](https://github.com/swamiabhishek45/K
 
 > **append**\<`T`\>(`key`, `item`): `void` \| `Promise`\<`void`\>
 
-Defined in: [packages/core/src/memory.ts:4](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/memory.ts#L4)
+Defined in: [packages/core/src/memory.ts:4](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/memory.ts#L4)
 
 #### Type Parameters
 
@@ -42,7 +42,7 @@ Defined in: [packages/core/src/memory.ts:4](https://github.com/swamiabhishek45/K
 
 > **get**\<`T`\>(`key`): `T` \| `Promise`\<`T` \| `undefined`\> \| `undefined`
 
-Defined in: [packages/core/src/memory.ts:2](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/memory.ts#L2)
+Defined in: [packages/core/src/memory.ts:2](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/memory.ts#L2)
 
 #### Type Parameters
 
@@ -66,7 +66,7 @@ Defined in: [packages/core/src/memory.ts:2](https://github.com/swamiabhishek45/K
 
 > **set**\<`T`\>(`key`, `value`): `void` \| `Promise`\<`void`\>
 
-Defined in: [packages/core/src/memory.ts:3](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/memory.ts#L3)
+Defined in: [packages/core/src/memory.ts:3](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/memory.ts#L3)
 
 #### Type Parameters
 

@@ -6,7 +6,7 @@
 
 # Class: InMemoryStore
 
-Defined in: [packages/core/src/memory.ts:7](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/memory.ts#L7)
+Defined in: [packages/core/src/memory.ts:7](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/memory.ts#L7)
 
 ## Implements
 
@@ -28,7 +28,7 @@ Defined in: [packages/core/src/memory.ts:7](https://github.com/swamiabhishek45/K
 
 > **append**\<`T`\>(`key`, `item`): `void`
 
-Defined in: [packages/core/src/memory.ts:19](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/memory.ts#L19)
+Defined in: [packages/core/src/memory.ts:19](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/memory.ts#L19)
 
 #### Type Parameters
 
@@ -60,7 +60,7 @@ Defined in: [packages/core/src/memory.ts:19](https://github.com/swamiabhishek45/
 
 > **get**\<`T`\>(`key`): `T` \| `undefined`
 
-Defined in: [packages/core/src/memory.ts:10](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/memory.ts#L10)
+Defined in: [packages/core/src/memory.ts:10](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/memory.ts#L10)
 
 #### Type Parameters
 
@@ -88,7 +88,7 @@ Defined in: [packages/core/src/memory.ts:10](https://github.com/swamiabhishek45/
 
 > **set**\<`T`\>(`key`, `value`): `void`
 
-Defined in: [packages/core/src/memory.ts:15](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/memory.ts#L15)
+Defined in: [packages/core/src/memory.ts:15](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/memory.ts#L15)
 
 #### Type Parameters
 

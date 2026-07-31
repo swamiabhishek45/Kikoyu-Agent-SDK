@@ -6,7 +6,7 @@
 
 # Class: OpenAIProvider
 
-Defined in: [packages/core/src/providers/openai.ts:19](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/providers/openai.ts#L19)
+Defined in: [packages/core/src/providers/openai.ts:19](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/providers/openai.ts#L19)
 
 ## Implements
 
@@ -18,7 +18,7 @@ Defined in: [packages/core/src/providers/openai.ts:19](https://github.com/swamia
 
 > **new OpenAIProvider**(`options?`): `OpenAIProvider`
 
-Defined in: [packages/core/src/providers/openai.ts:24](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/providers/openai.ts#L24)
+Defined in: [packages/core/src/providers/openai.ts:24](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/providers/openai.ts#L24)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [packages/core/src/providers/openai.ts:24](https://github.com/swamia
 
 > `readonly` **name**: `"openai"` = `'openai'`
 
-Defined in: [packages/core/src/providers/openai.ts:20](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/providers/openai.ts#L20)
+Defined in: [packages/core/src/providers/openai.ts:20](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/providers/openai.ts#L20)
 
 #### Implementation of
 
@@ -48,7 +48,7 @@ Defined in: [packages/core/src/providers/openai.ts:20](https://github.com/swamia
 
 > **complete**(`messages`, `options?`): `Promise`\<[`ModelResponse`](../interfaces/ModelResponse.md)\>
 
-Defined in: [packages/core/src/providers/openai.ts:79](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/providers/openai.ts#L79)
+Defined in: [packages/core/src/providers/openai.ts:79](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/providers/openai.ts#L79)
 
 #### Parameters
 
@@ -74,7 +74,7 @@ Defined in: [packages/core/src/providers/openai.ts:79](https://github.com/swamia
 
 > **streamComplete**(`messages`, `options?`): `AsyncIterable`\<[`ModelStreamChunk`](../interfaces/ModelStreamChunk.md)\>
 
-Defined in: [packages/core/src/providers/openai.ts:130](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/providers/openai.ts#L130)
+Defined in: [packages/core/src/providers/openai.ts:130](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/providers/openai.ts#L130)
 
 #### Parameters
 

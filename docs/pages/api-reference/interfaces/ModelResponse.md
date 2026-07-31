@@ -6,7 +6,7 @@
 
 # Interface: ModelResponse
 
-Defined in: [packages/core/src/types.ts:48](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/types.ts#L48)
+Defined in: [packages/core/src/types.ts:48](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/types.ts#L48)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/core/src/types.ts:48](https://github.com/swamiabhishek45/K
 
 > `optional` **finishReason?**: `string`
 
-Defined in: [packages/core/src/types.ts:51](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/types.ts#L51)
+Defined in: [packages/core/src/types.ts:51](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/types.ts#L51)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [packages/core/src/types.ts:51](https://github.com/swamiabhishek45/K
 
 > **text**: `string`
 
-Defined in: [packages/core/src/types.ts:49](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/types.ts#L49)
+Defined in: [packages/core/src/types.ts:49](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/types.ts#L49)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [packages/core/src/types.ts:49](https://github.com/swamiabhishek45/K
 
 > `optional` **toolCalls?**: [`ToolCall`](ToolCall.md)[]
 
-Defined in: [packages/core/src/types.ts:50](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/types.ts#L50)
+Defined in: [packages/core/src/types.ts:50](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/types.ts#L50)
 
 ***
 
@@ -38,4 +38,4 @@ Defined in: [packages/core/src/types.ts:50](https://github.com/swamiabhishek45/K
 
 > `optional` **usage?**: [`TokenUsage`](TokenUsage.md)
 
-Defined in: [packages/core/src/types.ts:52](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/types.ts#L52)
+Defined in: [packages/core/src/types.ts:52](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/types.ts#L52)

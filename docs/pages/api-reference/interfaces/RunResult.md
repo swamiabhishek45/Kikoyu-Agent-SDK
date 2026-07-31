@@ -6,7 +6,7 @@
 
 # Interface: RunResult
 
-Defined in: [packages/core/src/types.ts:96](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/types.ts#L96)
+Defined in: [packages/core/src/types.ts:96](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/types.ts#L96)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/core/src/types.ts:96](https://github.com/swamiabhishek45/K
 
 > **agent**: [`Agent`](../classes/Agent.md)
 
-Defined in: [packages/core/src/types.ts:104](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/types.ts#L104)
+Defined in: [packages/core/src/types.ts:104](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/types.ts#L104)
 
 Reference to the Agent instance that was executed.
 
@@ -24,7 +24,7 @@ Reference to the Agent instance that was executed.
 
 > **messages**: [`ModelMessage`](ModelMessage.md)[]
 
-Defined in: [packages/core/src/types.ts:101](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/types.ts#L101)
+Defined in: [packages/core/src/types.ts:101](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/types.ts#L101)
 
 The complete list of messages (system prompt, user input, assistant trace, tool calls/results) generated during the run.
 
@@ -34,6 +34,6 @@ The complete list of messages (system prompt, user input, assistant trace, tool 
 
 > **text**: `string`
 
-Defined in: [packages/core/src/types.ts:98](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/types.ts#L98)
+Defined in: [packages/core/src/types.ts:98](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/types.ts#L98)
 
 The final text response produced by the agent.

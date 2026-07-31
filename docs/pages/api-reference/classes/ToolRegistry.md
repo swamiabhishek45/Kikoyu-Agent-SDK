@@ -6,7 +6,7 @@
 
 # Class: ToolRegistry
 
-Defined in: [packages/core/src/tool-registry.ts:4](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/tool-registry.ts#L4)
+Defined in: [packages/core/src/tool-registry.ts:4](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/tool-registry.ts#L4)
 
 ## Constructors
 
@@ -14,7 +14,7 @@ Defined in: [packages/core/src/tool-registry.ts:4](https://github.com/swamiabhis
 
 > **new ToolRegistry**(`tools?`): `ToolRegistry`
 
-Defined in: [packages/core/src/tool-registry.ts:7](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/tool-registry.ts#L7)
+Defined in: [packages/core/src/tool-registry.ts:7](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/tool-registry.ts#L7)
 
 #### Parameters
 
@@ -32,7 +32,7 @@ Defined in: [packages/core/src/tool-registry.ts:7](https://github.com/swamiabhis
 
 > **get**(`name`): [`Tool`](../interfaces/Tool.md)\<`any`, `any`, `any`\> \| `undefined`
 
-Defined in: [packages/core/src/tool-registry.ts:20](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/tool-registry.ts#L20)
+Defined in: [packages/core/src/tool-registry.ts:20](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/tool-registry.ts#L20)
 
 #### Parameters
 
@@ -50,7 +50,7 @@ Defined in: [packages/core/src/tool-registry.ts:20](https://github.com/swamiabhi
 
 > **has**(`name`): `boolean`
 
-Defined in: [packages/core/src/tool-registry.ts:24](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/tool-registry.ts#L24)
+Defined in: [packages/core/src/tool-registry.ts:24](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/tool-registry.ts#L24)
 
 #### Parameters
 
@@ -68,7 +68,7 @@ Defined in: [packages/core/src/tool-registry.ts:24](https://github.com/swamiabhi
 
 > **list**(): [`Tool`](../interfaces/Tool.md)\<`any`, `any`, `any`\>[]
 
-Defined in: [packages/core/src/tool-registry.ts:28](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/tool-registry.ts#L28)
+Defined in: [packages/core/src/tool-registry.ts:28](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/tool-registry.ts#L28)
 
 #### Returns
 
@@ -80,7 +80,7 @@ Defined in: [packages/core/src/tool-registry.ts:28](https://github.com/swamiabhi
 
 > **register**(`tool`): `void`
 
-Defined in: [packages/core/src/tool-registry.ts:13](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/tool-registry.ts#L13)
+Defined in: [packages/core/src/tool-registry.ts:13](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/tool-registry.ts#L13)
 
 #### Parameters
 
@@ -98,7 +98,7 @@ Defined in: [packages/core/src/tool-registry.ts:13](https://github.com/swamiabhi
 
 > **toModelDefinitions**(): [`ModelToolDefinition`](../interfaces/ModelToolDefinition.md)[]
 
-Defined in: [packages/core/src/tool-registry.ts:32](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/tool-registry.ts#L32)
+Defined in: [packages/core/src/tool-registry.ts:32](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7b36dfb5f645f98f923c091f638175786bd9c8a5/packages/core/src/tool-registry.ts#L32)
 
 #### Returns
 
