@@ -32,7 +32,7 @@
 
 #### Defined in
 
-[memory.ts:83](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/memory.ts#L83)
+[memory.ts:83](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/memory.ts#L83)
 
 ## Methods
 
@@ -64,7 +64,7 @@
 
 #### Defined in
 
-[memory.ts:99](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/memory.ts#L99)
+[memory.ts:99](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/memory.ts#L99)
 
 ***
 
@@ -92,7 +92,7 @@
 
 #### Defined in
 
-[memory.ts:85](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/memory.ts#L85)
+[memory.ts:85](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/memory.ts#L85)
 
 ***
 
@@ -124,4 +124,4 @@
 
 #### Defined in
 
-[memory.ts:95](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/memory.ts#L95)
+[memory.ts:95](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/memory.ts#L95)

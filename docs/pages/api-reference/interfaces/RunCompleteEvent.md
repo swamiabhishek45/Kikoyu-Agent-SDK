@@ -14,7 +14,7 @@
 
 #### Defined in
 
-[stream-event.ts:56](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/stream-event.ts#L56)
+[stream-event.ts:56](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/stream-event.ts#L56)
 
 ***
 
@@ -24,4 +24,4 @@
 
 #### Defined in
 
-[stream-event.ts:55](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/stream-event.ts#L55)
+[stream-event.ts:55](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/stream-event.ts#L55)

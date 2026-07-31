@@ -46,4 +46,4 @@
 
 ## Defined in
 
-[tool.ts:5](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/tool.ts#L5)
+[tool.ts:5](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/tool.ts#L5)

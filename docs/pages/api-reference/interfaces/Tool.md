@@ -22,7 +22,7 @@
 
 #### Defined in
 
-[types.ts:76](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/types.ts#L76)
+[types.ts:76](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/types.ts#L76)
 
 ***
 
@@ -46,7 +46,7 @@
 
 #### Defined in
 
-[types.ts:80](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/types.ts#L80)
+[types.ts:80](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/types.ts#L80)
 
 ***
 
@@ -56,7 +56,7 @@
 
 #### Defined in
 
-[types.ts:78](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/types.ts#L78)
+[types.ts:78](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/types.ts#L78)
 
 ***
 
@@ -66,7 +66,7 @@
 
 #### Defined in
 
-[types.ts:75](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/types.ts#L75)
+[types.ts:75](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/types.ts#L75)
 
 ***
 
@@ -76,7 +76,7 @@
 
 #### Defined in
 
-[types.ts:77](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/types.ts#L77)
+[types.ts:77](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/types.ts#L77)
 
 ***
 
@@ -86,4 +86,4 @@
 
 #### Defined in
 
-[types.ts:79](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/types.ts#L79)
+[types.ts:79](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/types.ts#L79)

@@ -28,4 +28,4 @@
 
 ## Defined in
 
-[structured-output.ts:17](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/structured-output.ts#L17)
+[structured-output.ts:17](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/structured-output.ts#L17)

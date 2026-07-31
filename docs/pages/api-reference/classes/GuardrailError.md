@@ -44,7 +44,7 @@
 
 #### Defined in
 
-[guardrail.ts:30](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/guardrail.ts#L30)
+[guardrail.ts:30](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/guardrail.ts#L30)
 
 ## Properties
 
@@ -54,7 +54,7 @@
 
 #### Defined in
 
-[guardrail.ts:25](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/guardrail.ts#L25)
+[guardrail.ts:25](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/guardrail.ts#L25)
 
 ***
 
@@ -64,7 +64,7 @@
 
 #### Defined in
 
-[guardrail.ts:26](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/guardrail.ts#L26)
+[guardrail.ts:26](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/guardrail.ts#L26)
 
 ***
 
@@ -74,7 +74,7 @@
 
 #### Defined in
 
-[guardrail.ts:28](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/guardrail.ts#L28)
+[guardrail.ts:28](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/guardrail.ts#L28)
 
 ***
 
@@ -84,4 +84,4 @@
 
 #### Defined in
 
-[guardrail.ts:27](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/guardrail.ts#L27)
+[guardrail.ts:27](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/guardrail.ts#L27)

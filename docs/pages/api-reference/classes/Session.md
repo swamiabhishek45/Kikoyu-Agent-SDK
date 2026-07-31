@@ -28,7 +28,7 @@
 
 #### Defined in
 
-[session.ts:13](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/session.ts#L13)
+[session.ts:13](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/session.ts#L13)
 
 ## Properties
 
@@ -38,7 +38,7 @@
 
 #### Defined in
 
-[session.ts:10](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/session.ts#L10)
+[session.ts:10](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/session.ts#L10)
 
 ***
 
@@ -48,7 +48,7 @@
 
 #### Defined in
 
-[session.ts:11](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/session.ts#L11)
+[session.ts:11](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/session.ts#L11)
 
 ## Methods
 
@@ -68,7 +68,7 @@
 
 #### Defined in
 
-[session.ts:41](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/session.ts#L41)
+[session.ts:41](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/session.ts#L41)
 
 ***
 
@@ -82,7 +82,7 @@
 
 #### Defined in
 
-[session.ts:46](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/session.ts#L46)
+[session.ts:46](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/session.ts#L46)
 
 ***
 
@@ -96,4 +96,4 @@
 
 #### Defined in
 
-[session.ts:36](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/session.ts#L36)
+[session.ts:36](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/session.ts#L36)
