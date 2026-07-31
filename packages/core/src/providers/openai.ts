@@ -5,6 +5,7 @@ import type {
   ModelProvider,
   ModelRequestOptions,
   ModelResponse,
+  ModelStreamChunk,
   ToolCall,
 } from '../types.js';
 
@@ -30,44 +31,41 @@ export class OpenAIProvider implements ModelProvider {
       });
   }
 
-  async complete(
-    messages: ModelMessage[],
-    options?: ModelRequestOptions
-  ): Promise<ModelResponse> {
-    const formattedMessages: ChatCompletionMessageParam[] = messages.map(
-      (msg) => {
-        if (msg.role === 'tool') {
-          return {
-            role: 'tool',
-            tool_call_id: msg.toolCallId ?? '',
-            content: msg.content,
-          };
-        }
-
-        if (msg.role === 'assistant' && msg.toolCalls && msg.toolCalls.length > 0) {
-          return {
-            role: 'assistant',
-            content: msg.content || null,
-            tool_calls: msg.toolCalls.map((tc) => ({
-              id: tc.id,
-              type: 'function' as const,
-              function: {
-                name: tc.name,
-                arguments: JSON.stringify(tc.args),
-              },
-            })),
-          };
-        }
-
+  private formatMessages(messages: ModelMessage[]): ChatCompletionMessageParam[] {
+    return messages.map((msg) => {
+      if (msg.role === 'tool') {
         return {
-          role: msg.role as 'system' | 'user' | 'assistant',
+          role: 'tool',
+          tool_call_id: msg.toolCallId ?? '',
           content: msg.content,
         };
       }
-    );
 
-    const formattedTools: ChatCompletionTool[] | undefined = options?.tools
-      ? options.tools.map((t) => ({
+      if (msg.role === 'assistant' && msg.toolCalls && msg.toolCalls.length > 0) {
+        return {
+          role: 'assistant',
+          content: msg.content || null,
+          tool_calls: msg.toolCalls.map((tc) => ({
+            id: tc.id,
+            type: 'function' as const,
+            function: {
+              name: tc.name,
+              arguments: JSON.stringify(tc.args),
+            },
+          })),
+        };
+      }
+
+      return {
+        role: msg.role as 'system' | 'user' | 'assistant',
+        content: msg.content,
+      };
+    });
+  }
+
+  private formatTools(tools?: ModelRequestOptions['tools']): ChatCompletionTool[] | undefined {
+    return tools
+      ? tools.map((t) => ({
           type: 'function' as const,
           function: {
             name: t.name,
@@ -76,6 +74,14 @@ export class OpenAIProvider implements ModelProvider {
           },
         }))
       : undefined;
+  }
+
+  async complete(
+    messages: ModelMessage[],
+    options?: ModelRequestOptions
+  ): Promise<ModelResponse> {
+    const formattedMessages = this.formatMessages(messages);
+    const formattedTools = this.formatTools(options?.tools);
 
     const response = await this.client.chat.completions.create({
       model: this.defaultModel,
@@ -119,5 +125,70 @@ export class OpenAIProvider implements ModelProvider {
           }
         : undefined,
     };
+  }
+
+  async *streamComplete(
+    messages: ModelMessage[],
+    options?: ModelRequestOptions
+  ): AsyncIterable<ModelStreamChunk> {
+    const formattedMessages = this.formatMessages(messages);
+    const formattedTools = this.formatTools(options?.tools);
+
+    const stream = await this.client.chat.completions.create({
+      model: this.defaultModel,
+      messages: formattedMessages,
+      tools: formattedTools,
+      temperature: options?.temperature,
+      max_tokens: options?.maxTokens,
+      stop: options?.stop,
+      stream: true,
+    });
+
+    const toolCallsMap = new Map<number, { id: string; name: string; argsStr: string }>();
+
+    for await (const chunk of stream) {
+      const choice = chunk.choices[0];
+      if (!choice) continue;
+
+      const delta = choice.delta?.content;
+      if (delta) {
+        yield { delta };
+      }
+
+      if (choice.delta?.tool_calls) {
+        for (const tc of choice.delta.tool_calls) {
+          const index = tc.index;
+          let existing = toolCallsMap.get(index);
+          if (!existing) {
+            existing = {
+              id: tc.id ?? `call_${index}`,
+              name: tc.function?.name ?? '',
+              argsStr: '',
+            };
+            toolCallsMap.set(index, existing);
+          }
+          if (tc.id) existing.id = tc.id;
+          if (tc.function?.name) existing.name = tc.function.name;
+          if (tc.function?.arguments) existing.argsStr += tc.function.arguments;
+        }
+      }
+    }
+
+    if (toolCallsMap.size > 0) {
+      const toolCalls: ToolCall[] = Array.from(toolCallsMap.values()).map((tc) => {
+        let args: Record<string, unknown> = {};
+        try {
+          args = JSON.parse(tc.argsStr || '{}');
+        } catch {
+          args = {};
+        }
+        return {
+          id: tc.id,
+          name: tc.name,
+          args,
+        };
+      });
+      yield { toolCalls };
+    }
   }
 }

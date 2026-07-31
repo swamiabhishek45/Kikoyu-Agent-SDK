@@ -52,12 +52,22 @@ export interface ModelResponse {
   usage?: TokenUsage;
 }
 
+export interface ModelStreamChunk {
+  delta?: string;
+  toolCalls?: ToolCall[];
+  finishReason?: string;
+}
+
 export interface ModelProvider {
   readonly name: string;
   complete(
     messages: ModelMessage[],
     options?: ModelRequestOptions
   ): Promise<ModelResponse>;
+  streamComplete?(
+    messages: ModelMessage[],
+    options?: ModelRequestOptions
+  ): AsyncIterable<ModelStreamChunk>;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

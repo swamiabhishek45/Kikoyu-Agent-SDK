@@ -3,7 +3,8 @@ import { GuardrailError } from './guardrail.js';
 import type { MemoryStore } from './memory.js';
 import { RunContext } from './run-context.js';
 import { Session } from './session.js';
-import type { ModelMessage, ModelResponse, RunResult } from './types.js';
+import type { StreamEvent } from './stream-event.js';
+import type { ModelMessage, RunResult, ToolCall } from './types.js';
 
 export interface RunOptions<TContext = Record<string, unknown>> {
   temperature?: number;
@@ -15,11 +16,11 @@ export interface RunOptions<TContext = Record<string, unknown>> {
 }
 
 export class Runner {
-  async run<TContext = Record<string, unknown>>(
+  async *stream<TContext = Record<string, unknown>>(
     agent: Agent,
     input: string | ModelMessage[],
     options?: RunOptions<TContext>
-  ): Promise<RunResult> {
+  ): AsyncGenerator<StreamEvent, RunResult, void> {
     const maxIterations = options?.maxIterations ?? 10;
     const runContext = RunContext.from<TContext>(options?.context);
 
@@ -75,11 +76,9 @@ export class Runner {
         tools: toolDefinitions.length > 0 ? toolDefinitions : undefined,
       };
 
-      let response: ModelResponse;
-
-      // On initial turn, run input guardrails concurrently with the first model call
+      // On initial turn, run input guardrails concurrently
       if (iteration === 1 && inputGuardrails.length > 0) {
-        const inputCheckTask = Promise.all(
+        await Promise.all(
           inputGuardrails.map(async (g) => {
             const check = await g.execute(inputTarget, runContext);
             if (!check.pass) {
@@ -92,34 +91,49 @@ export class Runner {
             }
           })
         );
+      }
 
-        const modelTask = currentAgent.model.complete(
+      let textOutput = '';
+      let toolCallsOutput: ToolCall[] | undefined;
+
+      if (typeof currentAgent.model.streamComplete === 'function') {
+        for await (const chunk of currentAgent.model.streamComplete(
           currentMessages,
           modelOptions
-        );
-
-        const [, modelResponse] = await Promise.all([inputCheckTask, modelTask]);
-        response = modelResponse;
+        )) {
+          if (chunk.delta) {
+            textOutput += chunk.delta;
+            yield { type: 'text_delta', delta: chunk.delta };
+          }
+          if (chunk.toolCalls && chunk.toolCalls.length > 0) {
+            toolCallsOutput = [...(toolCallsOutput ?? []), ...chunk.toolCalls];
+          }
+        }
       } else {
-        response = await currentAgent.model.complete(
+        const response = await currentAgent.model.complete(
           currentMessages,
           modelOptions
         );
+        textOutput = response.text;
+        toolCallsOutput = response.toolCalls;
+        if (textOutput) {
+          yield { type: 'text_delta', delta: textOutput };
+        }
       }
 
       // Record assistant turn
       const assistantMessage: ModelMessage = {
         role: 'assistant',
-        content: response.text,
-        toolCalls: response.toolCalls,
+        content: textOutput,
+        toolCalls: toolCallsOutput,
       };
 
       currentMessages.push(assistantMessage);
 
       // If no tool calls requested by model, evaluate output guardrails and complete
-      if (!response.toolCalls || response.toolCalls.length === 0) {
+      if (!toolCallsOutput || toolCallsOutput.length === 0) {
         for (const g of outputGuardrails) {
-          const check = await g.execute(response.text, runContext);
+          const check = await g.execute(textOutput, runContext);
           if (!check.pass) {
             throw new GuardrailError(
               g.name,
@@ -130,7 +144,6 @@ export class Runner {
           }
         }
 
-        // Persist new turn messages to session if active
         if (session) {
           const newTurnMessages = currentMessages.slice(
             1 + priorSessionMessages.length
@@ -138,40 +151,45 @@ export class Runner {
           await session.appendMessages(newTurnMessages);
         }
 
-        return {
-          text: response.text,
+        const finalResult: RunResult = {
+          text: textOutput,
           messages: currentMessages,
           agent: currentAgent,
         };
+
+        yield { type: 'run_complete', result: finalResult };
+        return finalResult;
       }
 
       // Process tool calls (including handoffs)
       let pendingHandoffAgent: Agent | undefined;
 
-      for (const toolCall of response.toolCalls) {
+      for (const toolCall of toolCallsOutput) {
+        yield { type: 'tool_call_started', toolCall };
+
         const tool = currentAgent.toolRegistry.get(toolCall.name);
         let toolOutputContent: string;
+        let executionResult: unknown;
+        let executionError: string | undefined;
 
         if (!tool) {
-          toolOutputContent = JSON.stringify({
-            error: `Tool "${toolCall.name}" is not registered on this agent.`,
-          });
+          executionError = `Tool "${toolCall.name}" is not registered on this agent.`;
+          toolOutputContent = JSON.stringify({ error: executionError });
         } else {
           const parseResult = tool.parameters.safeParse(toolCall.args);
           if (!parseResult.success) {
-            toolOutputContent = JSON.stringify({
-              error: `Invalid parameters for tool "${toolCall.name}": ${parseResult.error.message}`,
-            });
+            executionError = `Invalid parameters for tool "${toolCall.name}": ${parseResult.error.message}`;
+            toolOutputContent = JSON.stringify({ error: executionError });
           } else {
             try {
-              const rawResult = await tool.execute(
+              executionResult = await tool.execute(
                 parseResult.data,
                 runContext
               );
               toolOutputContent =
-                typeof rawResult === 'string'
-                  ? rawResult
-                  : JSON.stringify(rawResult ?? null);
+                typeof executionResult === 'string'
+                  ? executionResult
+                  : JSON.stringify(executionResult ?? null);
 
               if (tool.handoffTarget) {
                 pendingHandoffAgent = tool.handoffTarget;
@@ -179,9 +197,8 @@ export class Runner {
             } catch (err: unknown) {
               const errorMessage =
                 err instanceof Error ? err.message : String(err);
-              toolOutputContent = JSON.stringify({
-                error: `Tool "${toolCall.name}" execution failed: ${errorMessage}`,
-              });
+              executionError = `Tool "${toolCall.name}" execution failed: ${errorMessage}`;
+              toolOutputContent = JSON.stringify({ error: executionError });
             }
           }
         }
@@ -192,11 +209,27 @@ export class Runner {
           toolCallId: toolCall.id,
           content: toolOutputContent,
         });
+
+        yield {
+          type: 'tool_call_finished',
+          toolCallId: toolCall.id,
+          name: toolCall.name,
+          result: executionResult,
+          error: executionError,
+        };
       }
 
       // If handoff was triggered, swap active agent and inject transition message
       if (pendingHandoffAgent) {
+        const fromAgentName = currentAgent.name;
         currentAgent = pendingHandoffAgent;
+
+        yield {
+          type: 'handoff_occurred',
+          fromAgent: fromAgentName,
+          toAgent: currentAgent.name,
+        };
+
         currentMessages.push({
           role: 'system',
           content: `[Agent Handoff] You are now acting as agent "${currentAgent.name}". Instructions: ${currentAgent.instructions}`,
@@ -207,5 +240,27 @@ export class Runner {
     throw new Error(
       `Agent execution loop exceeded maximum iterations limit (${maxIterations}).`
     );
+  }
+
+  async run<TContext = Record<string, unknown>>(
+    agent: Agent,
+    input: string | ModelMessage[],
+    options?: RunOptions<TContext>
+  ): Promise<RunResult> {
+    let finalResult: RunResult | undefined;
+
+    for await (const event of this.stream(agent, input, options)) {
+      if (event.type === 'run_complete') {
+        finalResult = event.result;
+      }
+    }
+
+    if (!finalResult) {
+      throw new Error(
+        'Runner stream completed without returning a final RunResult.'
+      );
+    }
+
+    return finalResult;
   }
 }

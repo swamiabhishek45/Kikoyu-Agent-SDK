@@ -12,7 +12,8 @@
     "example:context": "tsx src/context-agent.ts",
     "example:guardrail": "tsx src/guardrail-agent.ts",
     "example:handoff": "tsx src/handoff-agent.ts",
-    "example:session": "tsx src/session-agent.ts"
+    "example:session": "tsx src/session-agent.ts",
+    "example:stream": "tsx src/stream-agent.ts"
   },
   "dependencies": {
     "@kikoyu/core": "workspace:*",
