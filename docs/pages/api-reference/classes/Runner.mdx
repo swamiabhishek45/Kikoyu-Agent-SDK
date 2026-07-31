@@ -1,0 +1,83 @@
+[**Kikoyu Core API Reference**](../README.mdx)
+
+***
+
+[Kikoyu Core API Reference](../README.mdx) / Runner
+
+# Class: Runner
+
+Defined in: [runner.ts:18](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/227ba6de385e481b5690c0402f6b1e6e7aec682d/packages/core/src/runner.ts#L18)
+
+## Constructors
+
+### Constructor
+
+> **new Runner**(): `Runner`
+
+#### Returns
+
+`Runner`
+
+## Methods
+
+### run()
+
+> **run**\<`TContext`\>(`agent`, `input`, `options?`): `Promise`\<[`RunResult`](../interfaces/RunResult.mdx)\>
+
+Defined in: [runner.ts:245](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/227ba6de385e481b5690c0402f6b1e6e7aec682d/packages/core/src/runner.ts#L245)
+
+#### Type Parameters
+
+##### TContext
+
+`TContext` = `Record`\<`string`, `unknown`\>
+
+#### Parameters
+
+##### agent
+
+[`Agent`](Agent.mdx)
+
+##### input
+
+`string` \| [`ModelMessage`](../interfaces/ModelMessage.mdx)[]
+
+##### options?
+
+[`RunOptions`](../interfaces/RunOptions.mdx)\<`TContext`\>
+
+#### Returns
+
+`Promise`\<[`RunResult`](../interfaces/RunResult.mdx)\>
+
+***
+
+### stream()
+
+> **stream**\<`TContext`\>(`agent`, `input`, `options?`): `AsyncGenerator`\<[`StreamEvent`](../type-aliases/StreamEvent.mdx), [`RunResult`](../interfaces/RunResult.mdx), `void`\>
+
+Defined in: [runner.ts:19](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/227ba6de385e481b5690c0402f6b1e6e7aec682d/packages/core/src/runner.ts#L19)
+
+#### Type Parameters
+
+##### TContext
+
+`TContext` = `Record`\<`string`, `unknown`\>
+
+#### Parameters
+
+##### agent
+
+[`Agent`](Agent.mdx)
+
+##### input
+
+`string` \| [`ModelMessage`](../interfaces/ModelMessage.mdx)[]
+
+##### options?
+
+[`RunOptions`](../interfaces/RunOptions.mdx)\<`TContext`\>
+
+#### Returns
+
+`AsyncGenerator`\<[`StreamEvent`](../type-aliases/StreamEvent.mdx), [`RunResult`](../interfaces/RunResult.mdx), `void`\>

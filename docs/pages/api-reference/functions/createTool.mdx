@@ -1,0 +1,49 @@
+[**Kikoyu Core API Reference**](../README.mdx)
+
+***
+
+[Kikoyu Core API Reference](../README.mdx) / createTool
+
+# Function: createTool()
+
+> **createTool**\<`TSchema`, `TResult`, `TContext`\>(`config`): [`Tool`](../interfaces/Tool.mdx)\<`TSchema`, `TResult`, `TContext`\>
+
+Defined in: [tool.ts:5](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/227ba6de385e481b5690c0402f6b1e6e7aec682d/packages/core/src/tool.ts#L5)
+
+## Type Parameters
+
+### TSchema
+
+`TSchema` *extends* `ZodTypeAny`
+
+### TResult
+
+`TResult`
+
+### TContext
+
+`TContext` = `Record`\<`string`, `unknown`\>
+
+## Parameters
+
+### config
+
+#### description
+
+`string`
+
+#### execute
+
+(`args`, `context`) => `TResult` \| `Promise`\<`TResult`\>
+
+#### name
+
+`string`
+
+#### parameters
+
+`TSchema`
+
+## Returns
+
+[`Tool`](../interfaces/Tool.mdx)\<`TSchema`, `TResult`, `TContext`\>

@@ -7,5 +7,9 @@
   "readme": "none",
   "name": "Kikoyu Core API Reference",
   "cleanOutputDir": true,
-  "skipErrorChecking": true
+  "skipErrorChecking": true,
+  "excludeExternals": true,
+  "excludePrivate": true,
+  "excludeInternal": true,
+  "fileExtension": ".mdx"
 }

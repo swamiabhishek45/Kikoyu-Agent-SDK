@@ -9,4 +9,7 @@ export default {
   footer: {
     text: 'Kikoyu Agent SDK Documentation © 2026',
   },
+  copyCode: {
+    show: true,
+  },
 };

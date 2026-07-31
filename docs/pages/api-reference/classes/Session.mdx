@@ -1,0 +1,89 @@
+[**Kikoyu Core API Reference**](../README.mdx)
+
+***
+
+[Kikoyu Core API Reference](../README.mdx) / Session
+
+# Class: Session
+
+Defined in: [session.ts:9](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/227ba6de385e481b5690c0402f6b1e6e7aec682d/packages/core/src/session.ts#L9)
+
+## Constructors
+
+### Constructor
+
+> **new Session**(`sessionIdOrOptions`, `store?`): `Session`
+
+Defined in: [session.ts:13](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/227ba6de385e481b5690c0402f6b1e6e7aec682d/packages/core/src/session.ts#L13)
+
+#### Parameters
+
+##### sessionIdOrOptions
+
+`string` \| [`SessionOptions`](../interfaces/SessionOptions.mdx)
+
+##### store?
+
+[`MemoryStore`](../interfaces/MemoryStore.mdx)
+
+#### Returns
+
+`Session`
+
+## Properties
+
+### sessionId
+
+> `readonly` **sessionId**: `string`
+
+Defined in: [session.ts:10](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/227ba6de385e481b5690c0402f6b1e6e7aec682d/packages/core/src/session.ts#L10)
+
+***
+
+### store
+
+> `readonly` **store**: [`MemoryStore`](../interfaces/MemoryStore.mdx)
+
+Defined in: [session.ts:11](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/227ba6de385e481b5690c0402f6b1e6e7aec682d/packages/core/src/session.ts#L11)
+
+## Methods
+
+### appendMessages()
+
+> **appendMessages**(`newMessages`): `Promise`\<`void`\>
+
+Defined in: [session.ts:41](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/227ba6de385e481b5690c0402f6b1e6e7aec682d/packages/core/src/session.ts#L41)
+
+#### Parameters
+
+##### newMessages
+
+[`ModelMessage`](../interfaces/ModelMessage.mdx)[]
+
+#### Returns
+
+`Promise`\<`void`\>
+
+***
+
+### clear()
+
+> **clear**(): `Promise`\<`void`\>
+
+Defined in: [session.ts:46](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/227ba6de385e481b5690c0402f6b1e6e7aec682d/packages/core/src/session.ts#L46)
+
+#### Returns
+
+`Promise`\<`void`\>
+
+***
+
+### getMessages()
+
+> **getMessages**(): `Promise`\<[`ModelMessage`](../interfaces/ModelMessage.mdx)[]\>
+
+Defined in: [session.ts:36](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/227ba6de385e481b5690c0402f6b1e6e7aec682d/packages/core/src/session.ts#L36)
+
+#### Returns
+
+`Promise`\<[`ModelMessage`](../interfaces/ModelMessage.mdx)[]\>

@@ -1,0 +1,61 @@
+[**Kikoyu Core API Reference**](../README.mdx)
+
+***
+
+[Kikoyu Core API Reference](../README.mdx) / ModelProvider
+
+# Interface: ModelProvider
+
+Defined in: [types.ts:61](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/227ba6de385e481b5690c0402f6b1e6e7aec682d/packages/core/src/types.ts#L61)
+
+## Properties
+
+### name
+
+> `readonly` **name**: `string`
+
+Defined in: [types.ts:62](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/227ba6de385e481b5690c0402f6b1e6e7aec682d/packages/core/src/types.ts#L62)
+
+## Methods
+
+### complete()
+
+> **complete**(`messages`, `options?`): `Promise`\<[`ModelResponse`](ModelResponse.mdx)\>
+
+Defined in: [types.ts:63](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/227ba6de385e481b5690c0402f6b1e6e7aec682d/packages/core/src/types.ts#L63)
+
+#### Parameters
+
+##### messages
+
+[`ModelMessage`](ModelMessage.mdx)[]
+
+##### options?
+
+[`ModelRequestOptions`](ModelRequestOptions.mdx)
+
+#### Returns
+
+`Promise`\<[`ModelResponse`](ModelResponse.mdx)\>
+
+***
+
+### streamComplete()?
+
+> `optional` **streamComplete**(`messages`, `options?`): `AsyncIterable`\<[`ModelStreamChunk`](ModelStreamChunk.mdx)\>
+
+Defined in: [types.ts:67](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/227ba6de385e481b5690c0402f6b1e6e7aec682d/packages/core/src/types.ts#L67)
+
+#### Parameters
+
+##### messages
+
+[`ModelMessage`](ModelMessage.mdx)[]
+
+##### options?
+
+[`ModelRequestOptions`](ModelRequestOptions.mdx)
+
+#### Returns
+
+`AsyncIterable`\<[`ModelStreamChunk`](ModelStreamChunk.mdx)\>
