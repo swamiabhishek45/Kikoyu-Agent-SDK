@@ -1,6 +1,8 @@
 import type { Agent } from './agent.js';
 import { GuardrailError } from './guardrail.js';
+import type { MemoryStore } from './memory.js';
 import { RunContext } from './run-context.js';
+import { Session } from './session.js';
 import type { ModelMessage, ModelResponse, RunResult } from './types.js';
 
 export interface RunOptions<TContext = Record<string, unknown>> {
@@ -8,6 +10,8 @@ export interface RunOptions<TContext = Record<string, unknown>> {
   maxTokens?: number;
   maxIterations?: number;
   context?: RunContext<TContext> | TContext;
+  session?: Session | string;
+  store?: MemoryStore;
 }
 
 export class Runner {
@@ -19,7 +23,19 @@ export class Runner {
     const maxIterations = options?.maxIterations ?? 10;
     const runContext = RunContext.from<TContext>(options?.context);
 
+    // Resolve session if supplied
+    let session: Session | undefined;
+    if (options?.session) {
+      if (typeof options.session === 'string') {
+        session = new Session(options.session, options.store);
+      } else if (options.session instanceof Session) {
+        session = options.session;
+      }
+    }
+
     let currentAgent = agent;
+
+    const priorSessionMessages = session ? await session.getMessages() : [];
 
     const inputMessages: ModelMessage[] =
       typeof input === 'string'
@@ -36,6 +52,7 @@ export class Runner {
 
     const currentMessages: ModelMessage[] = [
       { role: 'system', content: currentAgent.instructions },
+      ...priorSessionMessages,
       ...inputMessages,
     ];
 
@@ -113,6 +130,14 @@ export class Runner {
           }
         }
 
+        // Persist new turn messages to session if active
+        if (session) {
+          const newTurnMessages = currentMessages.slice(
+            1 + priorSessionMessages.length
+          );
+          await session.appendMessages(newTurnMessages);
+        }
+
         return {
           text: response.text,
           messages: currentMessages,
@@ -148,7 +173,6 @@ export class Runner {
                   ? rawResult
                   : JSON.stringify(rawResult ?? null);
 
-              // Check if tool is a handoff tool
               if (tool.handoffTarget) {
                 pendingHandoffAgent = tool.handoffTarget;
               }
@@ -170,7 +194,7 @@ export class Runner {
         });
       }
 
-      // If handoff was triggered, swap active agent and inject new instructions
+      // If handoff was triggered, swap active agent and inject transition message
       if (pendingHandoffAgent) {
         currentAgent = pendingHandoffAgent;
         currentMessages.push({
