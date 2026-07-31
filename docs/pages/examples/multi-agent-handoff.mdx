@@ -1,0 +1,35 @@
+# Worked Example: Multi-Agent Handoff System
+
+This complete, runnable example demonstrates a triage router agent transferring control to a domain specialist agent.
+
+```typescript
+import { Agent, createHandoff, OpenAIProvider, Runner } from '@kikoyu/core';
+
+async function main() {
+  const provider = new OpenAIProvider({ apiKey: process.env.OPENAI_API_KEY });
+
+  // 1. Specialist Agent
+  const mathSpecialist = Agent.builder()
+    .setName('Math Specialist')
+    .setInstructions('You solve math problems step-by-step.')
+    .setModel(provider)
+    .build();
+
+  // 2. Router Agent with Handoff
+  const triageRouter = Agent.builder()
+    .setName('Triage Router')
+    .setInstructions('Route math questions to Math Specialist using handoff.')
+    .setModel(provider)
+    .withHandoffs(createHandoff(mathSpecialist))
+    .build();
+
+  // 3. Execute run
+  const runner = new Runner();
+  const result = await runner.run(triageRouter, 'Solve 15 * 84');
+
+  console.log('Active Specialist Agent:', result.agent.name);
+  console.log('Final Answer:', result.text);
+}
+
+main().catch(console.error);
+```

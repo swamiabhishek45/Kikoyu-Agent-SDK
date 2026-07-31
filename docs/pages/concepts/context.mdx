@@ -1,0 +1,38 @@
+# RunContext
+
+`RunContext` threads a generic typed object (e.g., `{ userId, orgId }`) through `Runner.run()` directly into tool execution while guaranteeing the context object is never sent to the model provider.
+
+## Why You'd Use This
+
+`RunContext` allows tools to securely access session headers, user authentication tokens, database connections, or organization IDs without leaking sensitive metadata into LLM prompts.
+
+## Copy-Pasteable Code Sample
+
+```typescript
+import { Agent, createTool, OpenAIProvider, Runner, z } from '@kikoyu/core';
+
+interface SessionContext {
+  userId: string;
+}
+
+const fetchOrdersTool = createTool<z.ZodObject<Record<string, never>>, unknown, SessionContext>({
+  name: 'fetch_user_orders',
+  description: 'Fetch order history for the current session user.',
+  parameters: z.object({}),
+  execute: async (_args, ctx) => {
+    const userId = ctx.get('userId');
+    return [{ orderId: 'ord_123', userId, item: 'Laptop' }];
+  },
+});
+
+const agent = Agent.builder()
+  .setName('Order Bot')
+  .setInstructions('Fetch orders when requested.')
+  .setModel(new OpenAIProvider())
+  .addTool(fetchOrdersTool)
+  .build();
+
+const runner = new Runner();
+// Context is passed to run() and received by tool execute()
+await runner.run(agent, 'Show my orders', { context: { userId: 'usr_789' } });
+```

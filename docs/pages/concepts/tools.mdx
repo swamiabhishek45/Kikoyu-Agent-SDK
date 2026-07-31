@@ -1,0 +1,26 @@
+# Tools
+
+Tools allow agents to perform actions, query external APIs, or calculate results during execution. Tools are defined using `createTool()` and Zod parameter schemas.
+
+## Why You'd Use This
+
+Zod schema validation guarantees that model function arguments match the exact type shape expected by your code before execution, returning clear validation errors if the model passes incorrect types.
+
+## Copy-Pasteable Code Sample
+
+```typescript
+import { createTool, z } from '@kikoyu/core';
+
+export const calculateDiscountTool = createTool({
+  name: 'calculate_discount',
+  description: 'Calculates discounted price given price and percentage.',
+  parameters: z.object({
+    price: z.number().positive(),
+    discountPercent: z.number().min(0).max(100),
+  }),
+  execute: ({ price, discountPercent }) => {
+    const finalPrice = price * (1 - discountPercent / 100);
+    return { originalPrice: price, finalPrice };
+  },
+});
+```

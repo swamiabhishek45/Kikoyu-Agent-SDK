@@ -1,0 +1,25 @@
+node_modules
+dist
+.turbo
+*.log
+.DS_Store
+.env
+
+# Next.js
+.next/
+out/
+
+# Nextra build
+docs/.next/
+docs/out/
+
+# Node
+node_modules/
+
+# Logs
+*.log
+
+# Env
+.env
+.env.local
+.env.*

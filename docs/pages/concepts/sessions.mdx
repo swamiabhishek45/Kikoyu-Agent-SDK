@@ -1,0 +1,31 @@
+# Sessions & Persistent Memory
+
+`Session` manages conversation turn history across multiple `Runner.run()` calls using a storage-agnostic `MemoryStore` (defaulting to `InMemoryStore`).
+
+## Why You'd Use This
+
+Sessions allow stateful chat conversations to retain full memory of prior user and assistant turns without requiring manual message array management on every call.
+
+## Copy-Pasteable Code Sample
+
+```typescript
+import { Agent, InMemoryStore, OpenAIProvider, Runner, Session } from '@kikoyu/core';
+
+const memoryStore = new InMemoryStore();
+const session = new Session({ sessionId: 'chat_session_101', store: memoryStore });
+
+const agent = Agent.builder()
+  .setName('Memory Agent')
+  .setInstructions('Remember user details across turns.')
+  .setModel(new OpenAIProvider())
+  .build();
+
+const runner = new Runner();
+
+// Turn 1
+await runner.run(agent, 'My name is Bob', { session });
+
+// Turn 2 retains memory of Turn 1
+const res2 = await runner.run(agent, 'What is my name?', { session });
+console.log(res2.text); // "Your name is Bob"
+```

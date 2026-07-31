@@ -1,0 +1,21 @@
+# AgentBuilder
+
+`AgentBuilder` is a fluent builder for constructing `Agent` instances using method chaining with runtime validation.
+
+## Why You'd Use This
+
+`AgentBuilder` provides a clean, type-safe API for constructing complex agent configurations with multiple tools, guardrails, and handoffs, while enforcing strict validation at `.build()` time to catch missing fields early.
+
+## Copy-Pasteable Code Sample
+
+```typescript
+import { Agent, OpenAIProvider } from '@kikoyu/core';
+
+const agent = Agent.builder()
+  .setName('Support Agent')
+  .setInstructions('Help users troubleshoot network issues.')
+  .setModel(new OpenAIProvider())
+  .build();
+
+console.log('Built Agent:', agent.name);
+```

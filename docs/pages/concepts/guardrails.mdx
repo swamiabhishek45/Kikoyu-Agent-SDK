@@ -1,0 +1,24 @@
+# Guardrails
+
+Guardrails run safety checks on user inputs and model outputs. Input guardrails run concurrently (`Promise.all`) with the initial model call for zero latency overhead, while output guardrails evaluate final text answers.
+
+## Why You'd Use This
+
+Guardrails enforce safety boundaries (such as blocking PII, prompt injections, or profanity). If a tripwire is triggered, `Runner` immediately throws a structured `GuardrailError` to halt execution.
+
+## Copy-Pasteable Code Sample
+
+```typescript
+import { createGuardrail, GuardrailError } from '@kikoyu/core';
+
+export const piiInputGuardrail = createGuardrail({
+  name: 'pii_filter',
+  type: 'input',
+  execute: (input) => {
+    if (/4000-\d{4}-\d{4}-\d{4}/.test(input)) {
+      return { pass: false, reasoning: 'Credit card numbers are not allowed.' };
+    }
+    return { pass: true };
+  },
+});
+```

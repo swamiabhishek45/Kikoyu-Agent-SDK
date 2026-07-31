@@ -1,0 +1,26 @@
+# Handoffs
+
+Handoffs enable one-directional transfers of control between agents. When a router agent model triggers a handoff tool, `Runner` transfers execution to the target specialist agent.
+
+## Why You'd Use This
+
+Multi-agent handoffs allow complex workflows to be decomposed into modular specialist agents (e.g. Triage Router ➔ Code Specialist ➔ Billing Specialist).
+
+## Copy-Pasteable Code Sample
+
+```typescript
+import { Agent, createHandoff, OpenAIProvider } from '@kikoyu/core';
+
+const billingAgent = Agent.builder()
+  .setName('Billing Specialist')
+  .setInstructions('Assist users with invoices and payments.')
+  .setModel(new OpenAIProvider())
+  .build();
+
+const routerAgent = Agent.builder()
+  .setName('Triage Router')
+  .setInstructions('Route billing inquiries to Billing Specialist.')
+  .setModel(new OpenAIProvider())
+  .withHandoffs(createHandoff(billingAgent))
+  .build();
+```

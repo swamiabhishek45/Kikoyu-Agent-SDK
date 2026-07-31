@@ -1,0 +1,37 @@
+# Worked Example: Single Agent with Tools
+
+This complete, runnable example demonstrates building a single agent attached to a custom Zod tool.
+
+```typescript
+import { Agent, createTool, OpenAIProvider, Runner, z } from '@kikoyu/core';
+
+// 1. Create Zod parameter tool
+const stockPriceTool = createTool({
+  name: 'get_stock_price',
+  description: 'Lookup ticker stock price.',
+  parameters: z.object({
+    symbol: z.string().describe('Stock ticker symbol, e.g. AAPL, GOOGL'),
+  }),
+  execute: async ({ symbol }) => {
+    return { symbol, price: '$185.50', currency: 'USD' };
+  },
+});
+
+async function main() {
+  // 2. Build agent with Agent.builder()
+  const agent = Agent.builder()
+    .setName('Financial Advisor')
+    .setInstructions('Always check stock prices using get_stock_price before answering financial queries.')
+    .setModel(new OpenAIProvider({ apiKey: process.env.OPENAI_API_KEY }))
+    .addTool(stockPriceTool)
+    .build();
+
+  // 3. Run execution loop
+  const runner = new Runner();
+  const result = await runner.run(agent, 'What is the stock price of AAPL?');
+
+  console.log('Final Response:', result.text);
+}
+
+main().catch(console.error);
+```

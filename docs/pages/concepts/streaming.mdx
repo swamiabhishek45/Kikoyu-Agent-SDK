@@ -1,0 +1,29 @@
+# Streaming
+
+`Runner.stream()` returns an `AsyncGenerator` yielding real-time `StreamEvent`s as text deltas arrive from the model and tools execute.
+
+## Why You'd Use This
+
+Streaming provides instant feedback for user interfaces, rendering text token-by-token and displaying live status indicators as tools execute or handoffs occur.
+
+## Copy-Pasteable Code Sample
+
+```typescript
+import { Agent, OpenAIProvider, Runner } from '@kikoyu/core';
+
+const agent = Agent.builder()
+  .setName('Streaming Assistant')
+  .setInstructions('Respond concisely.')
+  .setModel(new OpenAIProvider())
+  .build();
+
+const runner = new Runner();
+
+for await (const event of runner.stream(agent, 'Write a poem about rivers.')) {
+  if (event.type === 'text_delta') {
+    process.stdout.write(event.delta);
+  } else if (event.type === 'tool_call_started') {
+    console.log(`\nExecuting tool: ${event.toolCall.name}`);
+  }
+}
+```

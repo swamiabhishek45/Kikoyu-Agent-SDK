@@ -1,0 +1,23 @@
+# Agent
+
+The `Agent` primitive represents an immutable configuration object containing persona instructions, a model provider, tools, guardrails, and handoffs.
+
+## Why You'd Use This
+
+Keeping `Agent` completely immutable and separate from execution logic ensures that agent definitions can be safely shared across requests, serialized, or stored without unexpected side effects. All execution loop logic resides in `Runner`.
+
+## Copy-Pasteable Code Sample
+
+```typescript
+import { Agent, OpenAIProvider } from '@kikoyu/core';
+
+// Create an immutable Agent instance directly
+const agent = new Agent({
+  name: 'Greeter Agent',
+  instructions: 'You greet users warmly in Italian.',
+  model: new OpenAIProvider({ apiKey: process.env.OPENAI_API_KEY }),
+});
+
+console.log('Agent Name:', agent.name);
+console.log('Instructions:', agent.instructions);
+```

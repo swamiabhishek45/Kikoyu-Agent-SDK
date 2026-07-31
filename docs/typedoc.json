@@ -1,0 +1,11 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["../packages/core/src/index.ts"],
+  "tsconfig": "../packages/core/tsconfig.json",
+  "out": "pages/api-reference",
+  "plugin": ["typedoc-plugin-markdown"],
+  "readme": "none",
+  "name": "Kikoyu Core API Reference",
+  "cleanOutputDir": true,
+  "skipErrorChecking": true
+}

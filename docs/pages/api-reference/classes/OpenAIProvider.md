@@ -1,0 +1,95 @@
+[**Kikoyu Core API Reference**](../README.md)
+
+***
+
+[Kikoyu Core API Reference](../README.md) / OpenAIProvider
+
+# Class: OpenAIProvider
+
+Defined in: packages/core/src/providers/openai.ts:19
+
+## Implements
+
+- [`ModelProvider`](../interfaces/ModelProvider.md)
+
+## Constructors
+
+### Constructor
+
+> **new OpenAIProvider**(`options?`): `OpenAIProvider`
+
+Defined in: packages/core/src/providers/openai.ts:24
+
+#### Parameters
+
+##### options?
+
+[`OpenAIProviderOptions`](../interfaces/OpenAIProviderOptions.md) = `{}`
+
+#### Returns
+
+`OpenAIProvider`
+
+## Properties
+
+### name
+
+> `readonly` **name**: `"openai"` = `'openai'`
+
+Defined in: packages/core/src/providers/openai.ts:20
+
+#### Implementation of
+
+[`ModelProvider`](../interfaces/ModelProvider.md).[`name`](../interfaces/ModelProvider.md#name)
+
+## Methods
+
+### complete()
+
+> **complete**(`messages`, `options?`): `Promise`\<[`ModelResponse`](../interfaces/ModelResponse.md)\>
+
+Defined in: packages/core/src/providers/openai.ts:79
+
+#### Parameters
+
+##### messages
+
+[`ModelMessage`](../interfaces/ModelMessage.md)[]
+
+##### options?
+
+[`ModelRequestOptions`](../interfaces/ModelRequestOptions.md)
+
+#### Returns
+
+`Promise`\<[`ModelResponse`](../interfaces/ModelResponse.md)\>
+
+#### Implementation of
+
+[`ModelProvider`](../interfaces/ModelProvider.md).[`complete`](../interfaces/ModelProvider.md#complete)
+
+***
+
+### streamComplete()
+
+> **streamComplete**(`messages`, `options?`): `AsyncIterable`\<[`ModelStreamChunk`](../interfaces/ModelStreamChunk.md)\>
+
+Defined in: packages/core/src/providers/openai.ts:130
+
+#### Parameters
+
+##### messages
+
+[`ModelMessage`](../interfaces/ModelMessage.md)[]
+
+##### options?
+
+[`ModelRequestOptions`](../interfaces/ModelRequestOptions.md)
+
+#### Returns
+
+`AsyncIterable`\<[`ModelStreamChunk`](../interfaces/ModelStreamChunk.md)\>
+
+#### Implementation of
+
+[`ModelProvider`](../interfaces/ModelProvider.md).[`streamComplete`](../interfaces/ModelProvider.md#streamcomplete)

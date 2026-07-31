@@ -1,0 +1,51 @@
+# Quickstart
+
+Welcome to the **Kikoyu Agent SDK**! This guide will get you up and running with your first agent in under 2 minutes.
+
+## 1. Installation
+
+Install `@kikoyu/core` and `zod` in your TypeScript project:
+
+```bash
+npm install @kikoyu/core zod
+# or
+pnpm add @kikoyu/core zod
+```
+
+## 2. Build Your First Agent
+
+Use `Agent.builder()` to create an immutable agent configuration:
+
+```typescript
+import { Agent, OpenAIProvider, Runner } from '@kikoyu/core';
+
+const provider = new OpenAIProvider({
+  apiKey: process.env.OPENAI_API_KEY,
+  model: 'gpt-4o-mini',
+});
+
+const agent = Agent.builder()
+  .setName('Assistant')
+  .setInstructions('You are a helpful AI assistant that responds in concise sentences.')
+  .setModel(provider)
+  .build();
+```
+
+## 3. Run the Agent
+
+Execute the agent loop using `Runner`:
+
+```typescript
+const runner = new Runner();
+
+async function main() {
+  const result = await runner.run(agent, 'Hello! Who are you?');
+  
+  console.log('Response:', result.text);
+  console.log('Messages Trace:', result.messages);
+}
+
+main();
+```
+
+That's it! Explore the [Concepts](./concepts/agent) section to learn about tools, context, guardrails, handoffs, sessions, and streaming.

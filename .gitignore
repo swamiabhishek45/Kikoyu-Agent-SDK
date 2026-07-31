@@ -1,5 +1,23 @@
-node_modules
-dist
-.turbo
+# dependencies
+node_modules/
+**/node_modules/
+
+# Next.js
+.next/
+**/.next/
+
+# build
+dist/
+build/
+out/
+
+# Turborepo
+.turbo/
+
+# logs
 *.log
-.DS_Store
+
+# env
+.env
+.env.local
+.env.*
