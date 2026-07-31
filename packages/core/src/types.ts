@@ -65,6 +65,7 @@ export interface Tool<TSchema extends z.ZodTypeAny = any, TResult = any, TContex
   name: string;
   description: string;
   parameters: z.ZodTypeAny;
+  handoffTarget?: Agent;
   execute: (
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     args: any,
@@ -78,9 +79,8 @@ export interface AgentConfig {
   model: ModelProvider;
   tools?: Tool[];
   guardrails?: Guardrail[];
-
-  // Reserved for future phases
-  handoffs?: unknown[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  handoffs?: any[];
 }
 
 export interface RunResult {

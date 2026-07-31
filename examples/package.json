@@ -10,7 +10,8 @@
     "example:openai": "tsx src/openai-agent.ts",
     "example:tool": "tsx src/tool-agent.ts",
     "example:context": "tsx src/context-agent.ts",
-    "example:guardrail": "tsx src/guardrail-agent.ts"
+    "example:guardrail": "tsx src/guardrail-agent.ts",
+    "example:handoff": "tsx src/handoff-agent.ts"
   },
   "dependencies": {
     "@kikoyu/core": "workspace:*",

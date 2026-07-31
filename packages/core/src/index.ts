@@ -5,6 +5,7 @@ export * from './tool.js';
 export * from './tool-registry.js';
 export * from './run-context.js';
 export * from './guardrail.js';
+export * from './handoff.js';
 export * from './utils/zod-converter.js';
 export * from './providers/index.js';
 export { z } from 'zod';

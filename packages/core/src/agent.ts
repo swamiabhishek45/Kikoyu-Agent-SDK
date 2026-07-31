@@ -1,4 +1,5 @@
 import type { Guardrail } from './guardrail.js';
+import { createHandoff, type Handoff } from './handoff.js';
 import { ToolRegistry } from './tool-registry.js';
 import type { AgentConfig, ModelProvider, Tool } from './types.js';
 
@@ -9,7 +10,7 @@ export class Agent {
   readonly tools: Tool[];
   readonly toolRegistry: ToolRegistry;
   readonly guardrails: Guardrail[];
-  readonly handoffs: unknown[];
+  readonly handoffs: Handoff[];
 
   constructor(config: AgentConfig) {
     if (!config.name || typeof config.name !== 'string') {
@@ -25,9 +26,20 @@ export class Agent {
     this.name = config.name;
     this.instructions = config.instructions;
     this.model = config.model;
-    this.tools = config.tools ?? [];
-    this.toolRegistry = new ToolRegistry(this.tools);
+    this.tools = config.tools ? [...config.tools] : [];
     this.guardrails = config.guardrails ?? [];
-    this.handoffs = config.handoffs ?? [];
+
+    // Normalize handoffs
+    const rawHandoffs = config.handoffs ?? [];
+    this.handoffs = rawHandoffs.map((h) => {
+      if (typeof h === 'object' && h !== null && 'instructions' in h && 'model' in h) {
+        return createHandoff(h as Agent);
+      }
+      return h as Handoff;
+    });
+
+    // Combine standard tools and handoff tools into ToolRegistry
+    const handoffTools = this.handoffs.map((h) => h.tool);
+    this.toolRegistry = new ToolRegistry([...this.tools, ...handoffTools]);
   }
 }

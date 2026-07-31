@@ -19,6 +19,8 @@ export class Runner {
     const maxIterations = options?.maxIterations ?? 10;
     const runContext = RunContext.from<TContext>(options?.context);
 
+    let currentAgent = agent;
+
     const inputMessages: ModelMessage[] =
       typeof input === 'string'
         ? [{ role: 'user', content: input }]
@@ -32,11 +34,8 @@ export class Runner {
             .map((m) => m.content)
             .join('\n');
 
-    const inputGuardrails = agent.guardrails.filter((g) => g.type === 'input');
-    const outputGuardrails = agent.guardrails.filter((g) => g.type === 'output');
-
     const currentMessages: ModelMessage[] = [
-      { role: 'system', content: agent.instructions },
+      { role: 'system', content: currentAgent.instructions },
       ...inputMessages,
     ];
 
@@ -45,7 +44,14 @@ export class Runner {
     while (iteration < maxIterations) {
       iteration++;
 
-      const toolDefinitions = agent.toolRegistry.toModelDefinitions();
+      const inputGuardrails = currentAgent.guardrails.filter(
+        (g) => g.type === 'input'
+      );
+      const outputGuardrails = currentAgent.guardrails.filter(
+        (g) => g.type === 'output'
+      );
+
+      const toolDefinitions = currentAgent.toolRegistry.toModelDefinitions();
       const modelOptions = {
         temperature: options?.temperature,
         maxTokens: options?.maxTokens,
@@ -70,13 +76,18 @@ export class Runner {
           })
         );
 
-        const modelTask = agent.model.complete(currentMessages, modelOptions);
+        const modelTask = currentAgent.model.complete(
+          currentMessages,
+          modelOptions
+        );
 
-        // Promise.all will reject immediately if any input guardrail throws GuardrailError
         const [, modelResponse] = await Promise.all([inputCheckTask, modelTask]);
         response = modelResponse;
       } else {
-        response = await agent.model.complete(currentMessages, modelOptions);
+        response = await currentAgent.model.complete(
+          currentMessages,
+          modelOptions
+        );
       }
 
       // Record assistant turn
@@ -88,9 +99,8 @@ export class Runner {
 
       currentMessages.push(assistantMessage);
 
-      // If no tool calls requested by model, check output guardrails and finish
+      // If no tool calls requested by model, evaluate output guardrails and complete
       if (!response.toolCalls || response.toolCalls.length === 0) {
-        // Execute output guardrails on final text answer
         for (const g of outputGuardrails) {
           const check = await g.execute(response.text, runContext);
           if (!check.pass) {
@@ -106,13 +116,15 @@ export class Runner {
         return {
           text: response.text,
           messages: currentMessages,
-          agent,
+          agent: currentAgent,
         };
       }
 
-      // Execute requested tool calls sequentially
+      // Process tool calls (including handoffs)
+      let pendingHandoffAgent: Agent | undefined;
+
       for (const toolCall of response.toolCalls) {
-        const tool = agent.toolRegistry.get(toolCall.name);
+        const tool = currentAgent.toolRegistry.get(toolCall.name);
         let toolOutputContent: string;
 
         if (!tool) {
@@ -135,6 +147,11 @@ export class Runner {
                 typeof rawResult === 'string'
                   ? rawResult
                   : JSON.stringify(rawResult ?? null);
+
+              // Check if tool is a handoff tool
+              if (tool.handoffTarget) {
+                pendingHandoffAgent = tool.handoffTarget;
+              }
             } catch (err: unknown) {
               const errorMessage =
                 err instanceof Error ? err.message : String(err);
@@ -150,6 +167,15 @@ export class Runner {
           name: toolCall.name,
           toolCallId: toolCall.id,
           content: toolOutputContent,
+        });
+      }
+
+      // If handoff was triggered, swap active agent and inject new instructions
+      if (pendingHandoffAgent) {
+        currentAgent = pendingHandoffAgent;
+        currentMessages.push({
+          role: 'system',
+          content: `[Agent Handoff] You are now acting as agent "${currentAgent.name}". Instructions: ${currentAgent.instructions}`,
         });
       }
     }
