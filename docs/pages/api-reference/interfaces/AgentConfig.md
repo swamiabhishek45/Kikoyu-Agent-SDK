@@ -6,7 +6,7 @@
 
 # Interface: AgentConfig
 
-Defined in: packages/core/src/types.ts:86
+Defined in: [packages/core/src/types.ts:86](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L86)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: packages/core/src/types.ts:86
 
 > `optional` **guardrails?**: [`Guardrail`](Guardrail.md)\<`any`\>[]
 
-Defined in: packages/core/src/types.ts:91
+Defined in: [packages/core/src/types.ts:91](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L91)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: packages/core/src/types.ts:91
 
 > `optional` **handoffs?**: `any`[]
 
-Defined in: packages/core/src/types.ts:93
+Defined in: [packages/core/src/types.ts:93](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L93)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: packages/core/src/types.ts:93
 
 > **instructions**: `string`
 
-Defined in: packages/core/src/types.ts:88
+Defined in: [packages/core/src/types.ts:88](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L88)
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: packages/core/src/types.ts:88
 
 > **model**: [`ModelProvider`](ModelProvider.md)
 
-Defined in: packages/core/src/types.ts:89
+Defined in: [packages/core/src/types.ts:89](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L89)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: packages/core/src/types.ts:89
 
 > **name**: `string`
 
-Defined in: packages/core/src/types.ts:87
+Defined in: [packages/core/src/types.ts:87](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L87)
 
 ***
 
@@ -54,4 +54,4 @@ Defined in: packages/core/src/types.ts:87
 
 > `optional` **tools?**: [`Tool`](Tool.md)\<`any`, `any`, `any`\>[]
 
-Defined in: packages/core/src/types.ts:90
+Defined in: [packages/core/src/types.ts:90](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L90)

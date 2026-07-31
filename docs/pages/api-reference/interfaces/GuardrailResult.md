@@ -6,7 +6,7 @@
 
 # Interface: GuardrailResult
 
-Defined in: packages/core/src/guardrail.ts:5
+Defined in: [packages/core/src/guardrail.ts:5](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/guardrail.ts#L5)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: packages/core/src/guardrail.ts:5
 
 > `optional` **metadata?**: `Record`\<`string`, `unknown`\>
 
-Defined in: packages/core/src/guardrail.ts:8
+Defined in: [packages/core/src/guardrail.ts:8](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/guardrail.ts#L8)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: packages/core/src/guardrail.ts:8
 
 > **pass**: `boolean`
 
-Defined in: packages/core/src/guardrail.ts:6
+Defined in: [packages/core/src/guardrail.ts:6](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/guardrail.ts#L6)
 
 ***
 
@@ -30,4 +30,4 @@ Defined in: packages/core/src/guardrail.ts:6
 
 > `optional` **reasoning?**: `string`
 
-Defined in: packages/core/src/guardrail.ts:7
+Defined in: [packages/core/src/guardrail.ts:7](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/guardrail.ts#L7)

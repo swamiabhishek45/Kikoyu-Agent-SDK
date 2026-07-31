@@ -6,7 +6,7 @@
 
 # Interface: Tool\<TSchema, TResult, TContext\>
 
-Defined in: packages/core/src/types.ts:74
+Defined in: [packages/core/src/types.ts:74](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L74)
 
 ## Type Parameters
 
@@ -28,7 +28,7 @@ Defined in: packages/core/src/types.ts:74
 
 > **description**: `string`
 
-Defined in: packages/core/src/types.ts:76
+Defined in: [packages/core/src/types.ts:76](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L76)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: packages/core/src/types.ts:76
 
 > **execute**: (`args`, `context`) => `TResult` \| `Promise`\<`TResult`\>
 
-Defined in: packages/core/src/types.ts:79
+Defined in: [packages/core/src/types.ts:79](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L79)
 
 #### Parameters
 
@@ -58,7 +58,7 @@ Defined in: packages/core/src/types.ts:79
 
 > `optional` **handoffTarget?**: [`Agent`](../classes/Agent.md)
 
-Defined in: packages/core/src/types.ts:78
+Defined in: [packages/core/src/types.ts:78](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L78)
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: packages/core/src/types.ts:78
 
 > **name**: `string`
 
-Defined in: packages/core/src/types.ts:75
+Defined in: [packages/core/src/types.ts:75](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L75)
 
 ***
 
@@ -74,4 +74,4 @@ Defined in: packages/core/src/types.ts:75
 
 > **parameters**: [`ZodTypeAny`](../Kikoyu-Core-API-Reference/namespaces/z/type-aliases/ZodTypeAny.md)
 
-Defined in: packages/core/src/types.ts:77
+Defined in: [packages/core/src/types.ts:77](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L77)

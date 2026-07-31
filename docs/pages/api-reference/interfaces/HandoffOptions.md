@@ -6,7 +6,7 @@
 
 # Interface: HandoffOptions
 
-Defined in: packages/core/src/handoff.ts:6
+Defined in: [packages/core/src/handoff.ts:6](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/handoff.ts#L6)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: packages/core/src/handoff.ts:6
 
 > `optional` **description?**: `string`
 
-Defined in: packages/core/src/handoff.ts:8
+Defined in: [packages/core/src/handoff.ts:8](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/handoff.ts#L8)
 
 ***
 
@@ -22,4 +22,4 @@ Defined in: packages/core/src/handoff.ts:8
 
 > `optional` **name?**: `string`
 
-Defined in: packages/core/src/handoff.ts:7
+Defined in: [packages/core/src/handoff.ts:7](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/handoff.ts#L7)

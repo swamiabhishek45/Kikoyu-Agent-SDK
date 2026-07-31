@@ -6,7 +6,7 @@
 
 # Class: Runner
 
-Defined in: packages/core/src/runner.ts:18
+Defined in: [packages/core/src/runner.ts:18](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/runner.ts#L18)
 
 ## Constructors
 
@@ -24,7 +24,7 @@ Defined in: packages/core/src/runner.ts:18
 
 > **run**\<`TContext`\>(`agent`, `input`, `options?`): `Promise`\<[`RunResult`](../interfaces/RunResult.md)\>
 
-Defined in: packages/core/src/runner.ts:245
+Defined in: [packages/core/src/runner.ts:245](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/runner.ts#L245)
 
 #### Type Parameters
 
@@ -56,7 +56,7 @@ Defined in: packages/core/src/runner.ts:245
 
 > **stream**\<`TContext`\>(`agent`, `input`, `options?`): `AsyncGenerator`\<[`StreamEvent`](../type-aliases/StreamEvent.md), [`RunResult`](../interfaces/RunResult.md), `void`\>
 
-Defined in: packages/core/src/runner.ts:19
+Defined in: [packages/core/src/runner.ts:19](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/runner.ts#L19)
 
 #### Type Parameters
 

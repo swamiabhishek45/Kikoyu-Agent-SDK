@@ -6,7 +6,7 @@
 
 # Interface: ModelProvider
 
-Defined in: packages/core/src/types.ts:61
+Defined in: [packages/core/src/types.ts:61](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L61)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: packages/core/src/types.ts:61
 
 > `readonly` **name**: `string`
 
-Defined in: packages/core/src/types.ts:62
+Defined in: [packages/core/src/types.ts:62](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L62)
 
 ## Methods
 
@@ -22,7 +22,7 @@ Defined in: packages/core/src/types.ts:62
 
 > **complete**(`messages`, `options?`): `Promise`\<[`ModelResponse`](ModelResponse.md)\>
 
-Defined in: packages/core/src/types.ts:63
+Defined in: [packages/core/src/types.ts:63](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L63)
 
 #### Parameters
 
@@ -44,7 +44,7 @@ Defined in: packages/core/src/types.ts:63
 
 > `optional` **streamComplete**(`messages`, `options?`): `AsyncIterable`\<[`ModelStreamChunk`](ModelStreamChunk.md)\>
 
-Defined in: packages/core/src/types.ts:67
+Defined in: [packages/core/src/types.ts:67](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L67)
 
 #### Parameters
 

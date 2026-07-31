@@ -6,7 +6,7 @@
 
 # Interface: TokenUsage
 
-Defined in: packages/core/src/types.ts:29
+Defined in: [packages/core/src/types.ts:29](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L29)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: packages/core/src/types.ts:29
 
 > `optional` **completionTokens?**: `number`
 
-Defined in: packages/core/src/types.ts:31
+Defined in: [packages/core/src/types.ts:31](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L31)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: packages/core/src/types.ts:31
 
 > `optional` **promptTokens?**: `number`
 
-Defined in: packages/core/src/types.ts:30
+Defined in: [packages/core/src/types.ts:30](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L30)
 
 ***
 
@@ -30,4 +30,4 @@ Defined in: packages/core/src/types.ts:30
 
 > `optional` **totalTokens?**: `number`
 
-Defined in: packages/core/src/types.ts:32
+Defined in: [packages/core/src/types.ts:32](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L32)

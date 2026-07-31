@@ -6,7 +6,7 @@
 
 # Interface: ToolResult
 
-Defined in: packages/core/src/types.ts:14
+Defined in: [packages/core/src/types.ts:14](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L14)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: packages/core/src/types.ts:14
 
 > `optional` **error?**: `string`
 
-Defined in: packages/core/src/types.ts:18
+Defined in: [packages/core/src/types.ts:18](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L18)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: packages/core/src/types.ts:18
 
 > **name**: `string`
 
-Defined in: packages/core/src/types.ts:16
+Defined in: [packages/core/src/types.ts:16](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L16)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: packages/core/src/types.ts:16
 
 > `optional` **result?**: `unknown`
 
-Defined in: packages/core/src/types.ts:17
+Defined in: [packages/core/src/types.ts:17](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L17)
 
 ***
 
@@ -38,4 +38,4 @@ Defined in: packages/core/src/types.ts:17
 
 > **toolCallId**: `string`
 
-Defined in: packages/core/src/types.ts:15
+Defined in: [packages/core/src/types.ts:15](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L15)

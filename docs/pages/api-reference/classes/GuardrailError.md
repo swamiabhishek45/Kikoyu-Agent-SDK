@@ -6,7 +6,7 @@
 
 # Class: GuardrailError
 
-Defined in: packages/core/src/guardrail.ts:24
+Defined in: [packages/core/src/guardrail.ts:24](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/guardrail.ts#L24)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: packages/core/src/guardrail.ts:24
 
 > **new GuardrailError**(`guardrailName`, `guardrailType`, `reasoning?`, `metadata?`): `GuardrailError`
 
-Defined in: packages/core/src/guardrail.ts:30
+Defined in: [packages/core/src/guardrail.ts:30](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/guardrail.ts#L30)
 
 #### Parameters
 
@@ -64,7 +64,7 @@ Defined in: node\_modules/.pnpm/typescript@5.9.3/node\_modules/typescript/lib/li
 
 > `readonly` **guardrailName**: `string`
 
-Defined in: packages/core/src/guardrail.ts:25
+Defined in: [packages/core/src/guardrail.ts:25](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/guardrail.ts#L25)
 
 ***
 
@@ -72,7 +72,7 @@ Defined in: packages/core/src/guardrail.ts:25
 
 > `readonly` **guardrailType**: [`GuardrailType`](../type-aliases/GuardrailType.md)
 
-Defined in: packages/core/src/guardrail.ts:26
+Defined in: [packages/core/src/guardrail.ts:26](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/guardrail.ts#L26)
 
 ***
 
@@ -92,7 +92,7 @@ Defined in: node\_modules/.pnpm/typescript@5.9.3/node\_modules/typescript/lib/li
 
 > `readonly` `optional` **metadata?**: `Record`\<`string`, `unknown`\>
 
-Defined in: packages/core/src/guardrail.ts:28
+Defined in: [packages/core/src/guardrail.ts:28](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/guardrail.ts#L28)
 
 ***
 
@@ -112,7 +112,7 @@ Defined in: node\_modules/.pnpm/typescript@5.9.3/node\_modules/typescript/lib/li
 
 > `readonly` `optional` **reasoning?**: `string`
 
-Defined in: packages/core/src/guardrail.ts:27
+Defined in: [packages/core/src/guardrail.ts:27](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/guardrail.ts#L27)
 
 ***
 

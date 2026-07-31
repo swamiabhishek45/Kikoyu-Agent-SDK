@@ -6,7 +6,7 @@
 
 # Interface: HandoffOccurredEvent
 
-Defined in: packages/core/src/stream-event.ts:21
+Defined in: [packages/core/src/stream-event.ts:21](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/stream-event.ts#L21)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: packages/core/src/stream-event.ts:21
 
 > **fromAgent**: `string`
 
-Defined in: packages/core/src/stream-event.ts:23
+Defined in: [packages/core/src/stream-event.ts:23](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/stream-event.ts#L23)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: packages/core/src/stream-event.ts:23
 
 > **toAgent**: `string`
 
-Defined in: packages/core/src/stream-event.ts:24
+Defined in: [packages/core/src/stream-event.ts:24](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/stream-event.ts#L24)
 
 ***
 
@@ -30,4 +30,4 @@ Defined in: packages/core/src/stream-event.ts:24
 
 > **type**: `"handoff_occurred"`
 
-Defined in: packages/core/src/stream-event.ts:22
+Defined in: [packages/core/src/stream-event.ts:22](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/stream-event.ts#L22)

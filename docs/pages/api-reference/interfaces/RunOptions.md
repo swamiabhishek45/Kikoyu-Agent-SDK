@@ -6,7 +6,7 @@
 
 # Interface: RunOptions\<TContext\>
 
-Defined in: packages/core/src/runner.ts:9
+Defined in: [packages/core/src/runner.ts:9](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/runner.ts#L9)
 
 ## Type Parameters
 
@@ -20,7 +20,7 @@ Defined in: packages/core/src/runner.ts:9
 
 > `optional` **context?**: `TContext` \| [`RunContext`](../classes/RunContext.md)\<`TContext`\>
 
-Defined in: packages/core/src/runner.ts:13
+Defined in: [packages/core/src/runner.ts:13](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/runner.ts#L13)
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: packages/core/src/runner.ts:13
 
 > `optional` **maxIterations?**: `number`
 
-Defined in: packages/core/src/runner.ts:12
+Defined in: [packages/core/src/runner.ts:12](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/runner.ts#L12)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: packages/core/src/runner.ts:12
 
 > `optional` **maxTokens?**: `number`
 
-Defined in: packages/core/src/runner.ts:11
+Defined in: [packages/core/src/runner.ts:11](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/runner.ts#L11)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: packages/core/src/runner.ts:11
 
 > `optional` **session?**: `string` \| [`Session`](../classes/Session.md)
 
-Defined in: packages/core/src/runner.ts:14
+Defined in: [packages/core/src/runner.ts:14](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/runner.ts#L14)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: packages/core/src/runner.ts:14
 
 > `optional` **store?**: [`MemoryStore`](MemoryStore.md)
 
-Defined in: packages/core/src/runner.ts:15
+Defined in: [packages/core/src/runner.ts:15](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/runner.ts#L15)
 
 ***
 
@@ -60,4 +60,4 @@ Defined in: packages/core/src/runner.ts:15
 
 > `optional` **temperature?**: `number`
 
-Defined in: packages/core/src/runner.ts:10
+Defined in: [packages/core/src/runner.ts:10](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/runner.ts#L10)

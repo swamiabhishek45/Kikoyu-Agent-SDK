@@ -6,7 +6,7 @@
 
 # Class: OpenAIProvider
 
-Defined in: packages/core/src/providers/openai.ts:19
+Defined in: [packages/core/src/providers/openai.ts:19](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/providers/openai.ts#L19)
 
 ## Implements
 
@@ -18,7 +18,7 @@ Defined in: packages/core/src/providers/openai.ts:19
 
 > **new OpenAIProvider**(`options?`): `OpenAIProvider`
 
-Defined in: packages/core/src/providers/openai.ts:24
+Defined in: [packages/core/src/providers/openai.ts:24](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/providers/openai.ts#L24)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: packages/core/src/providers/openai.ts:24
 
 > `readonly` **name**: `"openai"` = `'openai'`
 
-Defined in: packages/core/src/providers/openai.ts:20
+Defined in: [packages/core/src/providers/openai.ts:20](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/providers/openai.ts#L20)
 
 #### Implementation of
 
@@ -48,7 +48,7 @@ Defined in: packages/core/src/providers/openai.ts:20
 
 > **complete**(`messages`, `options?`): `Promise`\<[`ModelResponse`](../interfaces/ModelResponse.md)\>
 
-Defined in: packages/core/src/providers/openai.ts:79
+Defined in: [packages/core/src/providers/openai.ts:79](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/providers/openai.ts#L79)
 
 #### Parameters
 
@@ -74,7 +74,7 @@ Defined in: packages/core/src/providers/openai.ts:79
 
 > **streamComplete**(`messages`, `options?`): `AsyncIterable`\<[`ModelStreamChunk`](../interfaces/ModelStreamChunk.md)\>
 
-Defined in: packages/core/src/providers/openai.ts:130
+Defined in: [packages/core/src/providers/openai.ts:130](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/providers/openai.ts#L130)
 
 #### Parameters
 

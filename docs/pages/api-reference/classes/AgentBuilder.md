@@ -6,7 +6,7 @@
 
 # Class: AgentBuilder
 
-Defined in: packages/core/src/agent-builder.ts:19
+Defined in: [packages/core/src/agent-builder.ts:19](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/agent-builder.ts#L19)
 
 Fluent builder for constructing validated [Agent](Agent.md) instances using method chaining.
 
@@ -37,7 +37,7 @@ const agent = Agent.builder()
 
 > **addTool**(`tool`): `this`
 
-Defined in: packages/core/src/agent-builder.ts:58
+Defined in: [packages/core/src/agent-builder.ts:58](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/agent-builder.ts#L58)
 
 Attaches a single tool to the agent.
 
@@ -59,7 +59,7 @@ Tool definition.
 
 > **addTools**(...`tools`): `this`
 
-Defined in: packages/core/src/agent-builder.ts:67
+Defined in: [packages/core/src/agent-builder.ts:67](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/agent-builder.ts#L67)
 
 Attaches multiple tools to the agent.
 
@@ -81,7 +81,7 @@ Array of tool definitions.
 
 > **build**(): [`Agent`](Agent.md)
 
-Defined in: packages/core/src/agent-builder.ts:94
+Defined in: [packages/core/src/agent-builder.ts:94](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/agent-builder.ts#L94)
 
 Validates required configuration fields and builds an immutable [Agent](Agent.md).
 
@@ -99,7 +99,7 @@ Error if name, instructions, or model are missing.
 
 > **setInstructions**(`instructions`): `this`
 
-Defined in: packages/core/src/agent-builder.ts:40
+Defined in: [packages/core/src/agent-builder.ts:40](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/agent-builder.ts#L40)
 
 Sets the system instructions / persona prompt.
 
@@ -121,7 +121,7 @@ Detailed instructions for the agent.
 
 > **setModel**(`model`): `this`
 
-Defined in: packages/core/src/agent-builder.ts:49
+Defined in: [packages/core/src/agent-builder.ts:49](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/agent-builder.ts#L49)
 
 Configures the ModelProvider instance.
 
@@ -143,7 +143,7 @@ ModelProvider implementation (e.g. OpenAIProvider).
 
 > **setName**(`name`): `this`
 
-Defined in: packages/core/src/agent-builder.ts:31
+Defined in: [packages/core/src/agent-builder.ts:31](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/agent-builder.ts#L31)
 
 Sets the agent's display name.
 
@@ -165,7 +165,7 @@ Non-empty string name for the agent.
 
 > **withGuardrails**(...`guardrails`): `this`
 
-Defined in: packages/core/src/agent-builder.ts:76
+Defined in: [packages/core/src/agent-builder.ts:76](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/agent-builder.ts#L76)
 
 Attaches input or output guardrails to the agent.
 
@@ -187,7 +187,7 @@ Guardrail instances.
 
 > **withHandoffs**(...`handoffs`): `this`
 
-Defined in: packages/core/src/agent-builder.ts:85
+Defined in: [packages/core/src/agent-builder.ts:85](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/agent-builder.ts#L85)
 
 Attaches handoffs to other target agents.
 
