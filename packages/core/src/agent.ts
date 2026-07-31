@@ -1,3 +1,4 @@
+import type { Guardrail } from './guardrail.js';
 import { ToolRegistry } from './tool-registry.js';
 import type { AgentConfig, ModelProvider, Tool } from './types.js';
 
@@ -7,7 +8,7 @@ export class Agent {
   readonly model: ModelProvider;
   readonly tools: Tool[];
   readonly toolRegistry: ToolRegistry;
-  readonly guardrails: unknown[];
+  readonly guardrails: Guardrail[];
   readonly handoffs: unknown[];
 
   constructor(config: AgentConfig) {

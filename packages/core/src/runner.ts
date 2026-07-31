@@ -1,6 +1,7 @@
 import type { Agent } from './agent.js';
+import { GuardrailError } from './guardrail.js';
 import { RunContext } from './run-context.js';
-import type { ModelMessage, RunResult } from './types.js';
+import type { ModelMessage, ModelResponse, RunResult } from './types.js';
 
 export interface RunOptions<TContext = Record<string, unknown>> {
   temperature?: number;
@@ -23,6 +24,17 @@ export class Runner {
         ? [{ role: 'user', content: input }]
         : [...input];
 
+    const inputTarget =
+      typeof input === 'string'
+        ? input
+        : input
+            .filter((m) => m.role === 'user')
+            .map((m) => m.content)
+            .join('\n');
+
+    const inputGuardrails = agent.guardrails.filter((g) => g.type === 'input');
+    const outputGuardrails = agent.guardrails.filter((g) => g.type === 'output');
+
     const currentMessages: ModelMessage[] = [
       { role: 'system', content: agent.instructions },
       ...inputMessages,
@@ -40,9 +52,34 @@ export class Runner {
         tools: toolDefinitions.length > 0 ? toolDefinitions : undefined,
       };
 
-      const response = await agent.model.complete(currentMessages, modelOptions);
+      let response: ModelResponse;
 
-      // Record assistant turn (including tool calls if requested)
+      // On initial turn, run input guardrails concurrently with the first model call
+      if (iteration === 1 && inputGuardrails.length > 0) {
+        const inputCheckTask = Promise.all(
+          inputGuardrails.map(async (g) => {
+            const check = await g.execute(inputTarget, runContext);
+            if (!check.pass) {
+              throw new GuardrailError(
+                g.name,
+                'input',
+                check.reasoning,
+                check.metadata
+              );
+            }
+          })
+        );
+
+        const modelTask = agent.model.complete(currentMessages, modelOptions);
+
+        // Promise.all will reject immediately if any input guardrail throws GuardrailError
+        const [, modelResponse] = await Promise.all([inputCheckTask, modelTask]);
+        response = modelResponse;
+      } else {
+        response = await agent.model.complete(currentMessages, modelOptions);
+      }
+
+      // Record assistant turn
       const assistantMessage: ModelMessage = {
         role: 'assistant',
         content: response.text,
@@ -51,8 +88,21 @@ export class Runner {
 
       currentMessages.push(assistantMessage);
 
-      // If no tool calls requested by model, execution loop is complete
+      // If no tool calls requested by model, check output guardrails and finish
       if (!response.toolCalls || response.toolCalls.length === 0) {
+        // Execute output guardrails on final text answer
+        for (const g of outputGuardrails) {
+          const check = await g.execute(response.text, runContext);
+          if (!check.pass) {
+            throw new GuardrailError(
+              g.name,
+              'output',
+              check.reasoning,
+              check.metadata
+            );
+          }
+        }
+
         return {
           text: response.text,
           messages: currentMessages,

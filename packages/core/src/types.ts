@@ -1,5 +1,6 @@
 import type { z } from 'zod';
 import type { Agent } from './agent.js';
+import type { Guardrail } from './guardrail.js';
 import type { RunContext } from './run-context.js';
 
 export type ModelRole = 'system' | 'user' | 'assistant' | 'tool';
@@ -76,9 +77,9 @@ export interface AgentConfig {
   instructions: string;
   model: ModelProvider;
   tools?: Tool[];
+  guardrails?: Guardrail[];
 
   // Reserved for future phases
-  guardrails?: unknown[];
   handoffs?: unknown[];
 }
 
