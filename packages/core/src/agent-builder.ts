@@ -24,6 +24,10 @@ export class AgentBuilder {
   private tools: Tool[] = [];
   private guardrails: Guardrail[] = [];
   private handoffs: (Handoff | Agent)[] = [];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private responseSchema?: any;
+  private maxHandoffs?: number;
+  private maxRetries?: number;
 
   /**
    * Sets the agent's display name.
@@ -98,6 +102,31 @@ export class AgentBuilder {
   }
 
   /**
+   * Configures a Zod response schema for structured output.
+   */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  withResponseSchema(schema: any): this {
+    this.responseSchema = schema;
+    return this;
+  }
+
+  /**
+   * Sets maximum allowed agent handoffs before loop prevention triggers.
+   */
+  withMaxHandoffs(max: number): this {
+    this.maxHandoffs = max;
+    return this;
+  }
+
+  /**
+   * Sets maximum model retry attempts.
+   */
+  withMaxRetries(max: number): this {
+    this.maxRetries = max;
+    return this;
+  }
+
+  /**
    * Validates required configuration fields and builds an immutable {@link Agent}.
    * @throws Error if name, instructions, or model are missing.
    */
@@ -132,6 +161,10 @@ export class AgentBuilder {
       tools: this.tools,
       guardrails: this.guardrails,
       handoffs: this.handoffs,
+      responseSchema: this.responseSchema,
+      maxHandoffs: this.maxHandoffs,
+      maxRetries: this.maxRetries,
     });
   }
 }
+

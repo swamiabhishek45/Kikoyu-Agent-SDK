@@ -41,6 +41,16 @@ export class Agent {
   /** List of registered handoffs to other agents */
   readonly handoffs: Handoff[];
 
+  /** Optional Zod response schema for structured output */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  readonly responseSchema?: any;
+
+  /** Maximum allowed handoffs */
+  readonly maxHandoffs?: number;
+
+  /** Maximum allowed model retries */
+  readonly maxRetries?: number;
+
   constructor(config: AgentConfig) {
     if (!config.name || typeof config.name !== 'string') {
       throw new Error('Agent name must be a non-empty string');
@@ -57,6 +67,9 @@ export class Agent {
     this.model = config.model;
     this.tools = config.tools ? [...config.tools] : [];
     this.guardrails = config.guardrails ?? [];
+    this.responseSchema = config.responseSchema;
+    this.maxHandoffs = config.maxHandoffs;
+    this.maxRetries = config.maxRetries;
 
     const rawHandoffs = config.handoffs ?? [];
     this.handoffs = rawHandoffs.map((h) => {
@@ -69,6 +82,7 @@ export class Agent {
     const handoffTools = this.handoffs.map((h) => h.tool);
     this.toolRegistry = new ToolRegistry([...this.tools, ...handoffTools]);
   }
+
 
   /**
    * Creates a new fluent {@link AgentBuilder} instance.

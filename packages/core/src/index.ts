@@ -10,6 +10,9 @@ export * from './handoff.js';
 export * from './memory.js';
 export * from './session.js';
 export * from './stream-event.js';
+export * from './tracing.js';
+export * from './structured-output.js';
 export * from './utils/zod-converter.js';
 export * from './providers/index.js';
 export { z } from 'zod';
+

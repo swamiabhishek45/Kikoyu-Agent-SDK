@@ -36,10 +36,14 @@
 
 `TSchema`
 
+#### config.requiresApproval
+
+`boolean` \| (`args`) => `boolean`
+
 ## Returns
 
 [`Tool`](../interfaces/Tool.md)\<`TSchema`, `TResult`, `TContext`\>
 
 ## Defined in
 
-[tool.ts:5](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/tool.ts#L5)
+[tool.ts:5](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/tool.ts#L5)

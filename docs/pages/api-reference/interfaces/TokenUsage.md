@@ -14,7 +14,7 @@
 
 #### Defined in
 
-[types.ts:31](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/types.ts#L31)
+[types.ts:31](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/types.ts#L31)
 
 ***
 
@@ -24,7 +24,7 @@
 
 #### Defined in
 
-[types.ts:30](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/types.ts#L30)
+[types.ts:30](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/types.ts#L30)
 
 ***
 
@@ -34,4 +34,4 @@
 
 #### Defined in
 
-[types.ts:32](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/types.ts#L32)
+[types.ts:32](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/types.ts#L32)

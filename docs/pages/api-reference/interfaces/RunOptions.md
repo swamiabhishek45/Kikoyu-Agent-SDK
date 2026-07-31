@@ -12,13 +12,33 @@
 
 ## Properties
 
+### approvalHandler?
+
+> `optional` **approvalHandler**: [`ToolApprovalHandler`](../type-aliases/ToolApprovalHandler.md)
+
+#### Defined in
+
+[runner.ts:22](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/runner.ts#L22)
+
+***
+
 ### context?
 
 > `optional` **context**: `TContext` \| [`RunContext`](../classes/RunContext.md)\<`TContext`\>
 
 #### Defined in
 
-[runner.ts:13](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/runner.ts#L13)
+[runner.ts:18](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/runner.ts#L18)
+
+***
+
+### maxHandoffs?
+
+> `optional` **maxHandoffs**: `number`
+
+#### Defined in
+
+[runner.ts:17](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/runner.ts#L17)
 
 ***
 
@@ -28,7 +48,7 @@
 
 #### Defined in
 
-[runner.ts:12](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/runner.ts#L12)
+[runner.ts:16](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/runner.ts#L16)
 
 ***
 
@@ -38,7 +58,17 @@
 
 #### Defined in
 
-[runner.ts:11](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/runner.ts#L11)
+[runner.ts:15](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/runner.ts#L15)
+
+***
+
+### responseSchema?
+
+> `optional` **responseSchema**: `ZodTypeAny`
+
+#### Defined in
+
+[runner.ts:21](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/runner.ts#L21)
 
 ***
 
@@ -48,7 +78,7 @@
 
 #### Defined in
 
-[runner.ts:14](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/runner.ts#L14)
+[runner.ts:19](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/runner.ts#L19)
 
 ***
 
@@ -58,7 +88,7 @@
 
 #### Defined in
 
-[runner.ts:15](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/runner.ts#L15)
+[runner.ts:20](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/runner.ts#L20)
 
 ***
 
@@ -68,4 +98,4 @@
 
 #### Defined in
 
-[runner.ts:10](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/runner.ts#L10)
+[runner.ts:14](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/runner.ts#L14)

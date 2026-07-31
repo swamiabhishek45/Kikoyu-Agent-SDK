@@ -4,7 +4,11 @@
 
 [Kikoyu Core API Reference](../README.md) / RunResult
 
-# Interface: RunResult
+# Interface: RunResult\<TStructured\>
+
+## Type Parameters
+
+• **TStructured** = `unknown`
 
 ## Properties
 
@@ -16,7 +20,7 @@ Reference to the Agent instance that was executed.
 
 #### Defined in
 
-[types.ts:104](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/types.ts#L104)
+[types.ts:133](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/types.ts#L133)
 
 ***
 
@@ -28,7 +32,19 @@ The complete list of messages (system prompt, user input, assistant trace, tool 
 
 #### Defined in
 
-[types.ts:101](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/types.ts#L101)
+[types.ts:130](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/types.ts#L130)
+
+***
+
+### structuredOutput?
+
+> `optional` **structuredOutput**: `TStructured`
+
+Optional structured output parsed according to responseSchema
+
+#### Defined in
+
+[types.ts:136](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/types.ts#L136)
 
 ***
 
@@ -40,4 +56,16 @@ The final text response produced by the agent.
 
 #### Defined in
 
-[types.ts:98](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/types.ts#L98)
+[types.ts:127](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/types.ts#L127)
+
+***
+
+### trace?
+
+> `optional` **trace**: [`RunTrace`](RunTrace.md)
+
+Detailed execution trace for this run
+
+#### Defined in
+
+[types.ts:139](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/types.ts#L139)

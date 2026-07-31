@@ -14,7 +14,7 @@
 
 #### Defined in
 
-[types.ts:91](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/types.ts#L91)
+[types.ts:117](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/types.ts#L117)
 
 ***
 
@@ -24,7 +24,7 @@
 
 #### Defined in
 
-[types.ts:93](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/types.ts#L93)
+[types.ts:119](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/types.ts#L119)
 
 ***
 
@@ -34,7 +34,27 @@
 
 #### Defined in
 
-[types.ts:88](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/types.ts#L88)
+[types.ts:114](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/types.ts#L114)
+
+***
+
+### maxHandoffs?
+
+> `optional` **maxHandoffs**: `number`
+
+#### Defined in
+
+[types.ts:121](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/types.ts#L121)
+
+***
+
+### maxRetries?
+
+> `optional` **maxRetries**: `number`
+
+#### Defined in
+
+[types.ts:122](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/types.ts#L122)
 
 ***
 
@@ -44,7 +64,7 @@
 
 #### Defined in
 
-[types.ts:89](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/types.ts#L89)
+[types.ts:115](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/types.ts#L115)
 
 ***
 
@@ -54,7 +74,17 @@
 
 #### Defined in
 
-[types.ts:87](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/types.ts#L87)
+[types.ts:113](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/types.ts#L113)
+
+***
+
+### responseSchema?
+
+> `optional` **responseSchema**: `ZodTypeAny`
+
+#### Defined in
+
+[types.ts:120](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/types.ts#L120)
 
 ***
 
@@ -64,4 +94,4 @@
 
 #### Defined in
 
-[types.ts:90](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/types.ts#L90)
+[types.ts:116](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/types.ts#L116)

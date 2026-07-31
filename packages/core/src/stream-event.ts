@@ -24,6 +24,33 @@ export interface HandoffOccurredEvent {
   toAgent: string;
 }
 
+export interface GuardrailTriggeredEvent {
+  type: 'guardrail_triggered';
+  name: string;
+  guardrailType: 'input' | 'output';
+  reasoning?: string;
+}
+
+export interface ToolApprovalRequestedEvent {
+  type: 'tool_approval_requested';
+  toolCallId: string;
+  name: string;
+  args: Record<string, unknown>;
+  approved?: boolean;
+}
+
+export interface RetryAttemptedEvent {
+  type: 'retry_attempted';
+  attempt: number;
+  maxRetries: number;
+  reason: string;
+}
+
+export interface RunFailedEvent {
+  type: 'run_failed';
+  error: string;
+}
+
 export interface RunCompleteEvent {
   type: 'run_complete';
   result: RunResult;
@@ -34,4 +61,9 @@ export type StreamEvent =
   | ToolCallStartedEvent
   | ToolCallFinishedEvent
   | HandoffOccurredEvent
+  | GuardrailTriggeredEvent
+  | ToolApprovalRequestedEvent
+  | RetryAttemptedEvent
+  | RunFailedEvent
   | RunCompleteEvent;
+

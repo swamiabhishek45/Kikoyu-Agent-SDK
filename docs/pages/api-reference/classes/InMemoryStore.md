@@ -50,7 +50,7 @@
 
 #### Defined in
 
-[memory.ts:19](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/memory.ts#L19)
+[memory.ts:22](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/memory.ts#L22)
 
 ***
 
@@ -78,7 +78,7 @@
 
 #### Defined in
 
-[memory.ts:10](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/memory.ts#L10)
+[memory.ts:13](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/memory.ts#L13)
 
 ***
 
@@ -110,4 +110,4 @@
 
 #### Defined in
 
-[memory.ts:15](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/memory.ts#L15)
+[memory.ts:18](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/memory.ts#L18)

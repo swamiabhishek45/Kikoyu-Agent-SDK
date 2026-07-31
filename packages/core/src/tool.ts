@@ -10,6 +10,7 @@ export function createTool<
   name: string;
   description: string;
   parameters: TSchema;
+  requiresApproval?: boolean | ((args: z.infer<TSchema>) => boolean);
   execute: (
     args: z.infer<TSchema>,
     context: RunContext<TContext>
@@ -32,6 +33,8 @@ export function createTool<
     name: config.name,
     description: config.description,
     parameters: config.parameters,
+    requiresApproval: config.requiresApproval,
     execute: config.execute,
   };
 }
+

@@ -14,7 +14,7 @@
 
 #### Defined in
 
-[guardrail.ts:8](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/guardrail.ts#L8)
+[guardrail.ts:8](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/guardrail.ts#L8)
 
 ***
 
@@ -24,7 +24,7 @@
 
 #### Defined in
 
-[guardrail.ts:6](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/guardrail.ts#L6)
+[guardrail.ts:6](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/guardrail.ts#L6)
 
 ***
 
@@ -34,4 +34,4 @@
 
 #### Defined in
 
-[guardrail.ts:7](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/guardrail.ts#L7)
+[guardrail.ts:7](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/guardrail.ts#L7)

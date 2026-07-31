@@ -22,7 +22,7 @@
 
 #### Defined in
 
-[types.ts:76](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/types.ts#L76)
+[types.ts:76](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/types.ts#L76)
 
 ***
 
@@ -46,7 +46,7 @@
 
 #### Defined in
 
-[types.ts:79](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/types.ts#L79)
+[types.ts:80](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/types.ts#L80)
 
 ***
 
@@ -56,7 +56,7 @@
 
 #### Defined in
 
-[types.ts:78](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/types.ts#L78)
+[types.ts:78](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/types.ts#L78)
 
 ***
 
@@ -66,7 +66,7 @@
 
 #### Defined in
 
-[types.ts:75](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/types.ts#L75)
+[types.ts:75](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/types.ts#L75)
 
 ***
 
@@ -76,4 +76,14 @@
 
 #### Defined in
 
-[types.ts:77](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/types.ts#L77)
+[types.ts:77](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/types.ts#L77)
+
+***
+
+### requiresApproval?
+
+> `optional` **requiresApproval**: `boolean` \| (`args`) => `boolean`
+
+#### Defined in
+
+[types.ts:79](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/types.ts#L79)

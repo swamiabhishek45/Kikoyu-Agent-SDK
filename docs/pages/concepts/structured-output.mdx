@@ -1,0 +1,39 @@
+# Structured Output & Auto-Repair
+
+Kikoyu allows developers to enforce strongly typed Zod response schemas on AI Agents. When a schema is attached, Kikoyu automatically validates LLM outputs and executes multi-step repair prompts if the LLM produces malformed or non-compliant output.
+
+## Usage Example
+
+```typescript
+import { Agent, OpenAIProvider, Runner, z } from '@kikoyu/core';
+
+const AnalysisSchema = z.object({
+  sentiment: z.enum(['positive', 'neutral', 'negative']),
+  score: z.number(),
+  keywords: z.array(z.string()),
+});
+
+type Analysis = z.infer<typeof AnalysisSchema>;
+
+const agent = Agent.builder()
+  .setName('SentimentAnalyzer')
+  .setInstructions('Analyze the sentiment of the provided user text.')
+  .setModel(new OpenAIProvider())
+  .withResponseSchema(AnalysisSchema)
+  .build();
+
+const runner = new Runner();
+const result = await runner.run<Analysis>(
+  agent,
+  'Kikoyu is an incredible TypeScript AI Agent SDK with unmatched reliability!'
+);
+
+console.log(result.structuredOutput?.sentiment); // 'positive'
+console.log(result.structuredOutput?.keywords);  // ['Kikoyu', 'TypeScript', 'AI Agent']
+```
+
+## How Auto-Repair Works
+
+1. **Schema Injection**: Kikoyu converts the Zod schema to JSON Schema format.
+2. **Output Validation**: Upon receiving text output from the model, Kikoyu parses the JSON and validates it against the Zod schema.
+3. **Auto-Repair Loop**: If JSON parsing or validation fails, Kikoyu sends an automated repair prompt to the LLM detailing the validation error and expected schema structure up to N retries.

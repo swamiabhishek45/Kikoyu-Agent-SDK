@@ -51,7 +51,7 @@ Tool definition.
 
 #### Defined in
 
-[agent-builder.ts:68](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/agent-builder.ts#L68)
+[agent-builder.ts:72](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/agent-builder.ts#L72)
 
 ***
 
@@ -75,7 +75,7 @@ Array of tool definitions.
 
 #### Defined in
 
-[agent-builder.ts:77](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/agent-builder.ts#L77)
+[agent-builder.ts:81](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/agent-builder.ts#L81)
 
 ***
 
@@ -95,7 +95,7 @@ Error if name, instructions, or model are missing.
 
 #### Defined in
 
-[agent-builder.ts:104](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/agent-builder.ts#L104)
+[agent-builder.ts:133](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/agent-builder.ts#L133)
 
 ***
 
@@ -119,7 +119,7 @@ API key string.
 
 #### Defined in
 
-[agent-builder.ts:59](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/agent-builder.ts#L59)
+[agent-builder.ts:63](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/agent-builder.ts#L63)
 
 ***
 
@@ -143,7 +143,7 @@ Detailed instructions for the agent.
 
 #### Defined in
 
-[agent-builder.ts:41](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/agent-builder.ts#L41)
+[agent-builder.ts:45](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/agent-builder.ts#L45)
 
 ***
 
@@ -167,7 +167,7 @@ ModelProvider implementation (e.g. OpenAIProvider).
 
 #### Defined in
 
-[agent-builder.ts:50](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/agent-builder.ts#L50)
+[agent-builder.ts:54](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/agent-builder.ts#L54)
 
 ***
 
@@ -191,7 +191,7 @@ Non-empty string name for the agent.
 
 #### Defined in
 
-[agent-builder.ts:32](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/agent-builder.ts#L32)
+[agent-builder.ts:36](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/agent-builder.ts#L36)
 
 ***
 
@@ -215,7 +215,7 @@ Guardrail instances.
 
 #### Defined in
 
-[agent-builder.ts:86](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/agent-builder.ts#L86)
+[agent-builder.ts:90](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/agent-builder.ts#L90)
 
 ***
 
@@ -239,4 +239,70 @@ Handoff or target Agent instances.
 
 #### Defined in
 
-[agent-builder.ts:95](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/agent-builder.ts#L95)
+[agent-builder.ts:99](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/agent-builder.ts#L99)
+
+***
+
+### withMaxHandoffs()
+
+> **withMaxHandoffs**(`max`): `this`
+
+Sets maximum allowed agent handoffs before loop prevention triggers.
+
+#### Parameters
+
+##### max
+
+`number`
+
+#### Returns
+
+`this`
+
+#### Defined in
+
+[agent-builder.ts:116](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/agent-builder.ts#L116)
+
+***
+
+### withMaxRetries()
+
+> **withMaxRetries**(`max`): `this`
+
+Sets maximum model retry attempts.
+
+#### Parameters
+
+##### max
+
+`number`
+
+#### Returns
+
+`this`
+
+#### Defined in
+
+[agent-builder.ts:124](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/agent-builder.ts#L124)
+
+***
+
+### withResponseSchema()
+
+> **withResponseSchema**(`schema`): `this`
+
+Configures a Zod response schema for structured output.
+
+#### Parameters
+
+##### schema
+
+`any`
+
+#### Returns
+
+`this`
+
+#### Defined in
+
+[agent-builder.ts:108](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/agent-builder.ts#L108)

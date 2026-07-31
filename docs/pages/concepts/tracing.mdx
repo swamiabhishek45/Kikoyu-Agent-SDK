@@ -1,0 +1,33 @@
+# Tracing & Performance Metrics
+
+Every execution in Kikoyu generates a comprehensive `RunTrace` object. Tracing gives full observability into LLM execution steps, tool invocations, token counts, and execution latency.
+
+## Trace Object Structure
+
+```typescript
+export interface RunTrace {
+  runId: string;
+  agentName: string;
+  startTime: string;
+  endTime?: string;
+  durationMs?: number;
+  totalTokenUsage: TokenUsage;
+  steps: StepTrace[];
+  finalStatus: 'completed' | 'failed' | 'max_iterations_reached' | 'guardrail_tripped';
+  error?: string;
+}
+```
+
+## Accessing Run Traces
+
+```typescript
+import { Agent, Runner } from '@kikoyu/core';
+
+const runner = new Runner();
+const result = await runner.run(agent, 'Summarize user activity');
+
+console.log('Run ID:', result.trace?.runId);
+console.log('Total Tokens Used:', result.trace?.totalTokenUsage.totalTokens);
+console.log('Execution Time (ms):', result.trace?.durationMs);
+console.log('Step History:', result.trace?.steps);
+```

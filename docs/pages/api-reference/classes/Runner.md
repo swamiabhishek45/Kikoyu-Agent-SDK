@@ -20,9 +20,11 @@
 
 ### run()
 
-> **run**\<`TContext`\>(`agent`, `input`, `options`?): `Promise`\<[`RunResult`](../interfaces/RunResult.md)\>
+> **run**\<`TStructured`, `TContext`\>(`agent`, `input`, `options`?): `Promise`\<[`RunResult`](../interfaces/RunResult.md)\<`TStructured`\>\>
 
 #### Type Parameters
+
+• **TStructured** = `unknown`
 
 • **TContext** = `Record`\<`string`, `unknown`\>
 
@@ -42,19 +44,21 @@
 
 #### Returns
 
-`Promise`\<[`RunResult`](../interfaces/RunResult.md)\>
+`Promise`\<[`RunResult`](../interfaces/RunResult.md)\<`TStructured`\>\>
 
 #### Defined in
 
-[runner.ts:245](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/runner.ts#L245)
+[runner.ts:434](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/runner.ts#L434)
 
 ***
 
 ### stream()
 
-> **stream**\<`TContext`\>(`agent`, `input`, `options`?): `AsyncGenerator`\<[`StreamEvent`](../type-aliases/StreamEvent.md), [`RunResult`](../interfaces/RunResult.md), `void`\>
+> **stream**\<`TStructured`, `TContext`\>(`agent`, `input`, `options`?): `AsyncGenerator`\<[`StreamEvent`](../type-aliases/StreamEvent.md), [`RunResult`](../interfaces/RunResult.md)\<`TStructured`\>, `void`\>
 
 #### Type Parameters
+
+• **TStructured** = `unknown`
 
 • **TContext** = `Record`\<`string`, `unknown`\>
 
@@ -74,8 +78,8 @@
 
 #### Returns
 
-`AsyncGenerator`\<[`StreamEvent`](../type-aliases/StreamEvent.md), [`RunResult`](../interfaces/RunResult.md), `void`\>
+`AsyncGenerator`\<[`StreamEvent`](../type-aliases/StreamEvent.md), [`RunResult`](../interfaces/RunResult.md)\<`TStructured`\>, `void`\>
 
 #### Defined in
 
-[runner.ts:19](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/b94d381587e8366b37c07b8fc4dec57c4a1ff640/packages/core/src/runner.ts#L19)
+[runner.ts:26](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/runner.ts#L26)

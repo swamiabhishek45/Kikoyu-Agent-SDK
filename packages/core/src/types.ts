@@ -76,11 +76,37 @@ export interface Tool<TSchema extends z.ZodTypeAny = any, TResult = any, TContex
   description: string;
   parameters: z.ZodTypeAny;
   handoffTarget?: Agent;
+  requiresApproval?: boolean | ((args: Record<string, unknown>) => boolean);
   execute: (
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     args: any,
     context: RunContext<TContext>
   ) => Promise<TResult> | TResult;
+}
+
+export type ToolApprovalHandler = (
+  toolName: string,
+  args: Record<string, unknown>
+) => Promise<boolean> | boolean;
+
+export interface StepTrace {
+  id: string;
+  type: 'model_call' | 'tool_call' | 'guardrail' | 'handoff' | 'retry' | 'structured_output_repair';
+  timestamp: string;
+  durationMs: number;
+  details: Record<string, unknown>;
+}
+
+export interface RunTrace {
+  runId: string;
+  agentName: string;
+  startTime: string;
+  endTime?: string;
+  durationMs?: number;
+  totalTokenUsage: TokenUsage;
+  steps: StepTrace[];
+  finalStatus: 'completed' | 'failed' | 'max_iterations_reached' | 'guardrail_tripped';
+  error?: string;
 }
 
 export interface AgentConfig {
@@ -91,9 +117,12 @@ export interface AgentConfig {
   guardrails?: Guardrail[];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   handoffs?: any[];
+  responseSchema?: z.ZodTypeAny;
+  maxHandoffs?: number;
+  maxRetries?: number;
 }
 
-export interface RunResult {
+export interface RunResult<TStructured = unknown> {
   /** The final text response produced by the agent. */
   text: string;
 
@@ -102,4 +131,11 @@ export interface RunResult {
 
   /** Reference to the Agent instance that was executed. */
   agent: Agent;
+
+  /** Optional structured output parsed according to responseSchema */
+  structuredOutput?: TStructured;
+
+  /** Detailed execution trace for this run */
+  trace?: RunTrace;
 }
+

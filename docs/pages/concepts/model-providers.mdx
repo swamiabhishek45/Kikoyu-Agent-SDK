@@ -1,0 +1,57 @@
+# Model Providers & Fallbacks
+
+Kikoyu is model-provider agnostic. Out of the box, it supports **OpenAI**, **Anthropic (Claude)**, **Google Gemini**, and resilient **Fallback Providers**.
+
+## Supported Providers
+
+### 1. OpenAI Provider
+```typescript
+import { OpenAIProvider } from '@kikoyu/core';
+
+const openai = new OpenAIProvider({
+  apiKey: process.env.OPENAI_API_KEY,
+  model: 'gpt-4o',
+});
+```
+
+### 2. Anthropic Claude Provider
+```typescript
+import { AnthropicProvider } from '@kikoyu/core';
+
+const claude = new AnthropicProvider({
+  apiKey: process.env.ANTHROPIC_API_KEY,
+  model: 'claude-3-5-sonnet-20240620',
+});
+```
+
+### 3. Google Gemini Provider
+```typescript
+import { GeminiProvider } from '@kikoyu/core';
+
+const gemini = new GeminiProvider({
+  apiKey: process.env.GEMINI_API_KEY,
+  model: 'gemini-1.5-flash',
+});
+```
+
+## Resilient Fallback Provider
+
+`FallbackProvider` allows you to define a primary LLM provider and backup providers. If the primary provider encounters API downtime or rate-limits, Kikoyu automatically falls back to secondary providers seamlessly.
+
+```typescript
+import { Agent, AnthropicProvider, FallbackProvider, GeminiProvider, OpenAIProvider } from '@kikoyu/core';
+
+const resilientModel = new FallbackProvider({
+  primary: new AnthropicProvider(),
+  fallbacks: [
+    new GeminiProvider(),
+    new OpenAIProvider(),
+  ],
+});
+
+const agent = Agent.builder()
+  .setName('FaultTolerantAgent')
+  .setInstructions('Respond reliably under any network condition.')
+  .setModel(resilientModel)
+  .build();
+```
