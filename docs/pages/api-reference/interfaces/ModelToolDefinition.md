@@ -6,7 +6,7 @@
 
 # Interface: ModelToolDefinition
 
-Defined in: [packages/core/src/types.ts:35](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L35)
+Defined in: [packages/core/src/types.ts:35](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/types.ts#L35)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/core/src/types.ts:35](https://github.com/swamiabhishek45/K
 
 > **description**: `string`
 
-Defined in: [packages/core/src/types.ts:37](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L37)
+Defined in: [packages/core/src/types.ts:37](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/types.ts#L37)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [packages/core/src/types.ts:37](https://github.com/swamiabhishek45/K
 
 > **name**: `string`
 
-Defined in: [packages/core/src/types.ts:36](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L36)
+Defined in: [packages/core/src/types.ts:36](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/types.ts#L36)
 
 ***
 
@@ -30,4 +30,4 @@ Defined in: [packages/core/src/types.ts:36](https://github.com/swamiabhishek45/K
 
 > **parameters**: `Record`\<`string`, `unknown`\>
 
-Defined in: [packages/core/src/types.ts:38](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L38)
+Defined in: [packages/core/src/types.ts:38](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/types.ts#L38)

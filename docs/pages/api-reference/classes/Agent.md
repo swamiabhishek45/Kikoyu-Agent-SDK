@@ -6,7 +6,7 @@
 
 # Class: Agent
 
-Defined in: [packages/core/src/agent.ts:22](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/agent.ts#L22)
+Defined in: [packages/core/src/agent.ts:22](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/agent.ts#L22)
 
 Immutable configuration holder for an AI Agent.
 
@@ -29,7 +29,7 @@ const agent = new Agent({
 
 > **new Agent**(`config`): `Agent`
 
-Defined in: [packages/core/src/agent.ts:44](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/agent.ts#L44)
+Defined in: [packages/core/src/agent.ts:44](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/agent.ts#L44)
 
 #### Parameters
 
@@ -47,7 +47,7 @@ Defined in: [packages/core/src/agent.ts:44](https://github.com/swamiabhishek45/K
 
 > `readonly` **guardrails**: [`Guardrail`](../interfaces/Guardrail.md)\<`any`\>[]
 
-Defined in: [packages/core/src/agent.ts:39](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/agent.ts#L39)
+Defined in: [packages/core/src/agent.ts:39](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/agent.ts#L39)
 
 List of input and output guardrails
 
@@ -57,7 +57,7 @@ List of input and output guardrails
 
 > `readonly` **handoffs**: [`Handoff`](../interfaces/Handoff.md)[]
 
-Defined in: [packages/core/src/agent.ts:42](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/agent.ts#L42)
+Defined in: [packages/core/src/agent.ts:42](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/agent.ts#L42)
 
 List of registered handoffs to other agents
 
@@ -67,7 +67,7 @@ List of registered handoffs to other agents
 
 > `readonly` **instructions**: `string`
 
-Defined in: [packages/core/src/agent.ts:27](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/agent.ts#L27)
+Defined in: [packages/core/src/agent.ts:27](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/agent.ts#L27)
 
 The system instructions describing the agent's persona and instructions
 
@@ -77,7 +77,7 @@ The system instructions describing the agent's persona and instructions
 
 > `readonly` **model**: [`ModelProvider`](../interfaces/ModelProvider.md)
 
-Defined in: [packages/core/src/agent.ts:30](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/agent.ts#L30)
+Defined in: [packages/core/src/agent.ts:30](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/agent.ts#L30)
 
 The model provider driving the agent
 
@@ -87,7 +87,7 @@ The model provider driving the agent
 
 > `readonly` **name**: `string`
 
-Defined in: [packages/core/src/agent.ts:24](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/agent.ts#L24)
+Defined in: [packages/core/src/agent.ts:24](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/agent.ts#L24)
 
 The unique display name of the agent
 
@@ -97,7 +97,7 @@ The unique display name of the agent
 
 > `readonly` **toolRegistry**: [`ToolRegistry`](ToolRegistry.md)
 
-Defined in: [packages/core/src/agent.ts:36](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/agent.ts#L36)
+Defined in: [packages/core/src/agent.ts:36](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/agent.ts#L36)
 
 ToolRegistry maintaining all tools and handoff tools
 
@@ -107,7 +107,7 @@ ToolRegistry maintaining all tools and handoff tools
 
 > `readonly` **tools**: [`Tool`](../interfaces/Tool.md)\<`any`, `any`, `any`\>[]
 
-Defined in: [packages/core/src/agent.ts:33](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/agent.ts#L33)
+Defined in: [packages/core/src/agent.ts:33](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/agent.ts#L33)
 
 List of standard tools attached to the agent
 
@@ -117,7 +117,7 @@ List of standard tools attached to the agent
 
 > `static` **builder**(): [`AgentBuilder`](AgentBuilder.md)
 
-Defined in: [packages/core/src/agent.ts:78](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/agent.ts#L78)
+Defined in: [packages/core/src/agent.ts:78](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/agent.ts#L78)
 
 Creates a new fluent [AgentBuilder](AgentBuilder.md) instance.
 

@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { Agent, OpenAIProvider, Runner } from '@kikoyu/core';
 
 async function main() {
@@ -7,8 +8,8 @@ async function main() {
     console.log(
       '⚠️ OPENAI_API_KEY environment variable is not set.'
     );
-    console.log('To run this live against OpenAI, execute:');
-    console.log('  OPENAI_API_KEY=your_key pnpm --filter @kikoyu/examples example:openai');
+    console.log('To run this live against OpenAI, set your key in .env or run:');
+    console.log('  $env:OPENAI_API_KEY="your_key"; pnpm --filter @kikoyu/examples example:openai');
     return;
   }
 

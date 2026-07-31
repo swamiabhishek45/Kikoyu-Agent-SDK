@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { Agent, InMemoryStore, OpenAIProvider, Runner, Session } from '@kikoyu/core';
 
 async function main() {
@@ -5,8 +6,8 @@ async function main() {
 
   if (!apiKey) {
     console.log('⚠️ OPENAI_API_KEY environment variable is not set.');
-    console.log('To run this live against OpenAI with Session Persistence, execute:');
-    console.log('  OPENAI_API_KEY=your_key pnpm --filter @kikoyu/examples example:session');
+    console.log('To run this live against OpenAI with Session Persistence, set your key in .env or run:');
+    console.log('  $env:OPENAI_API_KEY="your_key"; pnpm --filter @kikoyu/examples example:session');
     return;
   }
 

@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { Agent, createTool, OpenAIProvider, Runner, z } from '@kikoyu/core';
 
 interface AppContext {
@@ -36,8 +37,8 @@ async function main() {
 
   if (!apiKey) {
     console.log('⚠️ OPENAI_API_KEY environment variable is not set.');
-    console.log('To run this live against OpenAI with RunContext, execute:');
-    console.log('  OPENAI_API_KEY=your_key pnpm --filter @kikoyu/examples example:context');
+    console.log('To run this live against OpenAI with RunContext, set your key in .env or run:');
+    console.log('  $env:OPENAI_API_KEY="your_key"; pnpm --filter @kikoyu/examples example:context');
     return;
   }
 

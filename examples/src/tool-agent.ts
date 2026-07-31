@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { Agent, createTool, OpenAIProvider, Runner, z } from '@kikoyu/core';
 
 const getWeatherTool = createTool({
@@ -24,8 +25,8 @@ async function main() {
 
   if (!apiKey) {
     console.log('⚠️ OPENAI_API_KEY environment variable is not set.');
-    console.log('To run this live against OpenAI with tools, execute:');
-    console.log('  OPENAI_API_KEY=your_key pnpm --filter @kikoyu/examples example:tool');
+    console.log('To run this live against OpenAI with tools, set your key in .env or run:');
+    console.log('  $env:OPENAI_API_KEY="your_key"; pnpm --filter @kikoyu/examples example:tool');
     return;
   }
 

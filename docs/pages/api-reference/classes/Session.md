@@ -6,7 +6,7 @@
 
 # Class: Session
 
-Defined in: [packages/core/src/session.ts:9](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/session.ts#L9)
+Defined in: [packages/core/src/session.ts:9](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/session.ts#L9)
 
 ## Constructors
 
@@ -14,7 +14,7 @@ Defined in: [packages/core/src/session.ts:9](https://github.com/swamiabhishek45/
 
 > **new Session**(`sessionIdOrOptions`, `store?`): `Session`
 
-Defined in: [packages/core/src/session.ts:13](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/session.ts#L13)
+Defined in: [packages/core/src/session.ts:13](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/session.ts#L13)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [packages/core/src/session.ts:13](https://github.com/swamiabhishek45
 
 > `readonly` **sessionId**: `string`
 
-Defined in: [packages/core/src/session.ts:10](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/session.ts#L10)
+Defined in: [packages/core/src/session.ts:10](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/session.ts#L10)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [packages/core/src/session.ts:10](https://github.com/swamiabhishek45
 
 > `readonly` **store**: [`MemoryStore`](../interfaces/MemoryStore.md)
 
-Defined in: [packages/core/src/session.ts:11](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/session.ts#L11)
+Defined in: [packages/core/src/session.ts:11](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/session.ts#L11)
 
 ## Methods
 
@@ -52,7 +52,7 @@ Defined in: [packages/core/src/session.ts:11](https://github.com/swamiabhishek45
 
 > **appendMessages**(`newMessages`): `Promise`\<`void`\>
 
-Defined in: [packages/core/src/session.ts:41](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/session.ts#L41)
+Defined in: [packages/core/src/session.ts:41](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/session.ts#L41)
 
 #### Parameters
 
@@ -70,7 +70,7 @@ Defined in: [packages/core/src/session.ts:41](https://github.com/swamiabhishek45
 
 > **clear**(): `Promise`\<`void`\>
 
-Defined in: [packages/core/src/session.ts:46](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/session.ts#L46)
+Defined in: [packages/core/src/session.ts:46](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/session.ts#L46)
 
 #### Returns
 
@@ -82,7 +82,7 @@ Defined in: [packages/core/src/session.ts:46](https://github.com/swamiabhishek45
 
 > **getMessages**(): `Promise`\<[`ModelMessage`](../interfaces/ModelMessage.md)[]\>
 
-Defined in: [packages/core/src/session.ts:36](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/session.ts#L36)
+Defined in: [packages/core/src/session.ts:36](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/session.ts#L36)
 
 #### Returns
 

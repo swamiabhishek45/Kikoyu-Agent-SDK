@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import {
   Agent,
   createGuardrail,
@@ -41,8 +42,8 @@ async function main() {
 
   if (!apiKey) {
     console.log('⚠️ OPENAI_API_KEY environment variable is not set.');
-    console.log('To run this live against OpenAI with Guardrails, execute:');
-    console.log('  OPENAI_API_KEY=your_key pnpm --filter @kikoyu/examples example:guardrail');
+    console.log('To run this live against OpenAI with Guardrails, set your key in .env or run:');
+    console.log('  $env:OPENAI_API_KEY="your_key"; pnpm --filter @kikoyu/examples example:guardrail');
     return;
   }
 

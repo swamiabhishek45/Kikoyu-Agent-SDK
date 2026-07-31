@@ -6,7 +6,7 @@
 
 # Interface: ModelRequestOptions
 
-Defined in: [packages/core/src/types.ts:41](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L41)
+Defined in: [packages/core/src/types.ts:41](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/types.ts#L41)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/core/src/types.ts:41](https://github.com/swamiabhishek45/K
 
 > `optional` **maxTokens?**: `number`
 
-Defined in: [packages/core/src/types.ts:43](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L43)
+Defined in: [packages/core/src/types.ts:43](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/types.ts#L43)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [packages/core/src/types.ts:43](https://github.com/swamiabhishek45/K
 
 > `optional` **stop?**: `string`[]
 
-Defined in: [packages/core/src/types.ts:44](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L44)
+Defined in: [packages/core/src/types.ts:44](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/types.ts#L44)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [packages/core/src/types.ts:44](https://github.com/swamiabhishek45/K
 
 > `optional` **temperature?**: `number`
 
-Defined in: [packages/core/src/types.ts:42](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L42)
+Defined in: [packages/core/src/types.ts:42](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/types.ts#L42)
 
 ***
 
@@ -38,4 +38,4 @@ Defined in: [packages/core/src/types.ts:42](https://github.com/swamiabhishek45/K
 
 > `optional` **tools?**: [`ModelToolDefinition`](ModelToolDefinition.md)[]
 
-Defined in: [packages/core/src/types.ts:45](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/06f638bddb80491b010e83e1f0c1dc9addd81d7a/packages/core/src/types.ts#L45)
+Defined in: [packages/core/src/types.ts:45](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/4ad4dab0d00601c98265981469a8a361aa7cb07a/packages/core/src/types.ts#L45)
