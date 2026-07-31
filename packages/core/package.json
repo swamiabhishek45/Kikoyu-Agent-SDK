@@ -1,6 +1,8 @@
 {
   "name": "@kikoyu/core",
   "version": "0.1.0",
+  "description": "An Agent SDK for building AI agent workflows with type-safe tools, memory, execution loops, and streaming capabilities.",
+  "license": "MIT",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -18,8 +20,13 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsup",
     "test": "vitest run",
