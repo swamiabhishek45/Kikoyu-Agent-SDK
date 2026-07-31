@@ -2,7 +2,7 @@ import * as fs from 'node:fs';
 import * as os from 'node:os';
 import * as path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { FileStore, RedisStore } from '../src/memory.js';
+import { FileStore, Mem0Store, RedisStore } from '../src/memory.js';
 
 describe('Storage Adapters', () => {
   let tempDir: string;
@@ -47,4 +47,17 @@ describe('Storage Adapters', () => {
     const fetched = await redisStore.get<{ count: number }>('key-1');
     expect(fetched).toEqual({ count: 42 });
   });
+
+  it('Mem0Store maintains memory state and supports Mem0 options', async () => {
+    const mem0 = new Mem0Store({ apiKey: 'test-mem0-key', userId: 'user-123' });
+    await mem0.set('session-1', [{ role: 'user', content: 'My favorite color is blue' }]);
+
+    const fetched = await mem0.get<Array<{ role: string; content: string }>>('session-1');
+    expect(fetched).toEqual([{ role: 'user', content: 'My favorite color is blue' }]);
+
+    await mem0.append('session-1', { role: 'assistant', content: 'Saved your preference!' });
+    const updated = await mem0.get<Array<{ role: string; content: string }>>('session-1');
+    expect(updated?.length).toBe(2);
+  });
 });
+

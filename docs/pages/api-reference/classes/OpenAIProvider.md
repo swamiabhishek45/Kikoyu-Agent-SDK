@@ -28,7 +28,7 @@
 
 #### Defined in
 
-[providers/openai.ts:24](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/providers/openai.ts#L24)
+[providers/openai.ts:24](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/providers/openai.ts#L24)
 
 ## Properties
 
@@ -42,7 +42,7 @@
 
 #### Defined in
 
-[providers/openai.ts:20](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/providers/openai.ts#L20)
+[providers/openai.ts:20](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/providers/openai.ts#L20)
 
 ## Methods
 
@@ -70,7 +70,7 @@
 
 #### Defined in
 
-[providers/openai.ts:79](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/providers/openai.ts#L79)
+[providers/openai.ts:79](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/providers/openai.ts#L79)
 
 ***
 
@@ -98,4 +98,4 @@
 
 #### Defined in
 
-[providers/openai.ts:130](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/providers/openai.ts#L130)
+[providers/openai.ts:130](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/providers/openai.ts#L130)

@@ -18,7 +18,7 @@
 
 #### Defined in
 
-structured-output.ts:14
+[structured-output.ts:14](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/structured-output.ts#L14)
 
 ***
 
@@ -28,7 +28,7 @@ structured-output.ts:14
 
 #### Defined in
 
-structured-output.ts:11
+[structured-output.ts:11](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/structured-output.ts#L11)
 
 ***
 
@@ -38,7 +38,7 @@ structured-output.ts:11
 
 #### Defined in
 
-structured-output.ts:13
+[structured-output.ts:13](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/structured-output.ts#L13)
 
 ***
 
@@ -48,7 +48,7 @@ structured-output.ts:13
 
 #### Defined in
 
-structured-output.ts:12
+[structured-output.ts:12](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/structured-output.ts#L12)
 
 ***
 
@@ -58,4 +58,4 @@ structured-output.ts:12
 
 #### Defined in
 
-structured-output.ts:10
+[structured-output.ts:10](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/structured-output.ts#L10)

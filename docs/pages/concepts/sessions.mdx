@@ -1,31 +1,62 @@
 # Sessions & Persistent Memory
 
-`Session` manages conversation turn history across multiple `Runner.run()` calls using a storage-agnostic `MemoryStore` (defaulting to `InMemoryStore`).
+`Session` manages conversation turn history across multiple `Runner.run()` calls using a storage-agnostic `MemoryStore` interface.
 
-## Why You'd Use This
+## Available Memory Storage Adapters
 
-Sessions allow stateful chat conversations to retain full memory of prior user and assistant turns without requiring manual message array management on every call.
+Kikoyu provides four built-in memory storage adapters:
 
-## Copy-Pasteable Code Sample
+### 1. `Mem0Store` (Mem0 AI Long-Term Memory)
+Integrates natively with [Mem0 (mem0.ai)](https://mem0.ai) for cloud-synced long-term agent memory across sessions.
 
 ```typescript
-import { Agent, InMemoryStore, OpenAIProvider, Runner, Session } from '@kikoyu/core';
+import { Agent, Mem0Store, OpenAIProvider, Runner, Session } from '@kikoyu/core';
 
-const memoryStore = new InMemoryStore();
-const session = new Session({ sessionId: 'chat_session_101', store: memoryStore });
+// Mem0 Memory Adapter
+const mem0Store = new Mem0Store({
+  apiKey: process.env.MEM0_API_KEY,
+  userId: 'user_123',
+});
+
+const session = new Session('session_101', mem0Store);
 
 const agent = Agent.builder()
   .setName('Memory Agent')
-  .setInstructions('Remember user details across turns.')
+  .setInstructions('Remember user preferences long term.')
   .setModel(new OpenAIProvider())
   .build();
 
 const runner = new Runner();
-
-// Turn 1
-await runner.run(agent, 'My name is Bob', { session });
-
-// Turn 2 retains memory of Turn 1
-const res2 = await runner.run(agent, 'What is my name?', { session });
-console.log(res2.text); // "Your name is Bob"
+await runner.run(agent, 'My favorite color is blue', { session });
 ```
+
+### 2. `InMemoryStore` (Default Local Memory)
+Keeps session history in Node.js memory (`Map`). Ideal for local testing and fast single-process apps.
+
+```typescript
+import { InMemoryStore, Session } from '@kikoyu/core';
+
+const session = new Session('chat_session_101', new InMemoryStore());
+```
+
+### 3. `FileStore` (Persistent Local File Storage)
+Saves conversation histories as JSON files on disk inside a specified directory (defaults to `.kikoyu-store/`). Persists history across server restarts without external databases.
+
+```typescript
+import { FileStore, Session } from '@kikoyu/core';
+
+const fileStore = new FileStore({ directoryPath: './saved-sessions' });
+const session = new Session('chat_session_101', fileStore);
+```
+
+### 4. `RedisStore` (Distributed Production Memory)
+Delegates session storage to a Redis client (e.g. `ioredis`, `@upstash/redis`) for distributed server clusters and serverless deployments.
+
+```typescript
+import { RedisStore, Session } from '@kikoyu/core';
+import Redis from 'ioredis';
+
+const redis = new Redis(process.env.REDIS_URL!);
+const session = new Session('chat_session_101', new RedisStore(redis));
+```
+

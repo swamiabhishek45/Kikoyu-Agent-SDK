@@ -14,7 +14,7 @@
 
 #### Defined in
 
-providers/gemini.ts:11
+[providers/gemini.ts:11](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/providers/gemini.ts#L11)
 
 ***
 
@@ -24,7 +24,7 @@ providers/gemini.ts:11
 
 #### Defined in
 
-providers/gemini.ts:13
+[providers/gemini.ts:13](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/providers/gemini.ts#L13)
 
 ***
 
@@ -34,4 +34,4 @@ providers/gemini.ts:13
 
 #### Defined in
 
-providers/gemini.ts:12
+[providers/gemini.ts:12](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/providers/gemini.ts#L12)

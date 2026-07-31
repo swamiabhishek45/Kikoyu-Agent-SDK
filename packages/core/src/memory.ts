@@ -105,3 +105,123 @@ export class RedisStore implements MemoryStore {
   }
 }
 
+export interface Mem0StoreOptions {
+  apiKey?: string;
+  userId?: string;
+  agentId?: string;
+  baseURL?: string;
+}
+
+export class Mem0Store implements MemoryStore {
+  private apiKey?: string;
+  private defaultUserId?: string;
+  private agentId?: string;
+  private baseURL: string;
+  private localCache = new Map<string, unknown>();
+
+  constructor(options: Mem0StoreOptions = {}) {
+    this.apiKey = options.apiKey ?? process.env.MEM0_API_KEY;
+    this.defaultUserId = options.userId ?? process.env.MEM0_USER_ID;
+    this.agentId = options.agentId;
+    this.baseURL = options.baseURL ?? 'https://api.mem0.ai/v1';
+  }
+
+  async get<T = unknown>(key: string): Promise<T | undefined> {
+    const cached = this.localCache.get(key);
+    if (cached !== undefined) {
+      return cached as T;
+    }
+
+    if (!this.apiKey) {
+      return undefined;
+    }
+
+    try {
+      const userId = this.defaultUserId ?? key;
+      const url = `${this.baseURL}/memories/?user_id=${encodeURIComponent(userId)}`;
+      const res = await fetch(url, {
+        headers: {
+          Authorization: `Token ${this.apiKey}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!res.ok) {
+        return undefined;
+      }
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const data: any = await res.json();
+      const memories = Array.isArray(data) ? data : data.results ?? [];
+      
+      const formattedMessages = memories.map((m: any) => ({
+        role: m.role ?? 'user',
+        content: m.memory ?? m.text ?? JSON.stringify(m),
+      }));
+
+      this.localCache.set(key, formattedMessages);
+      return formattedMessages as T;
+    } catch {
+      return undefined;
+    }
+  }
+
+  async set<T = unknown>(key: string, value: T): Promise<void> {
+    this.localCache.set(key, value);
+
+    if (!this.apiKey) return;
+
+    try {
+      const userId = this.defaultUserId ?? key;
+      const messages = Array.isArray(value) ? value : [value];
+
+      await fetch(`${this.baseURL}/memories/`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Token ${this.apiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          messages,
+          user_id: userId,
+          agent_id: this.agentId,
+          run_id: key,
+        }),
+      });
+    } catch {
+      // Retain localCache update even if remote network fails
+    }
+  }
+
+  async append<T = unknown>(key: string, item: T): Promise<void> {
+    const existing = (await this.get<T[]>(key)) ?? [];
+    if (!Array.isArray(existing)) {
+      throw new Error(`Cannot append to non-array Mem0 store key "${key}"`);
+    }
+    const updated = [...existing, item];
+    this.localCache.set(key, updated);
+
+    if (!this.apiKey) return;
+
+    try {
+      const userId = this.defaultUserId ?? key;
+      await fetch(`${this.baseURL}/memories/`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Token ${this.apiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          messages: [item],
+          user_id: userId,
+          agent_id: this.agentId,
+          run_id: key,
+        }),
+      });
+    } catch {
+      // Retain localCache update even if remote network fails
+    }
+  }
+}
+
+

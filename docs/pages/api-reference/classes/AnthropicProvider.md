@@ -28,7 +28,7 @@
 
 #### Defined in
 
-providers/anthropic.ts:22
+[providers/anthropic.ts:22](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/providers/anthropic.ts#L22)
 
 ## Properties
 
@@ -42,7 +42,7 @@ providers/anthropic.ts:22
 
 #### Defined in
 
-providers/anthropic.ts:17
+[providers/anthropic.ts:17](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/providers/anthropic.ts#L17)
 
 ## Methods
 
@@ -70,7 +70,7 @@ providers/anthropic.ts:17
 
 #### Defined in
 
-providers/anthropic.ts:28
+[providers/anthropic.ts:28](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/providers/anthropic.ts#L28)
 
 ***
 
@@ -98,4 +98,4 @@ providers/anthropic.ts:28
 
 #### Defined in
 
-providers/anthropic.ts:137
+[providers/anthropic.ts:137](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/providers/anthropic.ts#L137)

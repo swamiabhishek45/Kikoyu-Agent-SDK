@@ -34,4 +34,4 @@
 
 ## Defined in
 
-[guardrail.ts:49](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/ed3acbdfa036f9fea16ac7807fc9bacdb92f037a/packages/core/src/guardrail.ts#L49)
+[guardrail.ts:49](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/guardrail.ts#L49)
