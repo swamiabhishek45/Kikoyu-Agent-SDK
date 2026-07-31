@@ -8,7 +8,8 @@
     "test": "vitest run",
     "lint": "tsc --noEmit",
     "example:openai": "tsx src/openai-agent.ts",
-    "example:tool": "tsx src/tool-agent.ts"
+    "example:tool": "tsx src/tool-agent.ts",
+    "example:context": "tsx src/context-agent.ts"
   },
   "dependencies": {
     "@kikoyu/core": "workspace:*",

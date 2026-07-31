@@ -1,15 +1,20 @@
 import type { z } from 'zod';
-import type { Tool, ToolContext } from './types.js';
+import type { RunContext } from './run-context.js';
+import type { Tool } from './types.js';
 
-export function createTool<TSchema extends z.ZodType, TResult>(config: {
+export function createTool<
+  TSchema extends z.ZodTypeAny,
+  TResult,
+  TContext = Record<string, unknown>
+>(config: {
   name: string;
   description: string;
   parameters: TSchema;
   execute: (
     args: z.infer<TSchema>,
-    context?: ToolContext
+    context: RunContext<TContext>
   ) => Promise<TResult> | TResult;
-}): Tool<TSchema, TResult> {
+}): Tool<TSchema, TResult, TContext> {
   if (!config.name || typeof config.name !== 'string') {
     throw new Error('Tool name must be a non-empty string');
   }

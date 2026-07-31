@@ -1,5 +1,6 @@
 import type { z } from 'zod';
 import type { Agent } from './agent.js';
+import type { RunContext } from './run-context.js';
 
 export type ModelRole = 'system' | 'user' | 'assistant' | 'tool';
 
@@ -58,19 +59,15 @@ export interface ModelProvider {
   ): Promise<ModelResponse>;
 }
 
-export interface ToolContext {
-  [key: string]: unknown;
-}
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface Tool<TSchema extends z.ZodTypeAny = any, TResult = any> {
+export interface Tool<TSchema extends z.ZodTypeAny = any, TResult = any, TContext = any> {
   name: string;
   description: string;
   parameters: z.ZodTypeAny;
   execute: (
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     args: any,
-    context?: ToolContext
+    context: RunContext<TContext>
   ) => Promise<TResult> | TResult;
 }
 

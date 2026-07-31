@@ -1,20 +1,23 @@
 import type { Agent } from './agent.js';
-import type { ModelMessage, RunResult, ToolContext } from './types.js';
+import { RunContext } from './run-context.js';
+import type { ModelMessage, RunResult } from './types.js';
 
-export interface RunOptions {
+export interface RunOptions<TContext = Record<string, unknown>> {
   temperature?: number;
   maxTokens?: number;
   maxIterations?: number;
-  context?: ToolContext;
+  context?: RunContext<TContext> | TContext;
 }
 
 export class Runner {
-  async run(
+  async run<TContext = Record<string, unknown>>(
     agent: Agent,
     input: string | ModelMessage[],
-    options?: RunOptions
+    options?: RunOptions<TContext>
   ): Promise<RunResult> {
     const maxIterations = options?.maxIterations ?? 10;
+    const runContext = RunContext.from<TContext>(options?.context);
+
     const inputMessages: ModelMessage[] =
       typeof input === 'string'
         ? [{ role: 'user', content: input }]
@@ -76,7 +79,7 @@ export class Runner {
             try {
               const rawResult = await tool.execute(
                 parseResult.data,
-                options?.context
+                runContext
               );
               toolOutputContent =
                 typeof rawResult === 'string'
