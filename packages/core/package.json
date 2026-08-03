@@ -1,6 +1,6 @@
 {
   "name": "@kikoyu/core",
-  "version": "0.1.0",
+  "version": "0.1.12",
   "description": "An Agent SDK for building AI agent workflows with type-safe tools, memory, execution loops, and streaming capabilities.",
   "license": "MIT",
   "repository": {
