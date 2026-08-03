@@ -4,6 +4,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom Light Orange Text Selection matching site theme */
+::selection {
+  background-color: rgba(255, 85, 0, 0.45) !important;
+  color: #ffffff !important;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+::-moz-selection {
+  background-color: rgba(255, 85, 0, 0.45) !important;
+  color: #ffffff !important;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
 /* Nextra Theme Documentation Orange Accent Overrides */
 :root {
   --nextra-primary-hue: 24deg !important;
