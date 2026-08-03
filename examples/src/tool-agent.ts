@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config({ path: ['../.env', '.env'] });
+
 import { Agent, createTool, Runner, z } from '@kikoyu/core';
 
 const getWeatherTool = createTool({

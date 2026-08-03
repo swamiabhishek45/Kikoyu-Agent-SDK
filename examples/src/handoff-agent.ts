@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config({ path: ['../.env', '.env'] });
+
 import { Agent, createHandoff, Runner } from '@kikoyu/core';
 
 async function main() {
