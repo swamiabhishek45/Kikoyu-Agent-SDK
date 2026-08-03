@@ -6,6 +6,7 @@
   "plugin": ["typedoc-plugin-markdown"],
   "readme": "none",
   "name": "Kikoyu Core API Reference",
+  "gitRevision": "master",
   "cleanOutputDir": true,
   "skipErrorChecking": true,
   "excludeExternals": true,

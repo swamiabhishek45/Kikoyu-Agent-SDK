@@ -28,7 +28,11 @@
 
 #### Defined in
 
+<<<<<<< HEAD
 [providers/anthropic.ts:22](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/providers/anthropic.ts#L22)
+=======
+[providers/anthropic.ts:22](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/providers/anthropic.ts#L22)
+>>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
 
 ## Properties
 
@@ -42,7 +46,11 @@
 
 #### Defined in
 
+<<<<<<< HEAD
 [providers/anthropic.ts:17](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/providers/anthropic.ts#L17)
+=======
+[providers/anthropic.ts:17](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/providers/anthropic.ts#L17)
+>>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
 
 ## Methods
 
@@ -70,7 +78,11 @@
 
 #### Defined in
 
+<<<<<<< HEAD
 [providers/anthropic.ts:28](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/providers/anthropic.ts#L28)
+=======
+[providers/anthropic.ts:28](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/providers/anthropic.ts#L28)
+>>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
 
 ***
 
@@ -98,4 +110,8 @@
 
 #### Defined in
 
+<<<<<<< HEAD
 [providers/anthropic.ts:137](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/providers/anthropic.ts#L137)
+=======
+[providers/anthropic.ts:137](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/providers/anthropic.ts#L137)
+>>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
