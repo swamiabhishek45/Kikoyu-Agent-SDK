@@ -28,11 +28,7 @@
 
 #### Defined in
 
-<<<<<<< HEAD
-[providers/fallback.ts:19](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/providers/fallback.ts#L19)
-=======
-[providers/fallback.ts:19](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/providers/fallback.ts#L19)
->>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
+[providers/fallback.ts:19](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/master/packages/core/src/providers/fallback.ts#L19)
 
 ## Properties
 
@@ -46,11 +42,7 @@
 
 #### Defined in
 
-<<<<<<< HEAD
-[providers/fallback.ts:15](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/providers/fallback.ts#L15)
-=======
-[providers/fallback.ts:15](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/providers/fallback.ts#L15)
->>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
+[providers/fallback.ts:15](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/master/packages/core/src/providers/fallback.ts#L15)
 
 ## Methods
 
@@ -78,11 +70,7 @@
 
 #### Defined in
 
-<<<<<<< HEAD
-[providers/fallback.ts:29](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/providers/fallback.ts#L29)
-=======
-[providers/fallback.ts:29](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/providers/fallback.ts#L29)
->>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
+[providers/fallback.ts:29](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/master/packages/core/src/providers/fallback.ts#L29)
 
 ***
 
@@ -110,8 +98,4 @@
 
 #### Defined in
 
-<<<<<<< HEAD
-[providers/fallback.ts:49](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/providers/fallback.ts#L49)
-=======
-[providers/fallback.ts:49](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/providers/fallback.ts#L49)
->>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
+[providers/fallback.ts:49](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/master/packages/core/src/providers/fallback.ts#L49)

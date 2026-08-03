@@ -1,33 +1,114 @@
-# Tracing & Performance Metrics
+# Tracing & Observability
 
-Every execution in Kikoyu generates a comprehensive `RunTrace` object. Tracing gives full observability into LLM execution steps, tool invocations, token counts, and execution latency.
+Every execution in **Kikoyu SDK** generates a comprehensive `RunTrace` telemetry object. Tracing provides complete visibility into LLM execution steps, tool invocations, token counts, model latency, and guardrail checks.
 
-## Trace Object Structure
+---
+
+## Why Tracing is Critical
+
+Building autonomous AI agents requires deep observability:
+- **Token Usage Tracking**: Monitor exact prompt tokens and completion tokens consumed per run.
+- **Latency Diagnostics**: Identify slow tool executions or long model response times.
+- **Audit Trails**: Inspect full step-by-step history of model calls, tool arguments, and handoff transfers.
+
+---
+
+## Accessing `RunTrace` Telemetry
+
+The `RunResult` object returned by `runner.run()` includes the complete `trace`:
+
+```typescript
+import { Agent, createTool, OpenAIProvider, Runner, z } from '@kikoyu/core';
+
+const lookupOrderTool = createTool({
+  name: 'lookup_order',
+  description: 'Lookup order details.',
+  parameters: z.object({ orderId: z.string() }),
+  execute: async ({ orderId }) => ({ orderId, status: 'Shipped' }),
+});
+
+const agent = Agent.builder()
+  .setName('SupportAgent')
+  .setInstructions('Help users with orders.')
+  .setModel(new OpenAIProvider({ apiKey: process.env.OPENAI_API_KEY!, model: 'gpt-4o-mini' }))
+  .addTool(lookupOrderTool)
+  .build();
+
+const runner = new Runner();
+
+async function main() {
+  const result = await runner.run(agent, 'Check status of order ORD-9921');
+
+  // Access execution trace telemetry
+  const trace = result.trace;
+
+  if (trace) {
+    console.log('Run ID:', trace.runId);
+    console.log('Root Agent:', trace.agentName);
+    console.log('Execution Status:', trace.finalStatus);
+    console.log('Total Duration (ms):', trace.durationMs);
+    console.log('Total Token Usage:', trace.totalTokenUsage);
+    
+    console.log('\n--- Step Execution History ---');
+    trace.steps.forEach((step, idx) => {
+      console.log(`[Step ${idx + 1}] Type: ${step.type} | Duration: ${step.durationMs}ms`);
+      console.log('Metadata:', step.metadata);
+    });
+  }
+}
+
+main().catch(console.error);
+```
+
+---
+
+## Telemetry Interface Reference
 
 ```typescript
 export interface RunTrace {
-  runId: string;
-  agentName: string;
-  startTime: string;
-  endTime?: string;
-  durationMs?: number;
-  totalTokenUsage: TokenUsage;
-  steps: StepTrace[];
+  runId: string;                                          // Unique UUID for the run
+  agentName: string;                                      // Primary initiating agent name
+  startTime: string;                                      // ISO timestamp
+  endTime?: string;                                       // ISO timestamp
+  durationMs?: number;                                    // Total wall-clock execution time in ms
+  totalTokenUsage: {
+    promptTokens: number;
+    completionTokens: number;
+    totalTokens: number;
+  };
+  steps: StepTrace[];                                     // Sequential execution steps
   finalStatus: 'completed' | 'failed' | 'max_iterations_reached' | 'guardrail_tripped';
-  error?: string;
+  error?: string;                                         // Error message if run failed
+}
+
+export interface StepTrace {
+  type: 'model_call' | 'tool_call' | 'guardrail' | 'handoff' | 'structured_output_repair';
+  timestamp: string;
+  durationMs: number;
+  metadata: Record<string, unknown>;
 }
 ```
 
-## Accessing Run Traces
+---
+
+## Exporting Traces to Datadog / OpenTelemetry / LangSmith
+
+Because `trace` is a clean, serializable JSON object, you can record traces to your telemetry pipeline easily:
 
 ```typescript
-import { Agent, Runner } from '@kikoyu/core';
+async function logTelemetry(result: RunResult) {
+  if (!result.trace) return;
 
-const runner = new Runner();
-const result = await runner.run(agent, 'Summarize user activity');
-
-console.log('Run ID:', result.trace?.runId);
-console.log('Total Tokens Used:', result.trace?.totalTokenUsage.totalTokens);
-console.log('Execution Time (ms):', result.trace?.durationMs);
-console.log('Step History:', result.trace?.steps);
+  await fetch('https://telemetry.your-company.com/v1/traces', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      traceId: result.trace.runId,
+      agent: result.trace.agentName,
+      latency: result.trace.durationMs,
+      tokens: result.trace.totalTokenUsage.totalTokens,
+      steps: result.trace.steps,
+    }),
+  });
+}
 ```

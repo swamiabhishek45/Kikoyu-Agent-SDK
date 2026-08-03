@@ -28,11 +28,7 @@
 
 #### Defined in
 
-<<<<<<< HEAD
-[tracing.ts:14](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/tracing.ts#L14)
-=======
-[tracing.ts:14](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/tracing.ts#L14)
->>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
+[tracing.ts:14](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/master/packages/core/src/tracing.ts#L14)
 
 ## Methods
 
@@ -60,11 +56,7 @@
 
 #### Defined in
 
-<<<<<<< HEAD
-[tracing.ts:24](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/tracing.ts#L24)
-=======
-[tracing.ts:24](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/tracing.ts#L24)
->>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
+[tracing.ts:24](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/master/packages/core/src/tracing.ts#L24)
 
 ***
 
@@ -88,11 +80,7 @@
 
 #### Defined in
 
-<<<<<<< HEAD
-[tracing.ts:51](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/tracing.ts#L51)
-=======
-[tracing.ts:51](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/tracing.ts#L51)
->>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
+[tracing.ts:51](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/master/packages/core/src/tracing.ts#L51)
 
 ***
 
@@ -106,11 +94,7 @@
 
 #### Defined in
 
-<<<<<<< HEAD
-[tracing.ts:20](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/tracing.ts#L20)
-=======
-[tracing.ts:20](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/tracing.ts#L20)
->>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
+[tracing.ts:20](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/master/packages/core/src/tracing.ts#L20)
 
 ***
 
@@ -130,8 +114,4 @@
 
 #### Defined in
 
-<<<<<<< HEAD
-[tracing.ts:40](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/tracing.ts#L40)
-=======
-[tracing.ts:40](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/tracing.ts#L40)
->>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
+[tracing.ts:40](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/master/packages/core/src/tracing.ts#L40)

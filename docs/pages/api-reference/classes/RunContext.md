@@ -28,11 +28,7 @@
 
 #### Defined in
 
-<<<<<<< HEAD
-[run-context.ts:4](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/run-context.ts#L4)
-=======
-[run-context.ts:4](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/run-context.ts#L4)
->>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
+[run-context.ts:4](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/master/packages/core/src/run-context.ts#L4)
 
 ## Properties
 
@@ -42,11 +38,7 @@
 
 #### Defined in
 
-<<<<<<< HEAD
-[run-context.ts:2](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/run-context.ts#L2)
-=======
-[run-context.ts:2](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/run-context.ts#L2)
->>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
+[run-context.ts:2](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/master/packages/core/src/run-context.ts#L2)
 
 ## Methods
 
@@ -70,11 +62,55 @@
 
 #### Defined in
 
-<<<<<<< HEAD
-[run-context.ts:8](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/run-context.ts#L8)
-=======
-[run-context.ts:8](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/run-context.ts#L8)
->>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
+[run-context.ts:8](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/master/packages/core/src/run-context.ts#L8)
+
+***
+
+### set()
+
+> **set**\<`K`\>(`key`, `val`): `void`
+
+#### Type Parameters
+
+• **K** *extends* `string` \| `number` \| `symbol`
+
+#### Parameters
+
+##### key
+
+`K`
+
+##### val
+
+`T`\[`K`\]
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[run-context.ts:12](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/master/packages/core/src/run-context.ts#L12)
+
+***
+
+### setAll()
+
+> **setAll**(`newValues`): `void`
+
+#### Parameters
+
+##### newValues
+
+`Partial`\<`T`\>
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[run-context.ts:16](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/master/packages/core/src/run-context.ts#L16)
 
 ***
 
@@ -98,8 +134,4 @@
 
 #### Defined in
 
-<<<<<<< HEAD
-[run-context.ts:12](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/run-context.ts#L12)
-=======
-[run-context.ts:12](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/run-context.ts#L12)
->>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
+[run-context.ts:20](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/master/packages/core/src/run-context.ts#L20)

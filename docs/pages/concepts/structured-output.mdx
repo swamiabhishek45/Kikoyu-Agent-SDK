@@ -1,39 +1,114 @@
 # Structured Output & Auto-Repair
 
-Kikoyu allows developers to enforce strongly typed Zod response schemas on AI Agents. When a schema is attached, Kikoyu automatically validates LLM outputs and executes multi-step repair prompts if the LLM produces malformed or non-compliant output.
+**Structured Output** in **Kikoyu SDK** allows you to enforce strongly typed Zod response schemas on AI Agents.
 
-## Usage Example
+When a response schema is attached, **Kikoyu SDK** automatically formats the model's output into a validated JSON object and executes automated multi-step repair prompts if the LLM produces malformed or non-compliant output.
+
+---
+
+## Why Structured Output Matters
+
+By default, LLMs return unstructured natural language strings. In production APIs, backend systems require strict JSON objects matching specific field shapes (e.g. `{ sentiment: 'positive', score: 0.95 }`).
+
+**Kikoyu SDK** guarantees:
+1. **100% Type Safety**: Inferred TypeScript types directly from your Zod schema.
+2. **Auto-Repair Loop**: If the LLM generates bad JSON or misses a field, Kikoyu catches the Zod error and automatically sends a corrective repair prompt back to the model.
+
+---
+
+## Step-by-Step Implementation Guide
+
+### Step 1: Define Zod Response Schema
 
 ```typescript
 import { Agent, OpenAIProvider, Runner, z } from '@kikoyu/core';
 
-const AnalysisSchema = z.object({
-  sentiment: z.enum(['positive', 'neutral', 'negative']),
-  score: z.number(),
-  keywords: z.array(z.string()),
+// 1. Define Zod response schema
+export const MovieAnalysisSchema = z.object({
+  title: z.string().describe('Movie title'),
+  releaseYear: z.number().describe('Release year'),
+  genres: z.array(z.string()).describe('List of movie genres'),
+  ratingScore: z.number().min(0).max(10).describe('Rating score out of 10'),
+  summary: z.string().describe('One-sentence plot summary'),
 });
 
-type Analysis = z.infer<typeof AnalysisSchema>;
-
-const agent = Agent.builder()
-  .setName('SentimentAnalyzer')
-  .setInstructions('Analyze the sentiment of the provided user text.')
-  .setModel(new OpenAIProvider())
-  .withResponseSchema(AnalysisSchema)
-  .build();
-
-const runner = new Runner();
-const result = await runner.run<Analysis>(
-  agent,
-  'Kikoyu is an incredible TypeScript AI Agent SDK with unmatched reliability!'
-);
-
-console.log(result.structuredOutput?.sentiment); // 'positive'
-console.log(result.structuredOutput?.keywords);  // ['Kikoyu', 'TypeScript', 'AI Agent']
+// Infer TypeScript type
+export type MovieAnalysis = z.infer<typeof MovieAnalysisSchema>;
 ```
 
-## How Auto-Repair Works
+### Step 2: Attach Schema to Agent via `.withResponseSchema()`
 
-1. **Schema Injection**: Kikoyu converts the Zod schema to JSON Schema format.
-2. **Output Validation**: Upon receiving text output from the model, Kikoyu parses the JSON and validates it against the Zod schema.
-3. **Auto-Repair Loop**: If JSON parsing or validation fails, Kikoyu sends an automated repair prompt to the LLM detailing the validation error and expected schema structure up to N retries.
+```typescript
+// 2. Build Agent with response schema
+export const movieAnalystAgent = Agent.builder()
+  .setName('MovieAnalyst')
+  .setInstructions('Analyze the requested movie and return structured metadata matching the response schema.')
+  .setModel(new OpenAIProvider({ apiKey: process.env.OPENAI_API_KEY!, model: 'gpt-4o-mini' }))
+  .withResponseSchema(MovieAnalysisSchema)
+  .build();
+```
+
+### Step 3: Execute Agent & Access Inferred `result.structuredOutput`
+
+```typescript
+// 3. Execute Agent loop
+const runner = new Runner();
+
+async function main() {
+  const result = await runner.run<MovieAnalysis>(
+    movieAnalystAgent,
+    'Analyze the sci-fi movie Interstellar (2014).'
+  );
+
+  // Fully typed structured output!
+  if (result.structuredOutput) {
+    console.log('Title:', result.structuredOutput.title);
+    console.log('Year:', result.structuredOutput.releaseYear);
+    console.log('Genres:', result.structuredOutput.genres.join(', '));
+    console.log('Rating:', result.structuredOutput.ratingScore);
+    console.log('Summary:', result.structuredOutput.summary);
+  }
+}
+
+main().catch(console.error);
+```
+
+---
+
+## How Auto-Repair Works Under the Hood
+
+```
++--------------------------------------------------------------------+
+|  1. Model Output -> Received JSON string from LLM                  |
++--------------------------------------------------------------------+
+                                  |
+                                  v
++--------------------------------------------------------------------+
+|  2. Zod Schema Validation -> safeParse(json)                       |
++--------------------------------------------------------------------+
+            /                                        \
+    [Validation Passed]                      [Validation Failed]
+            |                                         |
+            v                                         v
++-----------------------+           +--------------------------------+
+| Return result.data    |           | 3. Generate Repair Prompt      |
+| (100% Type-Safe JSON) |           | Pass Zod Error & JSON Schema   |
++-----------------------+           +--------------------------------+
+                                                      |
+                                                      v
+                                    +--------------------------------+
+                                    | 4. Retry Model Completion      |
+                                    | (Up to N max retries)          |
+                                    +--------------------------------+
+```
+
+1. **JSON Schema Generation**: Kikoyu converts your Zod schema into a JSON Schema definition automatically.
+2. **Runtime Validation**: When the model finishes generating text, Kikoyu parses the JSON string and validates it against your Zod schema.
+3. **Auto-Repair Execution**: If JSON parsing fails or required Zod fields are missing, Kikoyu issues an immediate repair prompt (`The response failed JSON schema validation with error: ... Please fix and return valid JSON matching schema`) up to `maxRetries` attempts.
+
+---
+
+## Best Practices
+
+1. **Provide Clear Field Descriptions**: Use `.describe()` on Zod properties so the LLM understands expected field definitions.
+2. **Set Sensible Range Constraints**: Use `.min()`, `.max()`, and `.enum()` to restrict value boundaries tightly.

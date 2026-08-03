@@ -1,57 +1,174 @@
 # Model Providers & Fallbacks
 
-Kikoyu is model-provider agnostic. Out of the box, it supports **OpenAI**, **Anthropic (Claude)**, **Google Gemini**, and resilient **Fallback Providers**.
+**Kikoyu SDK** is model-provider agnostic. Out of the box, it provides first-class, zero-dependency model adapters for **OpenAI**, **Anthropic (Claude)**, **Google Gemini**, as well as a resilient **FallbackProvider** for automatic failover during cloud API outages.
 
-## Supported Providers
+---
 
-### 1. OpenAI Provider
+## 1. OpenAI Provider (`OpenAIProvider`)
+
+`OpenAIProvider` supports all OpenAI chat completion models, including `gpt-4o`, `gpt-4o-mini`, `gpt-4-turbo`, and fine-tuned models.
+
+### Step-by-Step Setup
+
 ```typescript
-import { OpenAIProvider } from '@kikoyu/core';
+import { Agent, OpenAIProvider, Runner } from '@kikoyu/core';
 
-const openai = new OpenAIProvider({
-  apiKey: process.env.OPENAI_API_KEY,
-  model: 'gpt-4o',
+// 1. Initialize OpenAIProvider
+const openaiModel = new OpenAIProvider({
+  apiKey: process.env.OPENAI_API_KEY!, // OpenAI API Key
+  model: 'gpt-4o-mini',                // Default target model
+  temperature: 0.7,                   // Optional temperature (0.0 - 2.0)
 });
+
+// 2. Build Agent
+const agent = Agent.builder()
+  .setName('OpenAIAssistant')
+  .setInstructions('You are a helpful assistant powered by OpenAI GPT-4o.')
+  .setModel(openaiModel)
+  .build();
+
+// 3. Execute
+const runner = new Runner();
+
+async function main() {
+  const result = await runner.run(agent, 'Summarize quantum computing in two sentences.');
+  console.log('Response:', result.text);
+}
+
+main().catch(console.error);
 ```
 
-### 2. Anthropic Claude Provider
-```typescript
-import { AnthropicProvider } from '@kikoyu/core';
+---
 
-const claude = new AnthropicProvider({
-  apiKey: process.env.ANTHROPIC_API_KEY,
+## 2. Anthropic Claude Provider (`AnthropicProvider`)
+
+`AnthropicProvider` supports Claude 3.5 Sonnet, Claude 3 Opus, and Claude 3 Haiku models via Anthropic's Messages API.
+
+### Step-by-Step Setup
+
+```typescript
+import { Agent, AnthropicProvider, Runner } from '@kikoyu/core';
+
+// 1. Initialize AnthropicProvider
+const claudeModel = new AnthropicProvider({
+  apiKey: process.env.ANTHROPIC_API_KEY!,
   model: 'claude-3-5-sonnet-20240620',
+  maxTokens: 4096,
 });
+
+// 2. Build Agent
+const agent = Agent.builder()
+  .setName('ClaudeAssistant')
+  .setInstructions('You are an expert technical editor powered by Claude 3.5 Sonnet.')
+  .setModel(claudeModel)
+  .build();
+
+// 3. Execute
+const runner = new Runner();
+
+async function main() {
+  const result = await runner.run(agent, 'Refactor this TypeScript function for performance.');
+  console.log('Response:', result.text);
+}
+
+main().catch(console.error);
 ```
 
-### 3. Google Gemini Provider
-```typescript
-import { GeminiProvider } from '@kikoyu/core';
+---
 
-const gemini = new GeminiProvider({
-  apiKey: process.env.GEMINI_API_KEY,
+## 3. Google Gemini Provider (`GeminiProvider`)
+
+`GeminiProvider` supports Google Gemini 1.5 Pro and Gemini 1.5 Flash models.
+
+### Step-by-Step Setup
+
+```typescript
+import { Agent, GeminiProvider, Runner } from '@kikoyu/core';
+
+// 1. Initialize GeminiProvider
+const geminiModel = new GeminiProvider({
+  apiKey: process.env.GEMINI_API_KEY!,
   model: 'gemini-1.5-flash',
 });
+
+// 2. Build Agent
+const agent = Agent.builder()
+  .setName('GeminiAssistant')
+  .setInstructions('You are a fast, concise assistant powered by Google Gemini.')
+  .setModel(geminiModel)
+  .build();
+
+// 3. Execute
+const runner = new Runner();
+
+async function main() {
+  const result = await runner.run(agent, 'List 3 key advantages of WebAssembly.');
+  console.log('Response:', result.text);
+}
+
+main().catch(console.error);
 ```
 
-## Resilient Fallback Provider
+---
 
-`FallbackProvider` allows you to define a primary LLM provider and backup providers. If the primary provider encounters API downtime or rate-limits, Kikoyu automatically falls back to secondary providers seamlessly.
+## 4. Resilient Fallback Provider (`FallbackProvider`)
+
+In production, primary AI APIs (e.g. OpenAI or Anthropic) can experience rate limits (HTTP 429), server overloads (HTTP 503), or unexpected outages.
+
+`FallbackProvider` wraps a primary provider and one or more backup providers. If the primary model fails or times out, **Kikoyu SDK** automatically retries execution against backup models seamlessly.
+
+### Resilient Fallback Setup
 
 ```typescript
-import { Agent, AnthropicProvider, FallbackProvider, GeminiProvider, OpenAIProvider } from '@kikoyu/core';
+import { Agent, AnthropicProvider, FallbackProvider, GeminiProvider, OpenAIProvider, Runner } from '@kikoyu/core';
 
-const resilientModel = new FallbackProvider({
-  primary: new AnthropicProvider(),
-  fallbacks: [
-    new GeminiProvider(),
-    new OpenAIProvider(),
-  ],
+// 1. Define Primary and Backup Providers
+const primaryModel = new AnthropicProvider({
+  apiKey: process.env.ANTHROPIC_API_KEY!,
+  model: 'claude-3-5-sonnet-20240620',
 });
 
+const backupModel1 = new OpenAIProvider({
+  apiKey: process.env.OPENAI_API_KEY!,
+  model: 'gpt-4o-mini',
+});
+
+const backupModel2 = new GeminiProvider({
+  apiKey: process.env.GEMINI_API_KEY!,
+  model: 'gemini-1.5-flash',
+});
+
+// 2. Combine into FallbackProvider
+const resilientModel = new FallbackProvider({
+  primary: primaryModel,
+  fallbacks: [backupModel1, backupModel2],
+});
+
+// 3. Build High-Availability Agent
 const agent = Agent.builder()
-  .setName('FaultTolerantAgent')
-  .setInstructions('Respond reliably under any network condition.')
+  .setName('HighAvailabilityAgent')
+  .setInstructions('Respond reliably regardless of model cloud outages.')
   .setModel(resilientModel)
   .build();
+
+// 4. Execute
+const runner = new Runner();
+
+async function main() {
+  const result = await runner.run(agent, 'Execute critical financial workflow analysis.');
+  console.log('Response:', result.text);
+}
+
+main().catch(console.error);
 ```
+
+---
+
+## Provider Configuration Reference
+
+| Parameter | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `apiKey` | `string` | Environment Variable | API key string for model service authorization. |
+| `model` | `string` | Provider default | Exact model string identifier (e.g. `gpt-4o-mini`, `claude-3-5-sonnet-20240620`). |
+| `temperature` | `number` | `0.7` | Sampling temperature between `0.0` (deterministic) and `2.0` (creative). |
+| `maxTokens` | `number` | Provider default | Maximum output completion tokens allowed. |

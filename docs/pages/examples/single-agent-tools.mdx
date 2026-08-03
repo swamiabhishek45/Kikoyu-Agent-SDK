@@ -1,37 +1,88 @@
 # Worked Example: Single Agent with Tools
 
-This complete, runnable example demonstrates building a single agent attached to a custom Zod tool.
+This step-by-step example demonstrates how to build a production-ready AI Agent attached to custom Zod tools for real-world backend automation.
 
-```typescript
+---
+
+## Step-by-Step Implementation
+
+### Step 1: Install Dependencies
+
+```bash
+npm install @kikoyu/core zod
+```
+
+### Step 2: Configure Environment (`.env`)
+
+```env
+OPENAI_API_KEY=sk-proj-your_openai_api_key_here
+```
+
+### Step 3: Complete Executable Code (`index.js`)
+
+```javascript
 import { Agent, createTool, OpenAIProvider, Runner, z } from '@kikoyu/core';
 
-// 1. Create Zod parameter tool
+// 1. Define custom Zod Tool for Stock Market Lookup
 const stockPriceTool = createTool({
   name: 'get_stock_price',
-  description: 'Lookup ticker stock price.',
+  description: 'Lookup current stock price and trading volume for a ticker symbol.',
   parameters: z.object({
-    symbol: z.string().describe('Stock ticker symbol, e.g. AAPL, GOOGL'),
+    symbol: z.string().describe('Stock ticker symbol, e.g. AAPL, GOOGL, NVDA'),
+    includeVolume: z.boolean().default(true).describe('Whether to include 24h trading volume'),
   }),
-  execute: async ({ symbol }) => {
-    return { symbol, price: '$185.50', currency: 'USD' };
+  execute: async ({ symbol, includeVolume }) => {
+    console.log(`\n  [Tool Executed] get_stock_price(symbol="${symbol}", includeVolume=${includeVolume})`);
+    
+    return {
+      symbol: symbol.toUpperCase(),
+      price: '$185.50',
+      currency: 'USD',
+      change24h: '+2.45%',
+      volume: includeVolume ? '42.8M shares' : undefined,
+    };
   },
 });
 
+// 2. Build Agent using fluent AgentBuilder
+const financialAgent = Agent.builder()
+  .setName('Financial Advisory Agent')
+  .setInstructions('You are a professional financial assistant. Always check current stock prices using the get_stock_price tool before answering financial queries.')
+  .setModel(new OpenAIProvider({
+    apiKey: process.env.OPENAI_API_KEY!,
+    model: 'gpt-4o-mini',
+  }))
+  .addTool(stockPriceTool)
+  .build();
+
+// 3. Instantiate Runner and execute
+const runner = new Runner();
+
 async function main() {
-  // 2. Build agent with Agent.builder()
-  const agent = Agent.builder()
-    .setName('Financial Advisor')
-    .setInstructions('Always check stock prices using get_stock_price before answering financial queries.')
-    .setModel(new OpenAIProvider({ apiKey: process.env.OPENAI_API_KEY }))
-    .addTool(stockPriceTool)
-    .build();
+  console.log('Starting Financial Agent query...');
+  
+  const result = await runner.run(financialAgent, 'What is the current stock price and trading volume of AAPL?');
 
-  // 3. Run execution loop
-  const runner = new Runner();
-  const result = await runner.run(agent, 'What is the stock price of AAPL?');
-
-  console.log('Final Response:', result.text);
+  console.log('\n--- Final Agent Response ---');
+  console.log(result.text);
 }
 
 main().catch(console.error);
+```
+
+### Step 4: Run the Script
+
+```bash
+node index.js
+```
+
+### Expected Output
+
+```text
+Starting Financial Agent query...
+
+  [Tool Executed] get_stock_price(symbol="AAPL", includeVolume=true)
+
+--- Final Agent Response ---
+The current stock price of Apple Inc. (AAPL) is $185.50 USD with a 24-hour gain of +2.45% and a trading volume of 42.8M shares.
 ```

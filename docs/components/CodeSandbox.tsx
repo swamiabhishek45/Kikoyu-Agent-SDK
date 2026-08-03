@@ -36,12 +36,14 @@ export const getWeatherTool = createTool({
 const mathSpecialist = Agent.builder()
   .setName('Math Specialist')
   .setInstructions('Solve complex math expressions step-by-step.')
+  .setApiKey(process.env.KIKOYU_API_KEY!)
   .build();
 
 // 2. Router Agent with Handoff
 const triageRouter = Agent.builder()
   .setName('Triage Router')
   .setInstructions('Route math questions to Math Specialist.')
+  .setApiKey(process.env.KIKOYU_API_KEY!)
   .withHandoffs(createHandoff(mathSpecialist))
   .build();`,
   stream: `import { Agent, Runner } from '@kikoyu/core';
@@ -114,8 +116,8 @@ export function CodeSandbox() {
               key={tab}
               onClick={() => setActiveTab(tab)}
               className={`rounded-lg px-3.5 py-1 text-xs font-mono transition-all cursor-pointer ${activeTab === tab
-                  ? 'bg-[#ff5500] text-white font-semibold shadow-md shadow-orange-500/25'
-                  : 'text-zinc-400 hover:text-zinc-200'
+                ? 'bg-[#ff5500] text-white font-semibold shadow-md shadow-orange-500/25'
+                : 'text-zinc-400 hover:text-zinc-200'
                 }`}
             >
               {tab}.ts
@@ -192,11 +194,13 @@ export function CodeSandbox() {
               <span className="text-[#c678dd] font-semibold">const</span> <span className="text-[#e06c75]">mathSpecialist</span> = <span className="text-[#e5c07b]">Agent</span>.<span className="text-[#61afef]">builder</span>(){'\n'}
               {'  '}.<span className="text-[#61afef]">setName</span>(<span className="text-[#98c379]">'Math Specialist'</span>){'\n'}
               {'  '}.<span className="text-[#61afef]">setInstructions</span>(<span className="text-[#98c379]">'Solve complex math expressions step-by-step.'</span>){'\n'}
+              {'  '}.<span className="text-[#61afef]">setApiKey</span>(<span className="text-[#e06c75]">process</span>.<span className="text-[#e06c75]">env</span>.<span className="text-[#d19a66]">KIKOYU_API_KEY</span>!){'\n'}
               {'  '}.<span className="text-[#61afef]">build</span>();{'\n\n'}
               <span className="text-[#5c6370] italic">// 2. Router Agent with Handoff</span>{'\n'}
               <span className="text-[#c678dd] font-semibold">const</span> <span className="text-[#e06c75]">triageRouter</span> = <span className="text-[#e5c07b]">Agent</span>.<span className="text-[#61afef]">builder</span>(){'\n'}
               {'  '}.<span className="text-[#61afef]">setName</span>(<span className="text-[#98c379]">'Triage Router'</span>){'\n'}
               {'  '}.<span className="text-[#61afef]">setInstructions</span>(<span className="text-[#98c379]">'Route math questions to Math Specialist.'</span>){'\n'}
+              {'  '}.<span className="text-[#61afef]">setApiKey</span>(<span className="text-[#e06c75]">process</span>.<span className="text-[#e06c75]">env</span>.<span className="text-[#d19a66]">KIKOYU_API_KEY</span>!){'\n'}
               {'  '}.<span className="text-[#61afef]">withHandoffs</span>(<span className="text-[#61afef]">createHandoff</span>(<span className="text-[#e06c75]">mathSpecialist</span>)){'\n'}
               {'  '}.<span className="text-[#61afef]">build</span>();
             </code>

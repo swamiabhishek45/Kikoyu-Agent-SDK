@@ -39,11 +39,7 @@ const agent = new Agent({
 
 #### Defined in
 
-<<<<<<< HEAD
-[agent.ts:54](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/agent.ts#L54)
-=======
-[agent.ts:54](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/agent.ts#L54)
->>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
+[agent.ts:54](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/master/packages/core/src/agent.ts#L54)
 
 ## Properties
 
@@ -55,11 +51,7 @@ List of input and output guardrails
 
 #### Defined in
 
-<<<<<<< HEAD
-[agent.ts:39](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/agent.ts#L39)
-=======
-[agent.ts:39](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/agent.ts#L39)
->>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
+[agent.ts:39](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/master/packages/core/src/agent.ts#L39)
 
 ***
 
@@ -71,11 +63,7 @@ List of registered handoffs to other agents
 
 #### Defined in
 
-<<<<<<< HEAD
-[agent.ts:42](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/agent.ts#L42)
-=======
-[agent.ts:42](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/agent.ts#L42)
->>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
+[agent.ts:42](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/master/packages/core/src/agent.ts#L42)
 
 ***
 
@@ -87,11 +75,7 @@ The system instructions describing the agent's persona and instructions
 
 #### Defined in
 
-<<<<<<< HEAD
-[agent.ts:27](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/agent.ts#L27)
-=======
-[agent.ts:27](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/agent.ts#L27)
->>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
+[agent.ts:27](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/master/packages/core/src/agent.ts#L27)
 
 ***
 
@@ -103,11 +87,7 @@ Maximum allowed handoffs
 
 #### Defined in
 
-<<<<<<< HEAD
-[agent.ts:49](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/agent.ts#L49)
-=======
-[agent.ts:49](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/agent.ts#L49)
->>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
+[agent.ts:49](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/master/packages/core/src/agent.ts#L49)
 
 ***
 
@@ -119,11 +99,7 @@ Maximum allowed model retries
 
 #### Defined in
 
-<<<<<<< HEAD
-[agent.ts:52](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/agent.ts#L52)
-=======
-[agent.ts:52](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/agent.ts#L52)
->>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
+[agent.ts:52](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/master/packages/core/src/agent.ts#L52)
 
 ***
 
@@ -135,11 +111,7 @@ The model provider driving the agent
 
 #### Defined in
 
-<<<<<<< HEAD
-[agent.ts:30](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/agent.ts#L30)
-=======
-[agent.ts:30](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/agent.ts#L30)
->>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
+[agent.ts:30](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/master/packages/core/src/agent.ts#L30)
 
 ***
 
@@ -151,11 +123,7 @@ The unique display name of the agent
 
 #### Defined in
 
-<<<<<<< HEAD
-[agent.ts:24](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/agent.ts#L24)
-=======
-[agent.ts:24](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/agent.ts#L24)
->>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
+[agent.ts:24](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/master/packages/core/src/agent.ts#L24)
 
 ***
 
@@ -167,11 +135,7 @@ Optional Zod response schema for structured output
 
 #### Defined in
 
-<<<<<<< HEAD
-[agent.ts:46](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/agent.ts#L46)
-=======
-[agent.ts:46](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/agent.ts#L46)
->>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
+[agent.ts:46](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/master/packages/core/src/agent.ts#L46)
 
 ***
 
@@ -183,11 +147,7 @@ ToolRegistry maintaining all tools and handoff tools
 
 #### Defined in
 
-<<<<<<< HEAD
-[agent.ts:36](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/agent.ts#L36)
-=======
-[agent.ts:36](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/agent.ts#L36)
->>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
+[agent.ts:36](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/master/packages/core/src/agent.ts#L36)
 
 ***
 
@@ -199,11 +159,7 @@ List of standard tools attached to the agent
 
 #### Defined in
 
-<<<<<<< HEAD
-[agent.ts:33](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/agent.ts#L33)
-=======
-[agent.ts:33](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/agent.ts#L33)
->>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
+[agent.ts:33](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/master/packages/core/src/agent.ts#L33)
 
 ## Methods
 
@@ -221,8 +177,4 @@ A fresh AgentBuilder for method chaining.
 
 #### Defined in
 
-<<<<<<< HEAD
-[agent.ts:92](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/agent.ts#L92)
-=======
-[agent.ts:92](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/agent.ts#L92)
->>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
+[agent.ts:92](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/master/packages/core/src/agent.ts#L92)

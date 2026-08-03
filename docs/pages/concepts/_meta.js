@@ -1,6 +1,5 @@
 export default {
   agent: 'Agent',
-  'agent-builder': 'AgentBuilder',
   tools: 'Tools',
   'model-providers': 'Model Providers & Fallbacks',
   'structured-output': 'Structured Output',

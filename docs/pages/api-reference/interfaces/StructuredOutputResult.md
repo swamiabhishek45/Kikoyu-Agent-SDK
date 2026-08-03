@@ -18,11 +18,7 @@
 
 #### Defined in
 
-<<<<<<< HEAD
-[structured-output.ts:14](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/structured-output.ts#L14)
-=======
-[structured-output.ts:14](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/structured-output.ts#L14)
->>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
+[structured-output.ts:14](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/master/packages/core/src/structured-output.ts#L14)
 
 ***
 
@@ -32,11 +28,7 @@
 
 #### Defined in
 
-<<<<<<< HEAD
-[structured-output.ts:11](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/structured-output.ts#L11)
-=======
-[structured-output.ts:11](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/structured-output.ts#L11)
->>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
+[structured-output.ts:11](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/master/packages/core/src/structured-output.ts#L11)
 
 ***
 
@@ -46,11 +38,7 @@
 
 #### Defined in
 
-<<<<<<< HEAD
-[structured-output.ts:13](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/structured-output.ts#L13)
-=======
-[structured-output.ts:13](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/structured-output.ts#L13)
->>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
+[structured-output.ts:13](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/master/packages/core/src/structured-output.ts#L13)
 
 ***
 
@@ -60,11 +48,7 @@
 
 #### Defined in
 
-<<<<<<< HEAD
-[structured-output.ts:12](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/structured-output.ts#L12)
-=======
-[structured-output.ts:12](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/structured-output.ts#L12)
->>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
+[structured-output.ts:12](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/master/packages/core/src/structured-output.ts#L12)
 
 ***
 
@@ -74,8 +58,4 @@
 
 #### Defined in
 
-<<<<<<< HEAD
-[structured-output.ts:10](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/structured-output.ts#L10)
-=======
-[structured-output.ts:10](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/main/packages/core/src/structured-output.ts#L10)
->>>>>>> 13e7d84e6a73a2939cd4c9993ca2f34dfe669945
+[structured-output.ts:10](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/master/packages/core/src/structured-output.ts#L10)

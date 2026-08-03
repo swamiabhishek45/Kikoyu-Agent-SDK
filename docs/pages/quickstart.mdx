@@ -1,0 +1,308 @@
+# QuickStart Guide
+
+Welcome to the **Kikoyu Agent SDK** QuickStart! This comprehensive guide will take you from zero to building, extending, and orchestrating multi-agent systems with type safety, tool calling, and autonomous handoffs.
+
+---
+
+## Project Setup
+
+Get started by initializing a Node.js TypeScript project and installing `@kikoyu/core`.
+
+### 1. Initialize Project & Install Dependencies
+
+Create a project directory and install `@kikoyu/core` along with TypeScript and `dotenv`:
+
+```bash
+mkdir kikoyu-quickstart
+cd kikoyu-quickstart
+pnpm init
+pnpm add @kikoyu/core dotenv
+pnpm add -D typescript @types/node tsx
+```
+
+### 2. Configure TypeScript (`tsconfig.json`)
+
+Create a `tsconfig.json` in your project root:
+
+```json
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true
+  }
+}
+```
+
+### 3. Environment Configuration (`.env`)
+
+Create a `.env` file containing your API key:
+
+```env
+KIKOYU_API_KEY=kikoyu_sec_your_api_key_here
+# or
+OPENAI_API_KEY=sk-proj-your-openai-api-key-here
+```
+
+---
+
+## Create your first agent
+
+In Kikoyu, agents are constructed using the fluent `Agent.builder()` API. This pattern ensures immutability, type safety, and compile-time validation.
+
+Create a file named `index.ts`:
+
+```typescript
+import dotenv from 'dotenv';
+dotenv.config();
+
+import { Agent } from '@kikoyu/core';
+
+const apiKey = process.env.KIKOYU_API_KEY || process.env.OPENAI_API_KEY!;
+
+// Initialize an Agent using the builder pattern
+export const assistant = Agent.builder()
+  .setName('Assistant')
+  .setInstructions('You are a helpful and concise AI assistant.')
+  .setApiKey(apiKey)
+  .build();
+```
+
+---
+
+## Run your first agent
+
+To execute an agent run, instantiate a `Runner` and call `runner.run(agent, prompt)`.
+
+Add execution logic to `index.ts`:
+
+```typescript
+import dotenv from 'dotenv';
+dotenv.config();
+
+import { Agent, Runner } from '@kikoyu/core';
+
+async function main() {
+  const apiKey = process.env.KIKOYU_API_KEY || process.env.OPENAI_API_KEY!;
+
+  const assistant = Agent.builder()
+    .setName('Assistant')
+    .setInstructions('You are a helpful and concise AI assistant.')
+    .setApiKey(apiKey)
+    .build();
+
+  const runner = new Runner();
+  
+  console.log('Sending prompt to agent...');
+  const result = await runner.run(assistant, 'Hello! Introduce yourself in one sentence.');
+
+  console.log('\nAgent Output:');
+  console.log(result.text);
+}
+
+main().catch(console.error);
+```
+
+Run the script:
+
+```bash
+npx tsx index.ts
+```
+
+---
+
+## Give your agent tools
+
+Tools allow agents to call external APIs, run calculations, or query databases. Define type-safe tools using `createTool` with Zod parameters.
+
+```typescript
+import { Agent, createTool, Runner, z } from '@kikoyu/core';
+
+// 1. Define custom tool with Zod schema validation
+const getWeatherTool = createTool({
+  name: 'get_weather',
+  description: 'Lookup current weather conditions for a given city.',
+  parameters: z.object({
+    location: z.string().describe('City name, e.g. Tokyo, Paris'),
+    unit: z.enum(['celsius', 'fahrenheit']).default('celsius').optional(),
+  }),
+  execute: async ({ location, unit }) => {
+    return {
+      location,
+      temperature: unit === 'fahrenheit' ? '72°F' : '22°C',
+      condition: 'Sunny',
+    };
+  },
+});
+
+// 2. Register tool with agent
+const weatherAgent = Agent.builder()
+  .setName('Weather Assistant')
+  .setInstructions('Always check current weather conditions using the get_weather tool before answering.')
+  .setApiKey(apiKey)
+  .addTool(getWeatherTool)
+  .build();
+```
+
+---
+
+## Add a few more agents
+
+Build specialized domain agents to handle specific responsibilities in your application.
+
+```typescript
+// 1. Software Engineering Specialist
+const codeSpecialist = Agent.builder()
+  .setName('Code Specialist')
+  .setInstructions('You are an expert software developer. Provide clean, well-typed TypeScript code solutions.')
+  .setApiKey(apiKey)
+  .build();
+
+// 2. Mathematics Specialist
+const mathSpecialist = Agent.builder()
+  .setName('Math Specialist')
+  .setInstructions('You are a mathematics expert. Solve math problems step by step with clear reasoning.')
+  .setApiKey(apiKey)
+  .build();
+
+// 3. Triage Router Agent
+const triageRouter = Agent.builder()
+  .setName('Triage Router')
+  .setInstructions('Analyze incoming user queries and hand off coding questions to Code Specialist and math questions to Math Specialist.')
+  .setApiKey(apiKey)
+  .build();
+```
+
+---
+
+## Define your handoffs
+
+Handoffs enable autonomous agent delegation. When an agent determines another specialist is better suited for a task, it transfers execution seamlessly via `createHandoff`.
+
+```typescript
+import { createHandoff } from '@kikoyu/core';
+
+// Configure handoffs on Triage Router
+const triageRouter = Agent.builder()
+  .setName('Triage Router')
+  .setInstructions('Analyze input and delegate coding questions to Code Specialist and math questions to Math Specialist.')
+  .setApiKey(apiKey)
+  .withHandoffs(
+    createHandoff(codeSpecialist, {
+      description: 'Hand off technical software development and coding questions.',
+    }),
+    createHandoff(mathSpecialist, {
+      description: 'Hand off mathematical calculations and equations.',
+    })
+  )
+  .build();
+```
+
+---
+
+## Run the agent orchestration
+
+Execute multi-agent workflows through the entry-point router agent. `Runner` handles tool execution and agent handoffs automatically.
+
+```typescript
+const runner = new Runner();
+
+// The Triage Router will automatically hand off to Code Specialist
+const result = await runner.run(
+  triageRouter,
+  'Write a TypeScript function to binary search a sorted array.'
+);
+
+console.log('Active Final Agent:', result.agent.name); // Output: Code Specialist
+console.log('Final Output:\n', result.text);
+```
+
+---
+
+## Putting it all together
+
+Here is the complete, runnable single-file TypeScript script combining project setup, custom tools, specialist agents, handoffs, and multi-agent orchestration:
+
+```typescript
+import dotenv from 'dotenv';
+dotenv.config();
+
+import { Agent, createHandoff, createTool, Runner, z } from '@kikoyu/core';
+
+// 1. Environment Configuration
+const apiKey = process.env.KIKOYU_API_KEY || process.env.OPENAI_API_KEY;
+
+if (!apiKey) {
+  console.error('Error: Set KIKOYU_API_KEY or OPENAI_API_KEY in your .env file.');
+  process.exit(1);
+}
+
+// 2. Custom Tool Definition
+const getWeatherTool = createTool({
+  name: 'get_weather',
+  description: 'Lookup current weather conditions for a city.',
+  parameters: z.object({
+    location: z.string().describe('City name, e.g. Tokyo, Paris'),
+    unit: z.enum(['celsius', 'fahrenheit']).default('celsius').optional(),
+  }),
+  execute: async ({ location, unit }) => {
+    return {
+      location,
+      temperature: unit === 'fahrenheit' ? '72°F' : '22°C',
+      condition: 'Sunny',
+    };
+  },
+});
+
+// 3. Specialist Domain Agents
+const codeSpecialist = Agent.builder()
+  .setName('Code Specialist')
+  .setInstructions('You are an expert TypeScript software engineer. Write clean, concise code solutions.')
+  .setApiKey(apiKey)
+  .build();
+
+const weatherSpecialist = Agent.builder()
+  .setName('Weather Specialist')
+  .setInstructions('Answer weather queries accurately using the get_weather tool.')
+  .setApiKey(apiKey)
+  .addTool(getWeatherTool)
+  .build();
+
+// 4. Triage Router Agent with Handoffs
+const triageRouter = Agent.builder()
+  .setName('Triage Router')
+  .setInstructions('Analyze input and hand off coding questions to Code Specialist and weather questions to Weather Specialist.')
+  .setApiKey(apiKey)
+  .withHandoffs(
+    createHandoff(codeSpecialist, {
+      description: 'Hand off technical programming, algorithm, and software engineering questions.',
+    }),
+    createHandoff(weatherSpecialist, {
+      description: 'Hand off weather queries and forecast lookups.',
+    })
+  )
+  .build();
+
+// 5. Main Execution Loop
+async function main() {
+  const runner = new Runner();
+
+  console.log('🚀 Running Kikoyu Agent Orchestration...\n');
+
+  const response = await runner.run(
+    triageRouter,
+    'What is the current weather forecast for Tokyo?'
+  );
+
+  console.log('----------------------------------------');
+  console.log('Active Final Agent :', response.agent.name);
+  console.log('Final Answer Output:');
+  console.log(response.text);
+  console.log('----------------------------------------');
+}
+
+main().catch(console.error);
+```

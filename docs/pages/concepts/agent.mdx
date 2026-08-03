@@ -33,8 +33,9 @@ In traditional LLM frameworks, agent instances often hold transient execution st
 The fluent `AgentBuilder` provides chainable validation and autocompletion:
 
 ```typescript
-import { Agent, createTool, z } from '@kikoyu/core';
+import { Agent, createTool, OpenAIProvider, Runner, z } from '@kikoyu/core';
 
+// 1. Define a tool using Zod
 const lookupOrderTool = createTool({
   name: 'lookup_order',
   description: 'Lookup customer order details by order ID.',
@@ -42,12 +43,23 @@ const lookupOrderTool = createTool({
   execute: async ({ orderId }) => ({ orderId, status: 'Shipped', carrier: 'FedEx' }),
 });
 
+// 2. Build the Agent
 export const supportAgent = Agent.builder()
   .setName('E-Commerce Support Concierge')
   .setInstructions('You are an expert customer support concierge. Be helpful, concise, and professional.')
-  .setApiKey(process.env.KIKOYU_API_KEY!)
+  .setModel(new OpenAIProvider({ apiKey: process.env.OPENAI_API_KEY!, model: 'gpt-4o-mini' }))
   .addTool(lookupOrderTool)
   .build();
+
+// 3. Run the Agent
+const runner = new Runner();
+
+async function main() {
+  const result = await runner.run(supportAgent, 'Check status of order ORD-9921');
+  console.log('Response:', result.text);
+}
+
+main().catch(console.error);
 ```
 
 ### 2. Dynamic Instructions with `RunContext`

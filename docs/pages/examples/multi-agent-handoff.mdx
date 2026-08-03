@@ -1,35 +1,82 @@
-# Worked Example: Multi-Agent Handoff System
+# Worked Example: Multi-Agent Handoff
 
-This complete, runnable example demonstrates a triage router agent transferring control to a domain specialist agent.
+This step-by-step example demonstrates how to build a multi-agent system where a **Triage Router** dynamically delegates user queries to specialized sub-agents (**Code Specialist** and **Math Specialist**).
 
-```typescript
-import { Agent, createHandoff, OpenAIProvider, Runner } from '@kikoyu/core';
+---
+
+## Step-by-Step Implementation
+
+### Step 1: Install Dependencies
+
+```bash
+npm install @kikoyu/core zod
+```
+
+### Step 2: Set Environment Variables (`.env`)
+
+```env
+OPENAI_API_KEY=sk-proj-your_openai_api_key_here
+```
+
+### Step 3: Complete Executable Code (`index.js`)
+
+```javascript
+import { Agent, createHandoff, createTool, OpenAIProvider, Runner, z } from '@kikoyu/core';
+
+// 1. Code Specialist Agent with TypeScript tool
+const runCodeFormatterTool = createTool({
+  name: 'format_code',
+  description: 'Format TypeScript code snippet.',
+  parameters: z.object({ code: z.string() }),
+  execute: async ({ code }) => ({ formattedCode: code.trim(), status: 'SUCCESS' }),
+});
+
+const codeSpecialist = Agent.builder()
+  .setName('Code Specialist')
+  .setInstructions('You are an expert TypeScript engineer. Provide clean code solutions.')
+  .setModel(new OpenAIProvider({ apiKey: process.env.OPENAI_API_KEY!, model: 'gpt-4o-mini' }))
+  .addTool(runCodeFormatterTool)
+  .build();
+
+// 2. Math Specialist Agent
+const mathSpecialist = Agent.builder()
+  .setName('Math Specialist')
+  .setInstructions('You are a mathematician. Solve complex math expressions step-by-step.')
+  .setModel(new OpenAIProvider({ apiKey: process.env.OPENAI_API_KEY!, model: 'gpt-4o-mini' }))
+  .build();
+
+// 3. Triage Router Agent with Handoff Targets
+const triageRouter = Agent.builder()
+  .setName('Triage Router')
+  .setInstructions('Analyze incoming user requests. Hand off coding questions to Code Specialist and math questions to Math Specialist.')
+  .setModel(new OpenAIProvider({ apiKey: process.env.OPENAI_API_KEY!, model: 'gpt-4o-mini' }))
+  .withHandoffs(
+    createHandoff(codeSpecialist, { description: 'Hand off technical coding questions.' }),
+    createHandoff(mathSpecialist, { description: 'Hand off mathematical calculations.' })
+  )
+  .build();
+
+// 4. Run execution loop
+const runner = new Runner();
 
 async function main() {
-  const provider = new OpenAIProvider({ apiKey: process.env.OPENAI_API_KEY });
+  console.log('Running Triage Router...');
 
-  // 1. Specialist Agent
-  const mathSpecialist = Agent.builder()
-    .setName('Math Specialist')
-    .setInstructions('You solve math problems step-by-step.')
-    .setModel(provider)
-    .build();
+  const result = await runner.run(
+    triageRouter,
+    'Can you write a TypeScript function to check if a string is a palindrome?'
+  );
 
-  // 2. Router Agent with Handoff
-  const triageRouter = Agent.builder()
-    .setName('Triage Router')
-    .setInstructions('Route math questions to Math Specialist using handoff.')
-    .setModel(provider)
-    .withHandoffs(createHandoff(mathSpecialist))
-    .build();
-
-  // 3. Execute run
-  const runner = new Runner();
-  const result = await runner.run(triageRouter, 'Solve 15 * 84');
-
-  console.log('Active Specialist Agent:', result.agent.name);
-  console.log('Final Answer:', result.text);
+  console.log('\n--- Handoff Complete ---');
+  console.log('Final Active Specialist:', result.agent.name); // "Code Specialist"
+  console.log('Final Response:\n', result.text);
 }
 
 main().catch(console.error);
+```
+
+### Step 4: Run the Script
+
+```bash
+node index.js
 ```

@@ -17,7 +17,7 @@ export function Navbar() {
 
         {/* Center Nav Links */}
         <nav className="hidden md:flex items-center gap-7 text-sm font-medium">
-          <Link href="/concepts/agent" className="text-zinc-400 hover:text-white transition-colors">
+          <Link href="/quickstart" className="text-zinc-400 hover:text-white transition-colors">
             Quickstart
           </Link>
 
@@ -68,7 +68,7 @@ export function Navbar() {
             </svg>
           </a>
 
-          <Link href="/concepts/agent" className="no-underline">
+          <Link href="/quickstart" className="no-underline">
             <button className="vetra-btn-orange font-medium text-sm">
               Get started
             </button>

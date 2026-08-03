@@ -1,8 +1,23 @@
 {
   "name": "@kikoyu/core",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "An Agent SDK for building AI agent workflows with type-safe tools, memory, execution loops, and streaming capabilities.",
   "license": "MIT",
+  "keywords": [
+    "ai",
+    "agent",
+    "agent-sdk",
+    "kikoyu",
+    "openai",
+    "llm",
+    "tools",
+    "zod",
+    "handoffs",
+    "orchestration",
+    "multi-agent",
+    "streaming",
+    "typescript"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/swamiabhishek45/Kikoyu-Agent-SDK.git"

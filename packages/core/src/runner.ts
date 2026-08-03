@@ -58,9 +58,9 @@ export class Runner {
       typeof input === 'string'
         ? input
         : input
-            .filter((m) => m.role === 'user')
-            .map((m) => m.content)
-            .join('\n');
+          .filter((m) => m.role === 'user')
+          .map((m) => m.content)
+          .join('\n');
 
     const currentMessages: ModelMessage[] = [
       { role: 'system', content: currentAgent.instructions },
