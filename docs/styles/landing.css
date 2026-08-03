@@ -127,13 +127,11 @@ body {
 .vetra-lines-bg {
   position: absolute;
   inset: 0;
-  background-image: repeating-linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.025),
-    rgba(255, 255, 255, 0.025) 1px,
-    transparent 1px,
-    transparent 72px
-  );
+  background-image: repeating-linear-gradient(90deg,
+      rgba(255, 255, 255, 0.025),
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px,
+      transparent 72px);
   pointer-events: none;
   mask-image: radial-gradient(ellipse at 50% 40%, black 40%, transparent 80%);
   -webkit-mask-image: radial-gradient(ellipse at 50% 40%, black 40%, transparent 80%);

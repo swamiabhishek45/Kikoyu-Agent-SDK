@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Play, Copy, Check, Terminal } from 'lucide-react';
+import { Play, Copy, Check } from 'lucide-react';
 
 const CODE_EXAMPLES = {
   agent: `import { Agent, Runner } from '@kikoyu/core';
@@ -98,7 +98,7 @@ export function CodeSandbox() {
 
   return (
     <div className="max-w-5xl mx-auto my-6 overflow-hidden rounded-2xl border border-zinc-800/90 bg-[#07070a] shadow-2xl">
-      {/* Terminal Top Window Header Bar matching Image 1 */}
+      {/* Terminal Top Window Header Bar */}
       <div className="flex flex-wrap items-center justify-between border-b border-zinc-800/80 bg-[#0b0c10] px-5 py-3.5 gap-3">
         {/* Left Mac Window Control Dots */}
         <div className="flex items-center gap-2">
@@ -145,12 +145,84 @@ export function CodeSandbox() {
         </div>
       </div>
 
-      {/* Code Snippet Container */}
-      <div className="overflow-x-auto p-6 text-sm font-mono leading-relaxed text-zinc-100 bg-[#030305]">
-        <pre><code>{CODE_EXAMPLES[activeTab]}</code></pre>
+      {/* Code Snippet Container with Rich Syntax Highlighting */}
+      <div className="overflow-x-auto p-6 text-sm font-mono leading-relaxed bg-[#030305] text-zinc-100">
+        {activeTab === 'agent' && (
+          <pre>
+            <code>
+              <span className="text-[#c678dd] font-semibold">import</span> &#123; <span className="text-[#e5c07b]">Agent</span>, <span className="text-[#e5c07b]">Runner</span> &#125; <span className="text-[#c678dd] font-semibold">from</span> <span className="text-[#98c379]">'@kikoyu/core'</span>;{'\n\n'}
+              <span className="text-[#5c6370] italic">// 1. Build agent with Kikoyu API Key</span>{'\n'}
+              <span className="text-[#c678dd] font-semibold">const</span> <span className="text-[#e06c75]">agent</span> = <span className="text-[#e5c07b]">Agent</span>.<span className="text-[#61afef]">builder</span>(){'\n'}
+              {'  '}.<span className="text-[#61afef]">setName</span>(<span className="text-[#98c379]">'Assistant'</span>){'\n'}
+              {'  '}.<span className="text-[#61afef]">setInstructions</span>(<span className="text-[#98c379]">'You are a helpful AI assistant that responds in concise sentences.'</span>){'\n'}
+              {'  '}.<span className="text-[#61afef]">setApiKey</span>(<span className="text-[#e06c75]">process</span>.<span className="text-[#e06c75]">env</span>.<span className="text-[#d19a66]">KIKOYU_API_KEY</span>!){'\n'}
+              {'  '}.<span className="text-[#61afef]">build</span>();{'\n\n'}
+              <span className="text-[#5c6370] italic">// 2. Execute multi-turn loop</span>{'\n'}
+              <span className="text-[#c678dd] font-semibold">const</span> <span className="text-[#e06c75]">runner</span> = <span className="text-[#c678dd] font-semibold">new</span> <span className="text-[#e5c07b]">Runner</span>();{'\n'}
+              <span className="text-[#c678dd] font-semibold">const</span> <span className="text-[#e06c75]">result</span> = <span className="text-[#c678dd] font-semibold">await</span> <span className="text-[#e06c75]">runner</span>.<span className="text-[#61afef]">run</span>(<span className="text-[#e06c75]">agent</span>, <span className="text-[#98c379]">'Hello! Who are you?'</span>);{'\n\n'}
+              <span className="text-[#e06c75]">console</span>.<span className="text-[#61afef]">log</span>(<span className="text-[#e06c75]">result</span>.<span className="text-[#e06c75]">text</span>);
+            </code>
+          </pre>
+        )}
+
+        {activeTab === 'tools' && (
+          <pre>
+            <code>
+              <span className="text-[#c678dd] font-semibold">import</span> &#123; <span className="text-[#61afef]">createTool</span>, <span className="text-[#e5c07b]">z</span> &#125; <span className="text-[#c678dd] font-semibold">from</span> <span className="text-[#98c379]">'@kikoyu/core'</span>;{'\n\n'}
+              <span className="text-[#5c6370] italic">// Type-safe tool definition with Zod schema validation</span>{'\n'}
+              <span className="text-[#c678dd] font-semibold">export const</span> <span className="text-[#61afef]">getWeatherTool</span> = <span className="text-[#61afef]">createTool</span>(&#123;{'\n'}
+              {'  '}<span className="text-[#e06c75]">name</span>: <span className="text-[#98c379]">'get_weather'</span>,{'\n'}
+              {'  '}<span className="text-[#e06c75]">description</span>: <span className="text-[#98c379]">'Lookup current weather conditions for a city.'</span>,{'\n'}
+              {'  '}<span className="text-[#e06c75]">parameters</span>: <span className="text-[#e5c07b]">z</span>.<span className="text-[#61afef]">object</span>(&#123;{'\n'}
+              {'    '}<span className="text-[#e06c75]">location</span>: <span className="text-[#e5c07b]">z</span>.<span className="text-[#61afef]">string</span>().<span className="text-[#61afef]">describe</span>(<span className="text-[#98c379]">'City name, e.g. Tokyo, Paris'</span>),{'\n'}
+              {'    '}<span className="text-[#e06c75]">unit</span>: <span className="text-[#e5c07b]">z</span>.<span className="text-[#61afef]">enum</span>([<span className="text-[#98c379]">'celsius'</span>, <span className="text-[#98c379]">'fahrenheit'</span>]).<span className="text-[#61afef]">default</span>(<span className="text-[#98c379]">'celsius'</span>),{'\n'}
+              {'  '}&#125;),{'\n'}
+              {'  '}<span className="text-[#61afef]">execute</span>: <span className="text-[#c678dd] font-semibold">async</span> (&#123; <span className="text-[#e06c75]">location</span>, <span className="text-[#e06c75]">unit</span> &#125;) =&gt; &#123;{'\n'}
+              {'    '}<span className="text-[#c678dd] font-semibold">return</span> &#123; <span className="text-[#e06c75]">location</span>, <span className="text-[#e06c75]">temp</span>: <span className="text-[#e06c75]">unit</span> === <span className="text-[#98c379]">'fahrenheit'</span> ? <span className="text-[#98c379]">'72°F'</span> : <span className="text-[#98c379]">'22°C'</span>, <span className="text-[#e06c75]">condition</span>: <span className="text-[#98c379]">'Sunny'</span> &#125;;{'\n'}
+              {'  '}&#125;,{'\n'}
+              &#125;);
+            </code>
+          </pre>
+        )}
+
+        {activeTab === 'handoffs' && (
+          <pre>
+            <code>
+              <span className="text-[#c678dd] font-semibold">import</span> &#123; <span className="text-[#e5c07b]">Agent</span>, <span className="text-[#61afef]">createHandoff</span>, <span className="text-[#e5c07b]">Runner</span> &#125; <span className="text-[#c678dd] font-semibold">from</span> <span className="text-[#98c379]">'@kikoyu/core'</span>;{'\n\n'}
+              <span className="text-[#5c6370] italic">// 1. Specialist Agent</span>{'\n'}
+              <span className="text-[#c678dd] font-semibold">const</span> <span className="text-[#e06c75]">mathSpecialist</span> = <span className="text-[#e5c07b]">Agent</span>.<span className="text-[#61afef]">builder</span>(){'\n'}
+              {'  '}.<span className="text-[#61afef]">setName</span>(<span className="text-[#98c379]">'Math Specialist'</span>){'\n'}
+              {'  '}.<span className="text-[#61afef]">setInstructions</span>(<span className="text-[#98c379]">'Solve complex math expressions step-by-step.'</span>){'\n'}
+              {'  '}.<span className="text-[#61afef]">build</span>();{'\n\n'}
+              <span className="text-[#5c6370] italic">// 2. Router Agent with Handoff</span>{'\n'}
+              <span className="text-[#c678dd] font-semibold">const</span> <span className="text-[#e06c75]">triageRouter</span> = <span className="text-[#e5c07b]">Agent</span>.<span className="text-[#61afef]">builder</span>(){'\n'}
+              {'  '}.<span className="text-[#61afef]">setName</span>(<span className="text-[#98c379]">'Triage Router'</span>){'\n'}
+              {'  '}.<span className="text-[#61afef]">setInstructions</span>(<span className="text-[#98c379]">'Route math questions to Math Specialist.'</span>){'\n'}
+              {'  '}.<span className="text-[#61afef]">withHandoffs</span>(<span className="text-[#61afef]">createHandoff</span>(<span className="text-[#e06c75]">mathSpecialist</span>)){'\n'}
+              {'  '}.<span className="text-[#61afef]">build</span>();
+            </code>
+          </pre>
+        )}
+
+        {activeTab === 'stream' && (
+          <pre>
+            <code>
+              <span className="text-[#c678dd] font-semibold">import</span> &#123; <span className="text-[#e5c07b]">Agent</span>, <span className="text-[#e5c07b]">Runner</span> &#125; <span className="text-[#c678dd] font-semibold">from</span> <span className="text-[#98c379]">'@kikoyu/core'</span>;{'\n\n'}
+              <span className="text-[#c678dd] font-semibold">const</span> <span className="text-[#e06c75]">runner</span> = <span className="text-[#c678dd] font-semibold">new</span> <span className="text-[#e5c07b]">Runner</span>();{'\n\n'}
+              <span className="text-[#5c6370] italic">// Real-time event streaming via AsyncGenerator</span>{'\n'}
+              <span className="text-[#c678dd] font-semibold">for await</span> (<span className="text-[#c678dd] font-semibold">const</span> <span className="text-[#e06c75]">event</span> <span className="text-[#c678dd] font-semibold">of</span> <span className="text-[#e06c75]">runner</span>.<span className="text-[#61afef]">stream</span>(<span className="text-[#e06c75]">agent</span>, <span className="text-[#98c379]">'Write a poem about space'</span>)) &#123;{'\n'}
+              {'  '}<span className="text-[#c678dd] font-semibold">if</span> (<span className="text-[#e06c75]">event</span>.<span className="text-[#e06c75]">type</span> === <span className="text-[#98c379]">'text_delta'</span>) &#123;{'\n'}
+              {'    '}<span className="text-[#e06c75]">process</span>.<span className="text-[#e06c75]">stdout</span>.<span className="text-[#61afef]">write</span>(<span className="text-[#e06c75]">event</span>.<span className="text-[#e06c75]">delta</span>);{'\n'}
+              {'  '}&#125; <span className="text-[#c678dd] font-semibold">else if</span> (<span className="text-[#e06c75]">event</span>.<span className="text-[#e06c75]">type</span> === <span className="text-[#98c379]">'tool_call_started'</span>) &#123;{'\n'}
+              {'    '}<span className="text-[#e06c75]">console</span>.<span className="text-[#61afef]">log</span>(<span className="text-[#98c379]">`Executing tool: $&#123;event.toolCall.name&#125;`</span>);{'\n'}
+              {'  '}&#125;{'\n'}
+              &#125;
+            </code>
+          </pre>
+        )}
       </div>
 
-      {/* Terminal Console Output Bar matching Image 1 */}
+      {/* Terminal Console Output Bar */}
       <div className="border-t border-zinc-800/80 bg-[#040406] p-5 font-mono text-xs">
         <div className="mb-3 flex items-center justify-between border-b border-zinc-900 pb-2.5 text-zinc-500">
           <div className="flex items-center gap-2">
@@ -175,5 +247,3 @@ export function CodeSandbox() {
     </div>
   );
 }
-
-

@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Github } from 'lucide-react';
 import { KikoyuLogo } from './KikoyuLogo';
 
 export function Navbar() {
@@ -15,7 +15,7 @@ export function Navbar() {
           <span className="text-xl font-bold tracking-tight text-white">Kikoyu</span>
         </Link>
 
-        {/* Center Nav Links matching the Vetra layout */}
+        {/* Center Nav Links */}
         <nav className="hidden md:flex items-center gap-7 text-sm font-medium">
           <Link href="/concepts/agent" className="text-zinc-400 hover:text-white transition-colors">
             Quickstart
@@ -42,19 +42,32 @@ export function Navbar() {
               <Link href="/examples/single-agent-tools" className="block px-3 py-2 text-xs text-zinc-400 hover:text-white hover:bg-zinc-900 rounded-lg transition-colors">Tool Calling Agent</Link>
             </div>
           </div>
-
-          <a
-            href="https://github.com/swamiabhishek45/Kikoyu-Agent-SDK"
-            target="_blank"
-            rel="noreferrer"
-            className="text-zinc-400 hover:text-white transition-colors"
-          >
-            GitHub
-          </a>
         </nav>
 
         {/* Right Action Buttons */}
         <div className="flex items-center gap-3">
+          <a
+            href="https://github.com/swamiabhishek45/Kikoyu-Agent-SDK"
+            target="_blank"
+            rel="noreferrer"
+            title="GitHub Repository"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-zinc-400 hover:text-white hover:border-white/20 hover:scale-105 transition-all"
+          >
+            <Github className="h-4.5 w-4.5" />
+          </a>
+
+          <a
+            href="https://www.npmjs.com/package/@kikoyu/core"
+            target="_blank"
+            rel="noreferrer"
+            title="npm Package"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-zinc-400 hover:text-[#cb3837] hover:border-white/20 hover:scale-105 transition-all"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
+              <path d="M1.763 0C.786 0 0 .786 0 1.763v20.474C0 23.214.786 24 1.763 24h20.474c.977 0 1.763-.786 1.763-1.763V1.763C24 .786 23.214 0 22.237 0H1.763zM5.13 5.13h13.74v13.74h-3.435V8.565h-3.435v10.305H5.13V5.13z" />
+            </svg>
+          </a>
+
           <Link href="/concepts/agent" className="no-underline">
             <button className="vetra-btn-orange font-medium text-sm">
               Get started
