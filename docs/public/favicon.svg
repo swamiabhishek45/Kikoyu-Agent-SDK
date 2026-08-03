@@ -1,0 +1,13 @@
+<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="kikoyuLogoGradFixed" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="100" y2="100">
+      <stop offset="0%" stop-color="#ff7700" />
+      <stop offset="50%" stop-color="#ff5500" />
+      <stop offset="100%" stop-color="#ea580c" />
+    </linearGradient>
+  </defs>
+  <circle cx="50" cy="50" r="48" fill="#070709" />
+  <circle cx="50" cy="50" r="44" stroke="url(#kikoyuLogoGradFixed)" stroke-width="4" />
+  <path d="M 50 8 L 50 92" stroke="#ff5500" stroke-width="4" stroke-linecap="round" />
+  <path d="M 82 22 L 50 50 C 34 32 14 30 14 46 C 14 62 34 56 50 50 L 84 76" stroke="url(#kikoyuLogoGradFixed)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

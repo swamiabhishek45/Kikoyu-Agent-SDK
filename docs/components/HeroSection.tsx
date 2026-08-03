@@ -6,7 +6,7 @@ export function HeroSection() {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText('pnpm add @kikoyu/core zod');
+    navigator.clipboard.writeText('npm i @kikoyu/core');
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -27,7 +27,7 @@ export function HeroSection() {
       {/* Hero Buttons matching User Image 2 */}
       <div className="flex flex-wrap items-center justify-center gap-4 mb-4">
         {/* Primary Orange Button */}
-        <Link href="/concepts/agent" className="no-underline">
+        <Link href="/quickstart" className="no-underline">
           <button className="bg-[#ff5500] hover:bg-[#e04b00] text-white font-medium text-base px-7 py-3 rounded-xl shadow-xl shadow-orange-500/30 transition-all transform hover:-translate-y-0.5 flex items-center gap-2.5 cursor-pointer">
             <span>Start Building Now</span>
             <ArrowUpRight className="h-5 w-5 stroke-[2.5]" />
@@ -44,7 +44,7 @@ export function HeroSection() {
           ) : (
             <Copy className="h-4 w-4 text-[#ff5500]" />
           )}
-          <span>{copied ? 'Copied to clipboard!' : 'pnpm add @kikoyu/core zod'}</span>
+          <span>{copied ? 'Copied to clipboard!' : 'npm i @kikoyu/core'}</span>
         </button>
       </div>
     </section>
