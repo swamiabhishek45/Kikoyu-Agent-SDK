@@ -3,6 +3,14 @@
   "version": "0.1.0",
   "description": "An Agent SDK for building AI agent workflows with type-safe tools, memory, execution loops, and streaming capabilities.",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swamiabhishek45/Kikoyu-Agent-SDK.git"
+  },
+  "homepage": "https://github.com/swamiabhishek45/Kikoyu-Agent-SDK#readme",
+  "bugs": {
+    "url": "https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/issues"
+  },
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",

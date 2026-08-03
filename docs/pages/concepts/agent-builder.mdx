@@ -1,21 +1,46 @@
-# AgentBuilder
+# AgentBuilder Pattern
 
-`AgentBuilder` is a fluent builder for constructing `Agent` instances using method chaining with runtime validation.
+`AgentBuilder` is the fluent, chainable builder class used to construct immutable `Agent` instances with type safety and compile-time validation.
 
-## Why You'd Use This
+---
 
-`AgentBuilder` provides a clean, type-safe API for constructing complex agent configurations with multiple tools, guardrails, and handoffs, while enforcing strict validation at `.build()` time to catch missing fields early.
-
-## Copy-Pasteable Code Sample
+## Method Chaining API
 
 ```typescript
-import { Agent, OpenAIProvider } from '@kikoyu/core';
+import { Agent, createGuardrail, createTool, z } from '@kikoyu/core';
 
-const agent = Agent.builder()
-  .setName('Support Agent')
-  .setInstructions('Help users troubleshoot network issues.')
-  .setModel(new OpenAIProvider())
+const searchTool = createTool({
+  name: 'search',
+  description: 'Search internal knowledge base.',
+  parameters: z.object({ query: z.string() }),
+  execute: async ({ query }) => ({ results: [`Result for ${query}`] }),
+});
+
+export const agent = Agent.builder()
+  .setName('Knowledge Agent')
+  .setInstructions('Search knowledge base before answering.')
+  .setApiKey(process.env.KIKOYU_API_KEY!)
+  .addTool(searchTool)
   .build();
-
-console.log('Built Agent:', agent.name);
 ```
+
+---
+
+## Builder Methods Reference
+
+| Method | Parameters | Description |
+| :--- | :--- | :--- |
+| `setName(name)` | `string` | Sets the unique name of the agent. (Required) |
+| `setInstructions(instructions)` | `string \| ((ctx) => string)` | Sets the static system prompt or dynamic context evaluator. |
+| `setApiKey(key)` | `string` | Sets the Kikoyu API Key for model completions. |
+| `addTool(tool)` | `Tool` | Registers a single tool with the agent. |
+| `withTools(...tools)` | `Tool[]` | Registers multiple tools at once. |
+| `withGuardrails(...guardrails)` | `Guardrail[]` | Registers input and output safety guardrails. |
+| `withHandoffs(...handoffs)` | `Handoff[]` | Registers specialist agent handoff targets. |
+| `build()` | None | Validates required fields and returns the immutable `Agent` instance. |
+
+---
+
+## Strict `.build()` Validation
+
+Calling `.build()` verifies that mandatory fields (`name`) are set. If required fields are missing, `.build()` throws a clear validation error at setup time rather than failing at runtime during a user request.

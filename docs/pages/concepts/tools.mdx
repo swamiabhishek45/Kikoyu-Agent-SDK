@@ -1,26 +1,96 @@
-# Tools
+# Type-Safe Zod Tools
 
-Tools allow agents to perform actions, query external APIs, or calculate results during execution. Tools are defined using `createTool()` and Zod parameter schemas.
+Tools in **Kikoyu SDK** empower AI agents to invoke external backend APIs, execute database queries, or compute calculations during execution.
 
-## Why You'd Use This
+Tools are created using the `createTool()` factory function coupled with [Zod](https://zod.dev) schemas for 100% type safety and automatic JSON Schema generation.
 
-Zod schema validation guarantees that model function arguments match the exact type shape expected by your code before execution, returning clear validation errors if the model passes incorrect types.
+---
 
-## Copy-Pasteable Code Sample
+## Why Type Safety Matters in Tool Calling
+
+Large Language Models return tool call arguments as raw JSON strings. Without runtime validation, malformed model outputs (e.g., passing a string `"twenty"` instead of number `20`) will crash your application at runtime.
+
+**Kikoyu SDK** automatically validates model tool call arguments against your Zod schema **before** executing your handler. If validation fails, `Runner` catches the Zod error and automatically feeds a corrective error prompt back to the LLM to retry.
+
+---
+
+## Tool Definition Anatomy
 
 ```typescript
 import { createTool, z } from '@kikoyu/core';
 
-export const calculateDiscountTool = createTool({
-  name: 'calculate_discount',
-  description: 'Calculates discounted price given price and percentage.',
+export const calculateShippingTool = createTool({
+  name: 'calculate_shipping',
+  description: 'Calculates shipping cost based on package weight and destination zone.',
   parameters: z.object({
-    price: z.number().positive(),
-    discountPercent: z.number().min(0).max(100),
+    weightKg: z.number().positive().describe('Weight in kilograms'),
+    zone: z.enum(['domestic', 'international']).default('domestic'),
+    expedited: z.boolean().default(false),
   }),
-  execute: ({ price, discountPercent }) => {
-    const finalPrice = price * (1 - discountPercent / 100);
-    return { originalPrice: price, finalPrice };
+  execute: async ({ weightKg, zone, expedited }) => {
+    const baseRate = zone === 'international' ? 25 : 8;
+    const rate = baseRate + weightKg * 2.5;
+    const total = expedited ? rate * 1.5 : rate;
+    
+    return { weightKg, zone, totalCost: `$${total.toFixed(2)}` };
   },
 });
 ```
+
+---
+
+## Accessing Isolated `RunContext`
+
+Tools often require authenticated credentials (`userId`, `sessionToken`, `dbClient`) that must **never** be exposed to the LLM in system prompts.
+
+Thread these securely into the 2nd argument (`context`) of your `execute` function:
+
+```typescript
+import { createTool, z } from '@kikoyu/core';
+
+interface AppSessionContext {
+  userId: string;
+  authToken: string;
+}
+
+export const fetchUserProfileTool = createTool<z.ZodObject<Record<string, never>>, unknown, AppSessionContext>({
+  name: 'fetch_user_profile',
+  description: 'Fetch private profile attributes for the currently logged-in user.',
+  parameters: z.object({}),
+  execute: async (_params, context) => {
+    // Safely retrieve context parameters set at Runner invocation
+    const userId = context.get('userId');
+    const authToken = context.get('authToken');
+
+    // Secure database / API request using private context
+    const profile = await db.users.findUnique({ where: { id: userId } });
+    return { name: profile.name, email: profile.email, tier: profile.tier };
+  },
+});
+```
+
+---
+
+## Error Handling in Tools
+
+Throwing standard JavaScript errors inside `execute()` is handled gracefully by `Runner`:
+- The error message is caught and passed back to the model as a tool result message (`Tool execution error: ...`).
+- The model can then correct its input or explain the failure to the user without crashing your node process.
+
+```typescript
+execute: async ({ accountId }) => {
+  const account = await db.accounts.find(accountId);
+  if (!account) {
+    throw new Error(`Account ID '${accountId}' was not found in database.`);
+  }
+  return account;
+}
+```
+
+---
+
+## Best Practices
+
+1. **Write Descriptive Tool Descriptions**: Models rely heavily on `.description` and `.describe()` annotations to determine when and how to call tools.
+2. **Use Zod Defaults**: Set `.default('celsius')` or `.optional()` for non-critical parameters to give the model flexibility.
+3. **Return Structured JSON Objects**: Return clean JS objects rather than long unstructured text strings from `execute()` for better LLM comprehension.

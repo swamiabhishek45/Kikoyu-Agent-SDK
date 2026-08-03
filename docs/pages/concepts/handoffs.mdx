@@ -1,26 +1,100 @@
-# Handoffs
+# Multi-Agent Handoffs
 
-Handoffs enable one-directional transfers of control between agents. When a router agent model triggers a handoff tool, `Runner` transfers execution to the target specialist agent.
+**Multi-Agent Handoffs** enable complex agentic architectures by allowing an active agent to dynamically delegate control to specialized sub-agents.
 
-## Why You'd Use This
+---
 
-Multi-agent handoffs allow complex workflows to be decomposed into modular specialist agents (e.g. Triage Router -> Code Specialist -> Billing Specialist).
+## Why Use Multi-Agent Handoffs?
 
-## Copy-Pasteable Code Sample
+Single monolithic agents with dozens of tools and long system prompts suffer from prompt distraction, tool hallucination, and high token costs.
+
+By breaking workflows into specialized sub-agents:
+- **Triage Router**: Identifies user intent and routes to specialists.
+- **Billing Specialist**: Has billing tools and refund policies.
+- **Tech Support Specialist**: Has log analysis tools and technical diagnostics.
+
+Handoffs keep system prompts lightweight and ensure tools are scoped strictly to the active specialist.
+
+---
+
+## How Handoffs Work Under the Hood
+
+1. **`createHandoff(targetAgent)`** generates a special handoff tool named `transfer_to_<agent_name>`.
+2. When the active agent calls this handoff tool, `Runner` intercepts the execution loop.
+3. `Runner` updates the active agent to `targetAgent`, appends a handoff transition message to conversation history, and invokes the new specialist agent seamlessly.
+
+---
+
+## Complete Multi-Agent Workflow Example
 
 ```typescript
-import { Agent, createHandoff, OpenAIProvider } from '@kikoyu/core';
+import { Agent, createHandoff, createTool, Runner, z } from '@kikoyu/core';
 
-const billingAgent = Agent.builder()
+// 1. Technical Support Specialist
+const runDiagnosticsTool = createTool({
+  name: 'run_diagnostics',
+  description: 'Run diagnostic check on customer service endpoint.',
+  parameters: z.object({ serviceName: z.string() }),
+  execute: async ({ serviceName }) => ({ serviceName, status: 'HEALTHY', latency: '42ms' }),
+});
+
+export const techSupportAgent = Agent.builder()
+  .setName('Tech Support Specialist')
+  .setInstructions('Diagnose technical issues and run diagnostic tools.')
+  .addTool(runDiagnosticsTool)
+  .build();
+
+// 2. Billing Specialist
+const processRefundTool = createTool({
+  name: 'process_refund',
+  description: 'Issue refund for invoice.',
+  parameters: z.object({ invoiceId: z.string() }),
+  execute: async ({ invoiceId }) => ({ invoiceId, status: 'REFUNDED', amount: '$49.00' }),
+});
+
+export const billingAgent = Agent.builder()
   .setName('Billing Specialist')
-  .setInstructions('Assist users with invoices and payments.')
-  .setModel(new OpenAIProvider())
+  .setInstructions('Handle billing inquiries and invoice refunds.')
+  .addTool(processRefundTool)
   .build();
 
-const routerAgent = Agent.builder()
+// 3. Triage Router Agent
+export const triageRouter = Agent.builder()
   .setName('Triage Router')
-  .setInstructions('Route billing inquiries to Billing Specialist.')
-  .setModel(new OpenAIProvider())
-  .withHandoffs(createHandoff(billingAgent))
+  .setInstructions('Analyze incoming user requests. Hand off technical issues to Tech Support Specialist and payment/refund issues to Billing Specialist.')
+  .withHandoffs(
+    createHandoff(techSupportAgent),
+    createHandoff(billingAgent)
+  )
   .build();
+
+// 4. Execution Loop
+const runner = new Runner();
+const result = await runner.run(triageRouter, 'I need a refund for invoice #INV-9921');
+
+console.log('Final Active Agent:', result.agent.name); // "Billing Specialist"
+console.log('Result Output:', result.text);
 ```
+
+---
+
+## Inspecting Handoff Traces
+
+The `RunResult` object returned by `runner.run()` contains full transparency into agent transfers:
+
+```typescript
+const result = await runner.run(triageRouter, userPrompt);
+
+// Print conversation messages trace including handoff tool calls
+result.messages.forEach((msg) => {
+  console.log(`[${msg.role}]`, msg.content);
+});
+```
+
+---
+
+## Best Practices
+
+1. **Clear Specialist Descriptions**: Provide clear persona guidelines so the triage router knows exactly when to initiate a handoff.
+2. **Bi-Directional Handoffs**: Allow specialist agents to hand off back to the `Triage Router` or to other specialists if the conversation topic shifts.
+3. **Preserve Memory State**: Handoffs share the same `RunContext` and `Session` memory, ensuring context is never lost during transfers.

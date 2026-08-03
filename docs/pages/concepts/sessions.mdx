@@ -1,62 +1,102 @@
-# Sessions & Persistent Memory
+# Session & MemoryStore
 
-`Session` manages conversation turn history across multiple `Runner.run()` calls using a storage-agnostic `MemoryStore` interface.
+The `Session` and `MemoryStore` primitives in **Kikoyu SDK** manage multi-turn conversation turn history across multiple separate `Runner.run()` invocations.
 
-## Available Memory Storage Adapters
+---
 
-Kikoyu provides four built-in memory storage adapters:
+## Why Storage-Agnostic Memory?
 
-### 1. `Mem0Store` (Mem0 AI Long-Term Memory)
-Integrates natively with [Mem0 (mem0.ai)](https://mem0.ai) for cloud-synced long-term agent memory across sessions.
+AI agents in production need to retain user turn history across HTTP requests, server restarts, or distributed serverless instances (Next.js, AWS Lambda, Cloudflare Workers).
+
+**Kikoyu SDK** provides a storage-agnostic architecture:
+- **`Session`**: The session wrapper representing a unique user conversation turn log.
+- **`MemoryStore`**: The pluggable storage engine interface (`InMemoryStore`, Redis, PostgreSQL, DynamoDB).
+
+---
+
+## Basic Usage with `InMemoryStore`
 
 ```typescript
-import { Agent, Mem0Store, OpenAIProvider, Runner, Session } from '@kikoyu/core';
+import { Agent, InMemoryStore, Runner, Session } from '@kikoyu/core';
 
-// Mem0 Memory Adapter
-const mem0Store = new Mem0Store({
-  apiKey: process.env.MEM0_API_KEY,
-  userId: 'user_123',
+// 1. Instantiate a shared memory store
+const memoryStore = new InMemoryStore();
+
+// 2. Create or resume a session
+const session = new Session({
+  sessionId: 'session_usr_1042',
+  store: memoryStore,
 });
 
-const session = new Session('session_101', mem0Store);
-
+// 3. Define agent
 const agent = Agent.builder()
-  .setName('Memory Agent')
-  .setInstructions('Remember user preferences long term.')
-  .setModel(new OpenAIProvider())
+  .setName('Personal Concierge')
+  .setInstructions('Remember user preferences across multiple turns.')
   .build();
 
 const runner = new Runner();
-await runner.run(agent, 'My favorite color is blue', { session });
+
+// --- Turn 1 ---
+await runner.run(agent, 'My favorite coffee order is an iced oat milk latte with vanilla.', { session });
+
+// --- Turn 2 (Separate request, same session) ---
+const response = await runner.run(agent, 'What coffee should I order today?', { session });
+console.log(response.text); 
+// "I recommend your favorite: an iced oat milk latte with vanilla!"
 ```
 
-### 2. `InMemoryStore` (Default Local Memory)
-Keeps session history in Node.js memory (`Map`). Ideal for local testing and fast single-process apps.
+---
+
+## Building a Custom Database MemoryStore (Redis / Postgres)
+
+To persist session state in external databases like Redis or PostgreSQL, implement the simple `MemoryStore` interface:
 
 ```typescript
-import { InMemoryStore, Session } from '@kikoyu/core';
+import { MemoryStore, Message } from '@kikoyu/core';
+import { Redis } from 'ioredis';
 
-const session = new Session('chat_session_101', new InMemoryStore());
+export class RedisMemoryStore implements MemoryStore {
+  private redis: Redis;
+
+  constructor(redisUrl: string) {
+    this.redis = new Redis(redisUrl);
+  }
+
+  async getMessages(sessionId: string): Promise<Message[]> {
+    const raw = await this.redis.get(`session:${sessionId}`);
+    return raw ? JSON.parse(raw) : [];
+  }
+
+  async saveMessages(sessionId: string, messages: Message[]): Promise<void> {
+    // Save conversation turn history with a 7-day TTL
+    await this.redis.set(`session:${sessionId}`, JSON.stringify(messages), 'EX', 604800);
+  }
+
+  async clearSession(sessionId: string): Promise<void> {
+    await this.redis.del(`session:${sessionId}`);
+  }
+}
 ```
 
-### 3. `FileStore` (Persistent Local File Storage)
-Saves conversation histories as JSON files on disk inside a specified directory (defaults to `.kikoyu-store/`). Persists history across server restarts without external databases.
+---
+
+## Managing Turn History & Sliding Windows
+
+To prevent hitting LLM context window limits during long conversations, you can trim or clear turn history using `Session` helpers:
 
 ```typescript
-import { FileStore, Session } from '@kikoyu/core';
+// Clear all history for a session
+await session.clear();
 
-const fileStore = new FileStore({ directoryPath: './saved-sessions' });
-const session = new Session('chat_session_101', fileStore);
+// Get current turn message count
+const history = await session.getMessages();
+console.log(`Current session contains ${history.length} messages.`);
 ```
 
-### 4. `RedisStore` (Distributed Production Memory)
-Delegates session storage to a Redis client (e.g. `ioredis`, `@upstash/redis`) for distributed server clusters and serverless deployments.
+---
 
-```typescript
-import { RedisStore, Session } from '@kikoyu/core';
-import Redis from 'ioredis';
+## Best Practices
 
-const redis = new Redis(process.env.REDIS_URL!);
-const session = new Session('chat_session_101', new RedisStore(redis));
-```
-
+1. **Use Unique Session IDs**: Key session IDs by composite tenant keys (e.g. `tenantId:userId:chatId`) to prevent multi-tenant data bleed.
+2. **Implement Database TTLs**: Automatically expire inactive sessions after 7–30 days in your storage database.
+3. **Pass Session to Runner**: Always pass `{ session }` in `runner.run(agent, prompt, { session })` for continuous multi-turn flows.

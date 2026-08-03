@@ -1,23 +1,74 @@
-# Agent
+# Agent Architecture
 
-The `Agent` primitive represents an immutable configuration object containing persona instructions, a model provider, tools, guardrails, and handoffs.
+The `Agent` primitive in **Kikoyu SDK** is an immutable configuration object that defines an AI agent's identity, system prompt persona, tools, safety guardrails, and handoff targets.
 
-## Why You'd Use This
+---
 
-Keeping `Agent` completely immutable and separate from execution logic ensures that agent definitions can be safely shared across requests, serialized, or stored without unexpected side effects. All execution loop logic resides in `Runner`.
+## Core Philosophy: Immutability & Decoupled Execution
 
-## Copy-Pasteable Code Sample
+In traditional LLM frameworks, agent instances often hold transient execution state (such as chat history or active HTTP requests). This leads to dangerous memory leaks, race conditions in multi-tenant servers, and unpredictable multi-turn behavior.
+
+**Kikoyu SDK** decouples definition from execution:
+- **`Agent`**: Completely immutable declaration of persona, tools, and guardrails. Safe to declare as global singletons or export as static modules.
+- **`Runner`**: The stateless engine that executes agent loops, manages model API calls, handles tool execution, and manages multi-turn history.
+
+---
+
+## Key Properties
+
+| Property | Type | Description |
+| :--- | :--- | :--- |
+| `name` | `string` | Unique identifier for the agent (used in handoffs and tracing). |
+| `instructions` | `string \| ((context: RunContext) => string)` | System prompt defining personality, rules, and objectives. |
+| `tools` | `Tool[]` | Array of Zod-validated tools available for model function calling. |
+| `guardrails` | `Guardrail[]` | Parallel input/output safety filters. |
+| `handoffs` | `Handoff[]` | Specialist agent targets for dynamic multi-agent delegation. |
+
+---
+
+## Creating Agents
+
+### 1. Using `Agent.builder()` (Recommended)
+
+The fluent `AgentBuilder` provides chainable validation and autocompletion:
 
 ```typescript
-import { Agent, OpenAIProvider } from '@kikoyu/core';
+import { Agent, createTool, z } from '@kikoyu/core';
 
-// Create an immutable Agent instance directly
-const agent = new Agent({
-  name: 'Greeter Agent',
-  instructions: 'You greet users warmly in Italian.',
-  model: new OpenAIProvider({ apiKey: process.env.OPENAI_API_KEY }),
+const lookupOrderTool = createTool({
+  name: 'lookup_order',
+  description: 'Lookup customer order details by order ID.',
+  parameters: z.object({ orderId: z.string() }),
+  execute: async ({ orderId }) => ({ orderId, status: 'Shipped', carrier: 'FedEx' }),
 });
 
-console.log('Agent Name:', agent.name);
-console.log('Instructions:', agent.instructions);
+export const supportAgent = Agent.builder()
+  .setName('E-Commerce Support Concierge')
+  .setInstructions('You are an expert customer support concierge. Be helpful, concise, and professional.')
+  .setApiKey(process.env.KIKOYU_API_KEY!)
+  .addTool(lookupOrderTool)
+  .build();
 ```
+
+### 2. Dynamic Instructions with `RunContext`
+
+Instructions can be dynamically evaluated per request based on session metadata (`userId`, `tier`, `locale`):
+
+```typescript
+export const personalizedAgent = Agent.builder()
+  .setName('Personalized Support')
+  .setInstructions((ctx) => {
+    const userTier = ctx.get('userTier') ?? 'Standard';
+    const locale = ctx.get('locale') ?? 'en-US';
+    return `You are assisting a ${userTier} tier user in ${locale}. Prioritize fast, high-accuracy solutions.`;
+  })
+  .build();
+```
+
+---
+
+## Best Practices
+
+1. **Keep Agent Definitions Immutable**: Never modify an agent's properties at runtime. Use `.clone()` or builder chaining to derive new agent variants.
+2. **Export Agents as Constants**: Because agents contain no request state, export them from dedicated module files (`agents/support.ts`, `agents/math.ts`).
+3. **Set Precise System Instructions**: Include output formatting rules, boundary constraints, and explicit instructions on when to call tools vs. when to hand off to specialists.

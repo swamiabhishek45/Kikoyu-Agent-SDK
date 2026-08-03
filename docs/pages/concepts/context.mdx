@@ -1,38 +1,67 @@
-# RunContext
+# RunContext & Session Isolation
 
-`RunContext` threads a generic typed object (e.g., `{ userId, orgId }`) through `Runner.run()` directly into tool execution while guaranteeing the context object is never sent to the model provider.
+`RunContext` is an isolated key-value store created per `Runner.run()` execution turn. It threads sensitive application data (`userId`, `orgId`, database connections) directly to tools and guardrails without exposing credentials to LLM prompt messages.
 
-## Why You'd Use This
+---
 
-`RunContext` allows tools to securely access session headers, user authentication tokens, database connections, or organization IDs without leaking sensitive metadata into LLM prompts.
+## Why Isolated Context Matters
 
-## Copy-Pasteable Code Sample
+In multi-tenant AI applications, passing user IDs or database connections directly inside the LLM prompt is risky:
+1. **Prompt Injections**: Malicious users could instruct the model to substitute someone else's user ID.
+2. **Context Window Waste**: Injecting session boilerplate into every turn wastes precious token context.
+
+`RunContext` solves this by keeping private application context in your Node environment.
+
+---
+
+## Setting & Consuming Context
+
+### 1. Passing Context to `Runner.run()`
 
 ```typescript
-import { Agent, createTool, OpenAIProvider, Runner, z } from '@kikoyu/core';
-
-interface SessionContext {
-  userId: string;
-}
-
-const fetchOrdersTool = createTool<z.ZodObject<Record<string, never>>, unknown, SessionContext>({
-  name: 'fetch_user_orders',
-  description: 'Fetch order history for the current session user.',
-  parameters: z.object({}),
-  execute: async (_args, ctx) => {
-    const userId = ctx.get('userId');
-    return [{ orderId: 'ord_123', userId, item: 'Laptop' }];
-  },
-});
-
-const agent = Agent.builder()
-  .setName('Order Bot')
-  .setInstructions('Fetch orders when requested.')
-  .setModel(new OpenAIProvider())
-  .addTool(fetchOrdersTool)
-  .build();
+import { Agent, Runner } from '@kikoyu/core';
+import { billingAgent } from './agents';
 
 const runner = new Runner();
-// Context is passed to run() and received by tool execute()
-await runner.run(agent, 'Show my orders', { context: { userId: 'usr_789' } });
+
+// Execute request with isolated session context
+const result = await runner.run(billingAgent, 'Show my recent invoices', {
+  context: {
+    userId: 'usr_99812',
+    orgId: 'org_enterprise',
+    userRole: 'ADMIN',
+  },
+});
 ```
+
+### 2. Consuming Context Inside Tools
+
+```typescript
+import { createTool, z } from '@kikoyu/core';
+
+export const getInvoicesTool = createTool({
+  name: 'get_invoices',
+  description: 'Fetch invoices for current user.',
+  parameters: z.object({ limit: z.number().default(5) }),
+  execute: async ({ limit }, context) => {
+    // Safely retrieve context parameters set at Runner invocation
+    const userId = context.get('userId');
+    const userRole = context.get('userRole');
+
+    if (userRole !== 'ADMIN') {
+      throw new Error('Unauthorized: User does not have invoice viewing permissions.');
+    }
+
+    const invoices = await db.invoices.findMany({ where: { userId }, take: limit });
+    return { userId, invoices };
+  },
+});
+```
+
+---
+
+## Context Lifecycle
+
+- **Created**: A new `RunContext` is instantiated at the start of `runner.run()`.
+- **Inherited**: Sub-agent handoffs inherit the parent `RunContext` seamlessly.
+- **Destroyed**: When `runner.run()` completes or throws, the context object is garbage collected.

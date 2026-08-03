@@ -1,24 +1,112 @@
-# Guardrails
+# Concurrent Guardrails
 
-Guardrails run safety checks on user inputs and model outputs. Input guardrails run concurrently (`Promise.all`) with the initial model call for zero latency overhead, while output guardrails evaluate final text answers.
+**Guardrails** provide deterministic safety controls and content filtering for AI agents. They validate incoming user prompts before LLM completion and output text before returning responses to users.
 
-## Why You'd Use This
+---
 
-Guardrails enforce safety boundaries (such as blocking PII, prompt injections, or profanity). If a tripwire is triggered, `Runner` immediately throws a structured `GuardrailError` to halt execution.
+## Zero-Latency Parallel Execution
 
-## Copy-Pasteable Code Sample
+Unlike standard frameworks that execute input guardrails sequentially before calling the model API (adding 300ms–800ms of extra latency), **Kikoyu SDK** runs input guardrails concurrently in parallel (`Promise.all`) alongside prompt evaluation.
+
+If a guardrail fails, execution is aborted immediately without wasting tokens or exposing malformed content.
+
+---
+
+## Guardrail Types
+
+- **`input`**: Evaluates raw user input prompts before or during model call execution.
+- **`output`**: Evaluates generated text responses before returning to the user.
+
+---
+
+## Creating Guardrails
+
+Use `createGuardrail()` to define safety policies:
 
 ```typescript
-import { createGuardrail, GuardrailError } from '@kikoyu/core';
+import { Agent, createGuardrail, GuardrailError, Runner } from '@kikoyu/core';
 
-export const piiInputGuardrail = createGuardrail({
-  name: 'pii_filter',
+// 1. Input Guardrail: Block Prompt Injections & PII Leaks
+export const promptInjectionGuardrail = createGuardrail({
+  name: 'prompt_injection_filter',
   type: 'input',
-  execute: (input) => {
-    if (/4000-\d{4}-\d{4}-\d{4}/.test(input)) {
-      return { pass: false, reasoning: 'Credit card numbers are not allowed.' };
+  execute: async (input) => {
+    const injectionPatterns = [
+      /ignore previous instructions/i,
+      /disregard system prompt/i,
+      /you are now in jailbreak mode/i,
+    ];
+
+    for (const pattern of injectionPatterns) {
+      if (pattern.test(input)) {
+        return {
+          pass: false,
+          reasoning: 'Security policy violation: Prompt injection attempt detected.',
+        };
+      }
     }
+
+    return { pass: true };
+  },
+});
+
+// 2. Output Guardrail: Redact Sensitive Credit Card Numbers
+export const piiRedactorGuardrail = createGuardrail({
+  name: 'pii_redactor',
+  type: 'output',
+  execute: async (output) => {
+    const creditCardRegex = /\b(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14})\b/g;
+    
+    if (creditCardRegex.test(output)) {
+      return {
+        pass: false,
+        reasoning: 'Output contained unredacted credit card information.',
+      };
+    }
+
     return { pass: true };
   },
 });
 ```
+
+---
+
+## Registering Guardrails on Agents
+
+```typescript
+export const secureAgent = Agent.builder()
+  .setName('Secure Customer Assistant')
+  .setInstructions('Help customers securely.')
+  .withGuardrails(promptInjectionGuardrail, piiRedactorGuardrail)
+  .build();
+```
+
+---
+
+## Handling Guardrail Failures
+
+When a guardrail returns `{ pass: false, reasoning: '...' }`, `Runner` throws a `GuardrailError`:
+
+```typescript
+const runner = new Runner();
+
+try {
+  const result = await runner.run(secureAgent, userInput);
+  console.log('Response:', result.text);
+} catch (err) {
+  if (err instanceof GuardrailError) {
+    console.error(`[Guardrail Tripped - ${err.guardrailName}]: ${err.message}`);
+    // Return friendly safety fallback to end user
+  } else {
+    throw err;
+  }
+}
+```
+
+---
+
+## Best Practices
+
+1. **Keep Input Guardrails Fast**: Input guardrails run on every request. Use fast regex patterns or lightweight classification endpoints to minimize latency.
+2. **Detailed Reasoning**: Provide informative `reasoning` strings in your guardrail results to aid security auditing and tracing.
+3. **Combine Input and Output Guardrails**: Use input guardrails to stop malicious prompts, and output guardrails to verify structural integrity and prevent leakage of internal credentials.
