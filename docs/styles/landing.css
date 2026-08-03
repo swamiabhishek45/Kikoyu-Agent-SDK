@@ -18,6 +18,22 @@
   --nextra-primary-lightness: 53% !important;
 }
 
+/* Completely remove Theme Toggle button on documentation sidebar and footer */
+.nextra-sidebar-footer button,
+.nextra-sidebar-footer select,
+.nextra-sidebar-footer div:has(button),
+[aria-label="Change theme"],
+[title="Change theme"],
+button[aria-label*="theme" i],
+button[title*="theme" i],
+.nextra-theme-switch,
+[data-nextra-theme-switch] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 /* Sidebar Active Items & Hover Colors */
 .nextra-sidebar a:hover,
 .nextra-sidebar [data-active="true"] {

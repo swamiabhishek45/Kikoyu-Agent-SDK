@@ -113,11 +113,10 @@ export function CodeSandbox() {
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`rounded-lg px-3.5 py-1 text-xs font-mono transition-all cursor-pointer ${
-                activeTab === tab
+              className={`rounded-lg px-3.5 py-1 text-xs font-mono transition-all cursor-pointer ${activeTab === tab
                   ? 'bg-[#ff5500] text-white font-semibold shadow-md shadow-orange-500/25'
                   : 'text-zinc-400 hover:text-zinc-200'
-              }`}
+                }`}
             >
               {tab}.ts
             </button>
