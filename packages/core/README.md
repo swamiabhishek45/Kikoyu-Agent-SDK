@@ -69,9 +69,9 @@ async function main() {
 
   // 1. Build immutable Agent using fluent Agent.builder()
   const agent = Agent.builder()
+    .setApiKey(apiKey)
     .setName('Assistant')
     .setInstructions('You are a helpful AI assistant that responds in concise sentences.')
-    .setApiKey(apiKey)
     .build();
 
   // 2. Instantiate execution engine
@@ -113,9 +113,9 @@ const getWeatherTool = createTool({
 
 // 2. Build agent with registered tools
 const agent = Agent.builder()
+  .setApiKey(process.env.KIKOYU_API_KEY || process.env.OPENAI_API_KEY!)
   .setName('Weather Concierge')
   .setInstructions('Always check weather conditions using get_weather tool before answering.')
-  .setApiKey(process.env.KIKOYU_API_KEY || process.env.OPENAI_API_KEY!)
   .addTool(getWeatherTool)
   .build();
 
@@ -138,16 +138,16 @@ const apiKey = process.env.KIKOYU_API_KEY || process.env.OPENAI_API_KEY!;
 
 // 1. Define Domain Specialist Agent
 const codeSpecialist = Agent.builder()
+  .setApiKey(apiKey)
   .setName('Code Specialist')
   .setInstructions('You are an expert TypeScript developer. Provide clean code solutions.')
-  .setApiKey(apiKey)
   .build();
 
 // 2. Define Triage Router Agent with Handoff
 const triageRouter = Agent.builder()
+  .setApiKey(apiKey)
   .setName('Triage Router')
   .setInstructions('Analyze input and hand off coding questions to Code Specialist.')
-  .setApiKey(apiKey)
   .withHandoffs(
     createHandoff(codeSpecialist, {
       description: 'Hand off technical programming and TypeScript questions.',
@@ -176,9 +176,9 @@ const memoryStore = new InMemoryStore();
 const session = new Session({ sessionId: 'user_session_101', store: memoryStore });
 
 const agent = Agent.builder()
+  .setApiKey(process.env.KIKOYU_API_KEY || process.env.OPENAI_API_KEY!)
   .setName('Memory Assistant')
   .setInstructions('Remember user details across turns.')
-  .setApiKey(process.env.KIKOYU_API_KEY || process.env.OPENAI_API_KEY!)
   .build();
 
 const runner = new Runner();
@@ -201,9 +201,9 @@ console.log(result.text); // "Your favorite color is cerulean blue."
 import { Agent, Runner } from '@kikoyu/core';
 
 const agent = Agent.builder()
+  .setApiKey(process.env.KIKOYU_API_KEY || process.env.OPENAI_API_KEY!)
   .setName('Streaming Assistant')
   .setInstructions('Respond in streaming tokens.')
-  .setApiKey(process.env.KIKOYU_API_KEY || process.env.OPENAI_API_KEY!)
   .build();
 
 const runner = new Runner();

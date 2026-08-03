@@ -8,13 +8,13 @@
 
 ---
 
-## 🏷️ Tags & Keywords
+## Tags & Keywords
 
 `ai` • `agent` • `agent-sdk` • `kikoyu` • `openai` • `llm` • `tools` • `zod` • `handoffs` • `orchestration` • `multi-agent` • `streaming` • `typescript`
 
 ---
 
-## ⚡ Quickstart (`@kikoyu/core`)
+## Quickstart (`@kikoyu/core`)
 
 ### 1. Installation
 
@@ -70,7 +70,7 @@ main().catch(console.error);
 
 ---
 
-## 🧰 Key Features & Examples
+## Key Features & Examples
 
 ### 1. Type-Safe Zod Tools
 
@@ -167,7 +167,7 @@ for await (const event of runner.stream(agent, 'Write a short poem about coding'
 
 ---
 
-## 🏗️ Monorepo Architecture
+## Monorepo Architecture
 
 This repository is managed as a `pnpm` workspace with `Turborepo`:
 
@@ -180,7 +180,7 @@ This repository is managed as a `pnpm` workspace with `Turborepo`:
 
 ---
 
-## 🛠️ Workspace Commands
+## Workspace Commands
 
 All workspace commands are managed via `pnpm` and `turbo`:
 
@@ -207,6 +207,6 @@ Starts local documentation server at `http://localhost:3000`.
 
 ---
 
-## 📄 License
+## License
 
 [MIT](LICENSE) © Kikoyu Team
