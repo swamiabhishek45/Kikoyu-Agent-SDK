@@ -1,6 +1,5 @@
 import React from 'react';
 import { Wrench, ShieldCheck, GitPullRequest, Brain, Zap, Sparkles } from 'lucide-react';
-import { Card, CardHeader, CardTitle, CardDescription } from './ui/card';
 
 const FEATURES = [
   {
@@ -39,10 +38,10 @@ export function BentoGrid() {
   return (
     <section className="my-20">
       <div className="mx-auto max-w-2xl text-center space-y-3 mb-12">
-        <h2 className="text-3xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-4xl">
+        <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
           Everything You Need to Build Autonomous Systems.
         </h2>
-        <p className="text-base text-zinc-600 dark:text-zinc-400">
+        <p className="text-base text-zinc-400">
           A comprehensive toolkit engineered for reliability, safety, and modern TypeScript workflows.
         </p>
       </div>
@@ -51,18 +50,17 @@ export function BentoGrid() {
         {FEATURES.map((feat, i) => {
           const Icon = feat.icon;
           return (
-            <Card key={i} className="group relative overflow-hidden transition-all duration-300">
-              <CardHeader className="space-y-4">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-600 dark:text-orange-400 group-hover:bg-orange-500 group-hover:text-white transition-colors">
-                  <Icon className="h-5 w-5" />
-                </div>
-                <CardTitle>{feat.title}</CardTitle>
-                <CardDescription>{feat.description}</CardDescription>
-              </CardHeader>
-            </Card>
+            <div key={i} className="vetra-card p-6 flex flex-col gap-4 group">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-500 group-hover:bg-orange-500 group-hover:text-white transition-colors">
+                <Icon className="h-5 w-5" />
+              </div>
+              <h3 className="text-lg font-bold text-white tracking-tight">{feat.title}</h3>
+              <p className="text-sm text-zinc-400 leading-relaxed">{feat.description}</p>
+            </div>
           );
         })}
       </div>
     </section>
   );
 }
+

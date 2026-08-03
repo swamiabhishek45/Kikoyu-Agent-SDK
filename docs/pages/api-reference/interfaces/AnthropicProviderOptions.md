@@ -14,7 +14,7 @@
 
 #### Defined in
 
-[providers/anthropic.ts:11](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/providers/anthropic.ts#L11)
+[providers/anthropic.ts:11](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/providers/anthropic.ts#L11)
 
 ***
 
@@ -24,7 +24,7 @@
 
 #### Defined in
 
-[providers/anthropic.ts:13](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/providers/anthropic.ts#L13)
+[providers/anthropic.ts:13](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/providers/anthropic.ts#L13)
 
 ***
 
@@ -34,4 +34,4 @@
 
 #### Defined in
 
-[providers/anthropic.ts:12](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/providers/anthropic.ts#L12)
+[providers/anthropic.ts:12](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/providers/anthropic.ts#L12)

@@ -20,7 +20,7 @@ Reference to the Agent instance that was executed.
 
 #### Defined in
 
-[types.ts:133](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/types.ts#L133)
+[types.ts:133](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/types.ts#L133)
 
 ***
 
@@ -32,7 +32,7 @@ The complete list of messages (system prompt, user input, assistant trace, tool 
 
 #### Defined in
 
-[types.ts:130](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/types.ts#L130)
+[types.ts:130](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/types.ts#L130)
 
 ***
 
@@ -44,7 +44,7 @@ Optional structured output parsed according to responseSchema
 
 #### Defined in
 
-[types.ts:136](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/types.ts#L136)
+[types.ts:136](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/types.ts#L136)
 
 ***
 
@@ -56,7 +56,7 @@ The final text response produced by the agent.
 
 #### Defined in
 
-[types.ts:127](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/types.ts#L127)
+[types.ts:127](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/types.ts#L127)
 
 ***
 
@@ -68,4 +68,4 @@ Detailed execution trace for this run
 
 #### Defined in
 
-[types.ts:139](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/types.ts#L139)
+[types.ts:139](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/types.ts#L139)

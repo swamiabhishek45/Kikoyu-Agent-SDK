@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Play, Copy, Check, Terminal } from 'lucide-react';
-import { Button } from './ui/button';
 
 const CODE_EXAMPLES = {
   agent: `import { Agent, Runner } from '@kikoyu/core';
@@ -98,24 +97,26 @@ export function CodeSandbox() {
   };
 
   return (
-    <section className="my-12 overflow-hidden rounded-2xl border border-orange-500/20 bg-zinc-950 shadow-2xl shadow-orange-500/10">
-      {/* Header Bar */}
-      <div className="flex items-center justify-between border-b border-zinc-800 bg-zinc-900/90 px-5 py-3">
+    <div className="max-w-5xl mx-auto my-6 overflow-hidden rounded-2xl border border-zinc-800/90 bg-[#07070a] shadow-2xl">
+      {/* Terminal Top Window Header Bar matching Image 1 */}
+      <div className="flex flex-wrap items-center justify-between border-b border-zinc-800/80 bg-[#0b0c10] px-5 py-3.5 gap-3">
+        {/* Left Mac Window Control Dots */}
         <div className="flex items-center gap-2">
-          <span className="h-3 w-3 rounded-full bg-red-500/80"></span>
-          <span className="h-3 w-3 rounded-full bg-yellow-500/80"></span>
-          <span className="h-3 w-3 rounded-full bg-green-500/80"></span>
+          <span className="h-3 w-3 rounded-full bg-[#ff5f56]"></span>
+          <span className="h-3 w-3 rounded-full bg-[#ffbd2e]"></span>
+          <span className="h-3 w-3 rounded-full bg-[#27c93f]"></span>
         </div>
 
-        <div className="flex items-center gap-1 rounded-lg border border-zinc-800 bg-zinc-950 p-1">
+        {/* Center Tabs Bar */}
+        <div className="flex items-center gap-1 rounded-xl border border-zinc-800/90 bg-zinc-950/80 p-1">
           {(['agent', 'tools', 'handoffs', 'stream'] as const).map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`rounded-md px-3 py-1 text-xs font-mono transition-colors ${
+              className={`rounded-lg px-3.5 py-1 text-xs font-mono transition-all cursor-pointer ${
                 activeTab === tab
-                  ? 'bg-orange-500 text-white font-semibold shadow-sm'
-                  : 'text-zinc-400 hover:text-orange-400'
+                  ? 'bg-[#ff5500] text-white font-semibold shadow-md shadow-orange-500/25'
+                  : 'text-zinc-400 hover:text-zinc-200'
               }`}
             >
               {tab}.ts
@@ -123,55 +124,56 @@ export function CodeSandbox() {
           ))}
         </div>
 
-        <div className="flex items-center gap-2">
-          <Button
-            variant="secondary"
-            size="sm"
+        {/* Right Actions: Copy Code & Run Agent */}
+        <div className="flex items-center gap-2.5">
+          <button
             onClick={handleCopySnippet}
-            className="h-8 gap-1.5 text-xs font-mono"
+            className="h-8.5 px-3.5 text-xs font-mono rounded-lg border border-zinc-700/70 bg-[#191a22] text-zinc-200 hover:bg-[#22232e] hover:border-zinc-500 flex items-center gap-1.5 transition-all cursor-pointer"
           >
-            {codeCopied ? <Check className="h-3.5 w-3.5 text-green-500" /> : <Copy className="h-3.5 w-3.5 text-orange-500" />}
+            {codeCopied ? <Check className="h-3.5 w-3.5 text-green-400" /> : <Copy className="h-3.5 w-3.5 text-orange-400" />}
             <span>{codeCopied ? 'Copied' : 'Copy Code'}</span>
-          </Button>
+          </button>
 
-          <Button
-            size="sm"
+          <button
             onClick={runSimulation}
             disabled={isRunning}
-            className="h-8 gap-1.5 text-xs font-semibold"
+            className="h-8.5 px-4 text-xs font-semibold rounded-lg bg-[#ff5500] hover:bg-[#e04b00] text-white flex items-center gap-1.5 shadow-lg shadow-orange-500/30 transition-all cursor-pointer disabled:opacity-50"
           >
-            <Play className="h-3.5 w-3.5 fill-current" />
+            <Play className="h-3 w-3 fill-current" />
             <span>{isRunning ? 'Running...' : 'Run Agent'}</span>
-          </Button>
+          </button>
         </div>
       </div>
 
-      {/* Code Body */}
-      <div className="overflow-x-auto bg-zinc-950 p-6 text-sm font-mono leading-relaxed text-zinc-100">
+      {/* Code Snippet Container */}
+      <div className="overflow-x-auto p-6 text-sm font-mono leading-relaxed text-zinc-100 bg-[#030305]">
         <pre><code>{CODE_EXAMPLES[activeTab]}</code></pre>
       </div>
 
-      {/* Terminal Output */}
-      <div className="border-t border-zinc-800 bg-black p-5 font-mono text-xs">
-        <div className="mb-3 flex items-center justify-between border-b border-zinc-900 pb-2 text-zinc-500">
+      {/* Terminal Console Output Bar matching Image 1 */}
+      <div className="border-t border-zinc-800/80 bg-[#040406] p-5 font-mono text-xs">
+        <div className="mb-3 flex items-center justify-between border-b border-zinc-900 pb-2.5 text-zinc-500">
           <div className="flex items-center gap-2">
-            <Terminal className="h-4 w-4 text-orange-500" />
-            <span className="font-semibold tracking-wide">LIVE AGENT TERMINAL OUTPUT</span>
+            <span className="text-[#ff5500] font-bold">&gt;_</span>
+            <span className="font-semibold tracking-wider text-zinc-400 text-[11px]">LIVE AGENT TERMINAL OUTPUT</span>
           </div>
-          <span>{isRunning ? 'STATUS: EXECUTING LOOP' : 'STATUS: READY'}</span>
+          <span className="text-zinc-500 text-[11px]">{isRunning ? 'STATUS: EXECUTING LOOP' : 'STATUS: READY'}</span>
         </div>
+
         {logs.length === 0 ? (
-          <div className="italic text-zinc-600">
+          <div className="italic text-zinc-600 text-[11px]">
             Click "Run Agent" above to simulate real-time agent execution...
           </div>
         ) : (
           <div className="space-y-1.5">
             {logs.map((log, i) => (
-              <div key={i} className="text-orange-400 font-medium">{log}</div>
+              <div key={i} className="text-orange-400 font-medium text-[11px]">{log}</div>
             ))}
           </div>
         )}
       </div>
-    </section>
+    </div>
   );
 }
+
+

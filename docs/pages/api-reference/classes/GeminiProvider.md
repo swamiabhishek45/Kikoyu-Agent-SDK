@@ -28,7 +28,7 @@
 
 #### Defined in
 
-[providers/gemini.ts:22](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/providers/gemini.ts#L22)
+[providers/gemini.ts:22](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/providers/gemini.ts#L22)
 
 ## Properties
 
@@ -42,7 +42,7 @@
 
 #### Defined in
 
-[providers/gemini.ts:17](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/providers/gemini.ts#L17)
+[providers/gemini.ts:17](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/providers/gemini.ts#L17)
 
 ## Methods
 
@@ -70,7 +70,7 @@
 
 #### Defined in
 
-[providers/gemini.ts:28](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/providers/gemini.ts#L28)
+[providers/gemini.ts:28](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/providers/gemini.ts#L28)
 
 ***
 
@@ -98,4 +98,4 @@
 
 #### Defined in
 
-[providers/gemini.ts:155](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/providers/gemini.ts#L155)
+[providers/gemini.ts:155](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/providers/gemini.ts#L155)

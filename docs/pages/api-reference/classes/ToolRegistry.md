@@ -24,7 +24,7 @@
 
 #### Defined in
 
-[tool-registry.ts:7](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/tool-registry.ts#L7)
+[tool-registry.ts:7](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/tool-registry.ts#L7)
 
 ## Methods
 
@@ -44,7 +44,7 @@
 
 #### Defined in
 
-[tool-registry.ts:20](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/tool-registry.ts#L20)
+[tool-registry.ts:20](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/tool-registry.ts#L20)
 
 ***
 
@@ -64,7 +64,7 @@
 
 #### Defined in
 
-[tool-registry.ts:24](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/tool-registry.ts#L24)
+[tool-registry.ts:24](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/tool-registry.ts#L24)
 
 ***
 
@@ -78,7 +78,7 @@
 
 #### Defined in
 
-[tool-registry.ts:28](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/tool-registry.ts#L28)
+[tool-registry.ts:28](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/tool-registry.ts#L28)
 
 ***
 
@@ -98,7 +98,7 @@
 
 #### Defined in
 
-[tool-registry.ts:13](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/tool-registry.ts#L13)
+[tool-registry.ts:13](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/tool-registry.ts#L13)
 
 ***
 
@@ -112,4 +112,4 @@
 
 #### Defined in
 
-[tool-registry.ts:32](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/3996f7505baeacb8a12b6235b4a00961beacdbc1/packages/core/src/tool-registry.ts#L32)
+[tool-registry.ts:32](https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/blob/7ed70578944b6183f33990019a5929c002fe7631/packages/core/src/tool-registry.ts#L32)

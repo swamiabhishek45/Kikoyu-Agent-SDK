@@ -1,58 +1,69 @@
 import React from 'react';
 import Link from 'next/link';
-import { useTheme } from '../context/ThemeContext';
-import { Sun, Moon, Coffee, ArrowRight } from 'lucide-react';
-import { Button } from './ui/button';
+import { ChevronDown } from 'lucide-react';
+import { KikoyuLogo } from './KikoyuLogo';
 
 export function Navbar() {
-  const { theme, toggleTheme } = useTheme();
-
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-orange-500/20 bg-white/80 backdrop-blur-md dark:bg-zinc-950/80">
+    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#070709]/80 backdrop-blur-xl transition-all">
       <div className="max-w-7xl mx-auto flex h-16 items-center justify-between px-6">
-        <Link href="/" className="flex items-center gap-3 no-underline">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-tr from-orange-500 to-amber-600 font-bold text-white shadow-md shadow-orange-500/30">
-            <Coffee className="h-5 w-5 text-white" />
+        {/* Brand Logo */}
+        <Link href="/" className="flex items-center gap-3 no-underline group">
+          <div className="group-hover:scale-105 transition-transform">
+            <KikoyuLogo className="h-8 w-8 text-[#ff5500]" />
           </div>
-          <div>
-            <span className="text-xl font-bold text-zinc-900 dark:text-zinc-50">Kikoyu</span>
-            <span className="ml-1 text-xs text-orange-600 dark:text-orange-400 font-semibold">Agent SDK</span>
-          </div>
+          <span className="text-xl font-bold tracking-tight text-white">Kikoyu</span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
-          <Link href="/concepts/agent" className="text-zinc-600 hover:text-orange-600 dark:text-zinc-400 dark:hover:text-orange-400 transition-colors">Quickstart</Link>
-          <Link href="/concepts/agent" className="text-zinc-600 hover:text-orange-600 dark:text-zinc-400 dark:hover:text-orange-400 transition-colors">Concepts</Link>
-          <Link href="/api-reference/README" className="text-zinc-600 hover:text-orange-600 dark:text-zinc-400 dark:hover:text-orange-400 transition-colors">API Reference</Link>
-          <Link href="/examples/single-agent-tools" className="text-zinc-600 hover:text-orange-600 dark:text-zinc-400 dark:hover:text-orange-400 transition-colors">Examples</Link>
+        {/* Center Nav Links matching the Vetra layout */}
+        <nav className="hidden md:flex items-center gap-7 text-sm font-medium">
+          <Link href="/concepts/agent" className="text-zinc-400 hover:text-white transition-colors">
+            Quickstart
+          </Link>
+
+          <div className="relative group cursor-pointer flex items-center gap-1 text-zinc-400 hover:text-white transition-colors">
+            <span>Concepts</span>
+            <ChevronDown className="h-3.5 w-3.5 opacity-70 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute top-full left-0 mt-2 w-48 rounded-xl border border-zinc-800 bg-zinc-950/95 p-2 shadow-xl backdrop-blur-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+              <Link href="/concepts/agent" className="block px-3 py-2 text-xs text-zinc-400 hover:text-white hover:bg-zinc-900 rounded-lg transition-colors">Agent Architecture</Link>
+              <Link href="/concepts/model-providers" className="block px-3 py-2 text-xs text-zinc-400 hover:text-white hover:bg-zinc-900 rounded-lg transition-colors">Model Providers</Link>
+              <Link href="/concepts/sessions" className="block px-3 py-2 text-xs text-zinc-400 hover:text-white hover:bg-zinc-900 rounded-lg transition-colors">Session State</Link>
+            </div>
+          </div>
+
+          <Link href="/api-reference/README" className="text-zinc-400 hover:text-white transition-colors">
+            API Reference
+          </Link>
+
+          <div className="relative group cursor-pointer flex items-center gap-1 text-zinc-400 hover:text-white transition-colors">
+            <span>Examples</span>
+            <ChevronDown className="h-3.5 w-3.5 opacity-70 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute top-full left-0 mt-2 w-52 rounded-xl border border-zinc-800 bg-zinc-950/95 p-2 shadow-xl backdrop-blur-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+              <Link href="/examples/single-agent-tools" className="block px-3 py-2 text-xs text-zinc-400 hover:text-white hover:bg-zinc-900 rounded-lg transition-colors">Tool Calling Agent</Link>
+            </div>
+          </div>
+
           <a
             href="https://github.com/swamiabhishek45/Kikoyu-Agent-SDK"
             target="_blank"
             rel="noreferrer"
-            className="text-zinc-600 hover:text-orange-600 dark:text-zinc-400 dark:hover:text-orange-400 transition-colors"
+            className="text-zinc-400 hover:text-white transition-colors"
           >
             GitHub
           </a>
         </nav>
 
-        <div className="flex items-center gap-4">
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={toggleTheme}
-            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-            aria-label="Toggle Theme"
-          >
-            {theme === 'dark' ? <Sun className="h-4 w-4 text-orange-400" /> : <Moon className="h-4 w-4 text-orange-600" />}
-          </Button>
-
+        {/* Right Action Buttons */}
+        <div className="flex items-center gap-3">
           <Link href="/concepts/agent" className="no-underline">
-            <Button size="sm" className="gap-2">
-              Get Started <ArrowRight className="h-4 w-4" />
-            </Button>
+            <button className="vetra-btn-orange font-medium text-sm">
+              Get started
+            </button>
           </Link>
         </div>
       </div>
     </header>
   );
 }
+
+
