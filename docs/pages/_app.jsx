@@ -22,8 +22,8 @@ export default function App({ Component, pageProps }) {
   return (
     <div className={sourceSerif4.className}>
       <Head>
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="shortcut icon" href="/favicon.svg" />
+        <link rel="icon" href="/logo.png" type="image/png" />
+        <link rel="shortcut icon" href="/logo.png" />
       </Head>
       <Component {...pageProps} />
       {AnalyticsComponent && <AnalyticsComponent />}

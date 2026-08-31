@@ -1,11 +1,16 @@
 import React from 'react';
 
 export default {
-  logo: <span><strong>Kikoyu Agent SDK</strong> Docs</span>,
+  logo: (
+    <span className="flex items-center gap-2.5 font-bold tracking-tight">
+      <img src="/logo.png" alt="Kikoyu Logo" className="h-6 w-auto object-contain inline-block" />
+      <span>Kikoyu Agent SDK <span className="font-normal opacity-70">Docs</span></span>
+    </span>
+  ),
   head: (
     <>
-      <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-      <link rel="shortcut icon" href="/favicon.svg" />
+      <link rel="icon" href="/logo.png" type="image/png" />
+      <link rel="shortcut icon" href="/logo.png" />
       <meta name="msapplication-TileColor" content="#070709" />
       <meta name="theme-color" content="#070709" />
     </>

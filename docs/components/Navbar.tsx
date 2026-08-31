@@ -9,8 +9,8 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto flex h-16 items-center justify-between px-6">
         {/* Brand Logo */}
         <Link href="/" className="flex items-center gap-3 no-underline group">
-          <div className="group-hover:scale-105 transition-transform">
-            <KikoyuLogo className="h-8 w-8 text-[#ff5500]" />
+          <div className="group-hover:scale-105 transition-transform flex items-center">
+            <KikoyuLogo className="h-7 w-auto" />
           </div>
           <span className="text-xl font-bold tracking-tight text-white">Kikoyu</span>
         </Link>
