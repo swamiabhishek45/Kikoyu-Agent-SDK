@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "typedoc --options typedoc.json && next dev",
+    "dev": "next dev",
+    "dev:api-ref": "typedoc --options typedoc.json",
     "build": "typedoc --options typedoc.json && next build",
     "start": "next start",
     "lint": "tsc --noEmit"

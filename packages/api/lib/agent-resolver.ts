@@ -1,5 +1,6 @@
 import { Agent, createTool, OpenAIProvider, type Tool, z } from '@kikoyu/core';
 import { agentRegistry } from './agent-registry.js';
+import { jsonSchemaToZod } from './json-schema-zod.js';
 
 export interface InlineToolPayload {
   name: string;
@@ -51,10 +52,11 @@ export function resolveAgentFromPayload(payload: AgentRequestPayload): Agent {
 
     if (tools && Array.isArray(tools)) {
       for (const tPayload of tools) {
+        const parameters = jsonSchemaToZod(tPayload.parametersSchema);
         const tool: Tool = createTool({
           name: tPayload.name,
           description: tPayload.description,
-          parameters: z.object({}),
+          parameters,
           execute: () => tPayload.returnValue ?? 'ok',
         });
         builder.addTool(tool);

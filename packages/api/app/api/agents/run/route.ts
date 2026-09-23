@@ -2,6 +2,7 @@ import { Runner } from '@kikoyu/core';
 import { NextResponse } from 'next/server';
 import { resolveAgentFromPayload } from '../../../../lib/agent-resolver.js';
 import { validateApiKey } from '../../../../lib/auth.js';
+import { apiSessionStore } from '../../../../lib/session-store.js';
 
 export async function POST(request: Request) {
   if (!validateApiKey(request)) {
@@ -23,7 +24,9 @@ export async function POST(request: Request) {
 
     const result = await runner.run(agent, body.input, {
       context: body.context,
-      session: body.sessionId,
+      ...(body.sessionId
+        ? { session: body.sessionId, store: apiSessionStore }
+        : {}),
     });
 
     return NextResponse.json({

@@ -1,24 +1,23 @@
 import React from 'react';
 import Link from 'next/link';
-import { KikoyuLogo } from './KikoyuLogo';
 
 export function Footer() {
   return (
-    <footer className="w-full border-t border-zinc-800/80 bg-[#060608] py-10 px-6 mt-20">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-zinc-400">
-        <div className="flex items-center gap-3">
-          <KikoyuLogo className="h-6 w-auto" />
-          <span className="font-semibold text-white">Kikoyu Agent SDK © 2026</span>
-        </div>
-
-        <div className="flex items-center gap-6 font-medium">
-          <Link href="/concepts/agent" className="hover:text-white transition-colors">Docs</Link>
-          <Link href="/api-reference/README" className="hover:text-white transition-colors">API Reference</Link>
+    <footer className="mt-auto border-t border-zinc-200 py-8 dark:border-zinc-800">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 text-sm text-zinc-500 dark:text-zinc-500 md:flex-row md:px-6">
+        <p>Kikoyu Agent SDK © 2026</p>
+        <div className="flex flex-wrap items-center justify-center gap-5">
+          <Link href="/quickstart" className="no-underline hover:text-zinc-800 dark:hover:text-zinc-300">
+            Docs
+          </Link>
+          <Link href="/api-reference/README" className="no-underline hover:text-zinc-800 dark:hover:text-zinc-300">
+            API Reference
+          </Link>
           <a
             href="https://github.com/swamiabhishek45/Kikoyu-Agent-SDK"
             target="_blank"
             rel="noreferrer"
-            className="hover:text-white transition-colors"
+            className="hover:text-zinc-800 dark:hover:text-zinc-300"
           >
             GitHub
           </a>
@@ -26,7 +25,7 @@ export function Footer() {
             href="https://www.npmjs.com/package/@kikoyu/core"
             target="_blank"
             rel="noreferrer"
-            className="hover:text-white transition-colors"
+            className="hover:text-zinc-800 dark:hover:text-zinc-300"
           >
             npm
           </a>
@@ -35,4 +34,3 @@ export function Footer() {
     </footer>
   );
 }
-

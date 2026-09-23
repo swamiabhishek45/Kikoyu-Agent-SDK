@@ -1,0 +1,21 @@
+/* next-themes (Nextra) toggles `class="dark"` / `class="light"` on <html> */
+
+html.dark {
+  --kikoyu-bg: #09090b;
+  --kikoyu-bg-elevated: #18181b;
+  --kikoyu-border: rgba(255, 255, 255, 0.08);
+  --kikoyu-text: #fafafa;
+  --kikoyu-text-muted: #a1a1aa;
+  --kikoyu-accent: #f97316;
+  --kikoyu-accent-hover: #ea580c;
+}
+
+html:not(.dark) {
+  --kikoyu-bg: #ffffff;
+  --kikoyu-bg-elevated: #fafafa;
+  --kikoyu-border: rgba(0, 0, 0, 0.08);
+  --kikoyu-text: #09090b;
+  --kikoyu-text-muted: #71717a;
+  --kikoyu-accent: #ea580c;
+  --kikoyu-accent-hover: #c2410c;
+}

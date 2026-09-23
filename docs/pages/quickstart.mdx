@@ -306,3 +306,15 @@ async function main() {
 
 main().catch(console.error);
 ```
+
+---
+
+## HTTP API (`@kikoyu/api`)
+
+The optional Next.js package exposes `/api/agents/run` and `/api/agents/stream`.
+
+**Operational notes:**
+
+- Set `API_KEY` in production; without it, authenticated routes return `401`.
+- Registered `agentId` values use an **in-process registry** and are cleared when the server restarts.
+- `sessionId` uses a **shared in-memory store** per API process; use `RedisStore` or `FileStore` from `@kikoyu/core` for durable or multi-instance deployments.

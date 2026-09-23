@@ -12,7 +12,7 @@ export function KikoyuLogo({
     <img
       src="/logo.png"
       alt={alt}
-      className={`object-contain ${className}`}
+      className={`block shrink-0 object-contain ${className}`}
     />
   );
 }

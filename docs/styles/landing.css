@@ -1,320 +1,71 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import './tokens.css';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Custom Light Orange Text Selection matching site theme */
 ::selection {
-  background-color: rgba(255, 85, 0, 0.45) !important;
-  color: #ffffff !important;
-  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  background-color: rgba(249, 115, 22, 0.25);
 }
 
-::-moz-selection {
-  background-color: rgba(255, 85, 0, 0.45) !important;
-  color: #ffffff !important;
-  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
-}
-
-/* Nextra Theme Documentation Orange Accent Overrides */
 :root {
-  --nextra-primary-hue: 24deg !important;
-  --nextra-primary-saturation: 95% !important;
-  --nextra-primary-lightness: 53% !important;
+  --nextra-primary-hue: 24deg;
+  --nextra-primary-saturation: 90%;
+  --nextra-primary-lightness: 53%;
 }
 
-[data-theme='dark'],
-.dark {
-  --nextra-primary-hue: 24deg !important;
-  --nextra-primary-saturation: 95% !important;
-  --nextra-primary-lightness: 53% !important;
-}
-
-/* Completely remove Theme Toggle button on documentation sidebar and footer */
-.nextra-sidebar-footer button,
-.nextra-sidebar-footer select,
-.nextra-sidebar-footer div:has(button),
-[aria-label="Change theme"],
-[title="Change theme"],
-button[aria-label*="theme" i],
-button[title*="theme" i],
-.nextra-theme-switch,
-[data-nextra-theme-switch] {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
-/* Sidebar Active Items & Hover Colors */
-.nextra-sidebar a:hover,
-.nextra-sidebar [data-active="true"] {
-  color: #f97316 !important;
-}
-
-.nextra-sidebar [data-active="true"] {
-  background-color: rgba(249, 115, 22, 0.12) !important;
-  border-left: 3px solid #f97316 !important;
-  font-weight: 600 !important;
-}
-
-/* Table of Contents Active Links */
-.nextra-toc a[data-active="true"],
-.nextra-toc a:hover {
-  color: #f97316 !important;
-  font-weight: 600 !important;
-}
-
-/* Content Links & Focus Rings */
-article a {
-  color: #f97316 !important;
-}
-
-article code {
-  border-color: rgba(249, 115, 22, 0.3) !important;
-}
-
-/* Theme Design System Variables */
-
-:root,
-[data-theme='dark'] {
-  --vk-bg: #070709;
-  --vk-header-bg: rgba(7, 7, 9, 0.8);
-  --vk-card-bg: #0d0d12;
-  --vk-card-border: rgba(255, 255, 255, 0.08);
-  --vk-card-hover-border: rgba(249, 115, 22, 0.5);
-  --vk-text: #ffffff;
-  --vk-text-muted: #94a3b8;
-  --vk-orange: #ff5500;
-  --vk-orange-hover: #e04b00;
-  --vk-orange-glow: rgba(255, 85, 0, 0.4);
-}
-
-[data-theme='light'] {
-  --vk-bg: #070709;
-  --vk-header-bg: rgba(7, 7, 9, 0.8);
-  --vk-card-bg: #0d0d12;
-  --vk-card-border: rgba(255, 255, 255, 0.08);
-  --vk-card-hover-border: rgba(249, 115, 22, 0.5);
-  --vk-text: #ffffff;
-  --vk-text-muted: #94a3b8;
-  --vk-orange: #ff5500;
-  --vk-orange-hover: #e04b00;
-  --vk-orange-glow: rgba(255, 85, 0, 0.4);
-}
-
-body {
-  background-color: var(--vk-bg) !important;
-  color: var(--vk-text) !important;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  overflow-x: hidden;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-
-/* Outer Layout Container */
-.vk-layout {
+/* Landing page only — do not override Nextra docs body (breaks light theme) */
+.kikoyu-layout {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #070709;
-  color: #ffffff;
-  position: relative;
+  background-color: var(--kikoyu-bg);
+  color: var(--kikoyu-text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-/* Hero Section Outer Background with Horizon Arc */
-.vetra-hero-wrapper {
-  position: relative;
-  width: 100%;
-  background-color: #070709;
-  overflow: hidden;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+/* Nextra docs — minimal accent overrides (theme-aware) */
+html:not(.dark) .nextra-sidebar a[data-active='true'] {
+  color: var(--kikoyu-accent) !important;
+  background-color: rgba(234, 88, 12, 0.08) !important;
+  border-left: 2px solid var(--kikoyu-accent) !important;
+  font-weight: 500 !important;
 }
 
-/* Star dot grid pattern background overlay */
-.vetra-dots-bg {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
-  background-size: 28px 28px;
-  opacity: 0.6;
-  pointer-events: none;
-  mask-image: radial-gradient(ellipse at 50% 30%, black 40%, transparent 80%);
-  -webkit-mask-image: radial-gradient(ellipse at 50% 30%, black 40%, transparent 80%);
+html.dark .nextra-sidebar a[data-active='true'] {
+  color: var(--kikoyu-accent) !important;
+  background-color: rgba(249, 115, 22, 0.08) !important;
+  border-left: 2px solid var(--kikoyu-accent) !important;
+  font-weight: 500 !important;
 }
 
-/* Vertical pinstripe grid lines overlay */
-.vetra-lines-bg {
-  position: absolute;
-  inset: 0;
-  background-image: repeating-linear-gradient(90deg,
-      rgba(255, 255, 255, 0.025),
-      rgba(255, 255, 255, 0.025) 1px,
-      transparent 1px,
-      transparent 72px);
-  pointer-events: none;
-  mask-image: radial-gradient(ellipse at 50% 40%, black 40%, transparent 80%);
-  -webkit-mask-image: radial-gradient(ellipse at 50% 40%, black 40%, transparent 80%);
+.nextra-toc a[data-active='true'],
+.nextra-toc a:hover {
+  color: var(--kikoyu-accent) !important;
 }
 
-/* Top ambient corner orange glows */
-.vetra-top-glow-left {
-  position: absolute;
-  top: -150px;
-  left: -150px;
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 85, 0, 0.15) 0%, transparent 70%);
-  pointer-events: none;
-  filter: blur(60px);
+article a {
+  color: var(--kikoyu-accent) !important;
+  text-underline-offset: 2px;
 }
 
-.vetra-top-glow-right {
-  position: absolute;
-  top: -150px;
-  right: -150px;
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 85, 0, 0.15) 0%, transparent 70%);
-  pointer-events: none;
-  filter: blur(60px);
+article a:hover {
+  color: var(--kikoyu-accent-hover) !important;
 }
 
-/* Horizon Arc Glowing Line & Orange Sphere Backdrop */
-.vetra-horizon-container {
-  position: relative;
-  width: 100%;
-  margin-top: 3rem;
-  pointer-events: none;
+article code {
+  border-color: var(--kikoyu-border) !important;
 }
 
-.vetra-horizon-arc {
-  width: 140%;
-  margin-left: -20%;
-  height: 480px;
-  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
-  background: radial-gradient(ellipse at 50% 0%, rgba(255, 85, 0, 0.5) 0%, rgba(220, 60, 0, 0.25) 30%, rgba(120, 30, 0, 0.08) 60%, transparent 80%);
-  border-top: 1.5px solid rgba(255, 140, 50, 0.85);
-  box-shadow: 0 -12px 60px rgba(255, 85, 0, 0.45), inset 0 8px 30px rgba(255, 150, 60, 0.25);
-  position: relative;
+.nextra-nav-container {
+  border-bottom-color: var(--kikoyu-border) !important;
 }
 
-/* Pill Badge Button */
-.vetra-pill-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(16px);
-  padding: 0.35rem 0.4rem 0.35rem 1rem;
-  border-radius: 9999px;
-  font-size: 0.85rem;
-  color: #e4e4e7;
-  transition: all 0.25s ease;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  text-decoration: none;
-}
-
-.vetra-pill-badge:hover {
-  border-color: rgba(255, 85, 0, 0.5);
-  background: rgba(255, 255, 255, 0.08);
-  transform: translateY(-1px);
-}
-
-.vetra-pill-badge-arrow {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: #ff5500;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75rem;
-  box-shadow: 0 0 10px rgba(255, 85, 0, 0.5);
-}
-
-/* Pill Action Buttons */
-.vetra-btn-orange {
-  background: #ff5500;
-  color: #ffffff !important;
-  font-weight: 600;
-  padding: 0.75rem 1.75rem;
-  border-radius: 9999px;
-  font-size: 0.95rem;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 8px 25px rgba(255, 85, 0, 0.35);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.vetra-btn-orange:hover {
-  background: #e04b00;
-  box-shadow: 0 12px 35px rgba(255, 85, 0, 0.5);
-  transform: translateY(-2px);
-}
-
-.vetra-btn-dark {
-  background: rgba(20, 20, 25, 0.75);
-  color: #ffffff !important;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  font-weight: 500;
-  padding: 0.75rem 1.6rem;
-  border-radius: 9999px;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  text-decoration: none;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-}
-
-.vetra-btn-dark:hover {
-  background: rgba(35, 35, 45, 0.9);
-  border-color: rgba(255, 255, 255, 0.3);
-  transform: translateY(-2px);
-}
-
-/* Glass Dashboard Container peaking from bottom */
-.vetra-glass-dashboard {
-  background: rgba(12, 13, 18, 0.92);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px 20px 0 0;
-  backdrop-filter: blur(24px);
-  box-shadow: 0 -20px 80px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 85, 0, 0.1);
-  overflow: hidden;
-}
-
-/* Feature Cards & Bento Elements */
-.vetra-card {
-  background: rgba(14, 15, 20, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  backdrop-filter: blur(12px);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.vetra-card:hover {
-  border-color: rgba(255, 85, 0, 0.4);
-  transform: translateY(-3px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 85, 0, 0.15);
+.nextra-nav-container img,
+.nextra-navbar img {
+  height: 1.25rem !important;
+  width: auto !important;
+  max-height: 1.25rem;
+  object-fit: contain;
 }

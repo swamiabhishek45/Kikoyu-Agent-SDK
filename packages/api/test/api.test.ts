@@ -146,4 +146,55 @@ describe('Next.js HTTP API Routes', () => {
     expect(text).toContain('tool_call_finished');
     expect(text).toContain('run_complete');
   });
+
+  it('persists session messages across run requests with the same sessionId', async () => {
+    class SessionMockProvider implements ModelProvider {
+      readonly name = 'session-mock';
+      async complete(messages: ModelMessage[]): Promise<ModelResponse> {
+        const userTurns = messages.filter((m) => m.role === 'user').length;
+        if (userTurns >= 2) {
+          return { text: 'Session has prior context.' };
+        }
+        return { text: 'First turn only.' };
+      }
+    }
+
+    const mockAgent = Agent.builder()
+      .setName('Session Bot')
+      .setInstructions('Remember context')
+      .setModel(new SessionMockProvider())
+      .build();
+
+    agentRegistry.register('session_bot', mockAgent);
+
+    const first = new Request('http://localhost:3000/api/agents/run', {
+      method: 'POST',
+      headers: validHeaders,
+      body: JSON.stringify({
+        agentId: 'session_bot',
+        input: 'Turn one',
+        sessionId: 'sess_api_1',
+      }),
+    });
+
+    const firstRes = await runHandler(first);
+    expect(firstRes.status).toBe(200);
+    const firstBody = await firstRes.json();
+    expect(firstBody.text).toBe('First turn only.');
+
+    const second = new Request('http://localhost:3000/api/agents/run', {
+      method: 'POST',
+      headers: validHeaders,
+      body: JSON.stringify({
+        agentId: 'session_bot',
+        input: 'Turn two',
+        sessionId: 'sess_api_1',
+      }),
+    });
+
+    const secondRes = await runHandler(second);
+    expect(secondRes.status).toBe(200);
+    const secondBody = await secondRes.json();
+    expect(secondBody.text).toBe('Session has prior context.');
+  });
 });

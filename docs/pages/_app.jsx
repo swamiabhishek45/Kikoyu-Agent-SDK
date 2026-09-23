@@ -2,12 +2,11 @@ import 'nextra-theme-docs/style.css';
 import '../styles/landing.css';
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
-import { Source_Serif_4 } from 'next/font/google';
+import { Inter } from 'next/font/google';
 
-const sourceSerif4 = Source_Serif_4({
+const inter = Inter({
   subsets: ['latin'],
-  weight: ['200', '400', '600'],
-  variable: '--font-source-serif-4',
+  variable: '--font-inter',
 });
 
 export default function App({ Component, pageProps }) {
@@ -20,7 +19,7 @@ export default function App({ Component, pageProps }) {
   }, []);
 
   return (
-    <div className={sourceSerif4.className}>
+    <div className={`${inter.variable} font-sans antialiased`}>
       <Head>
         <link rel="icon" href="/logo.png" type="image/png" />
         <link rel="shortcut icon" href="/logo.png" />
