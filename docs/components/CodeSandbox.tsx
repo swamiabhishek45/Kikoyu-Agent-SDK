@@ -74,6 +74,9 @@ export function CodeSandbox() {
 
       <CodeBlock
         code={CODE_EXAMPLES[activeTab]}
+        language="tsx"
+        accent="#f97316"
+        filename={`${activeTab}.ts`}
         className="rounded-none border-0 border-b border-zinc-200 dark:border-zinc-800"
       />
 

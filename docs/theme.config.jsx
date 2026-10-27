@@ -1,5 +1,8 @@
 import React from 'react';
 import { KikoyuLogo } from './components/KikoyuLogo';
+import { NextraRailToc } from './components/nextra/nextra-rail-toc';
+import { NextraPre } from './components/nextra/nextra-pre';
+import { SidebarMenuBridge } from './components/nextra/sidebar-menu-bridge';
 
 export default {
   logo: (
@@ -18,6 +21,9 @@ export default {
   project: {
     link: 'https://github.com/swamiabhishek45/Kikoyu-Agent-SDK',
   },
+  navbar: {
+    extraContent: SidebarMenuBridge,
+  },
   docsRepositoryBase: 'https://github.com/swamiabhishek45/Kikoyu-Agent-SDK/tree/main/docs',
   editLink: {
     component: null,
@@ -29,7 +35,16 @@ export default {
     text: 'Kikoyu Agent SDK © 2026',
   },
   copyCode: {
-    show: true,
+    show: false,
+  },
+  components: {
+    pre: NextraPre,
+  },
+  toc: {
+    component: NextraRailToc,
+    float: true,
+    title: 'On this page',
+    backToTop: 'Scroll to top',
   },
   primaryHue: 24,
   darkMode: true,
