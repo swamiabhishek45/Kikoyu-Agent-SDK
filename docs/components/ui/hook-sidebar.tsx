@@ -200,8 +200,8 @@ export function HookSidebar({
             className: cn(
               "rounded-lg py-1.5 pl-5 pr-2 text-left text-sm transition-colors duration-200 motion-reduce:transition-none",
               isActive
-                ? "text-foreground"
-                : "text-foreground/50 hover:text-foreground/80",
+                ? "bg-orange-500/10 font-medium text-orange-500"
+                : "text-foreground/50 hover:bg-muted hover:text-foreground/90",
             ),
           };
 

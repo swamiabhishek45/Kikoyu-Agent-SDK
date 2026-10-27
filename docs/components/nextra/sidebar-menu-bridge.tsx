@@ -3,10 +3,7 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useConfig } from 'nextra-theme-docs';
-import { DocsHookSidebar } from './docs-hook-sidebar';
-import { flattenDirectories } from './flatten-directories';
-
-const BRAND_RAIL = '#f97316';
+import { DocsNavSidebar } from './docs-nav-sidebar';
 
 export function SidebarMenuBridge() {
   return <SidebarMenuBridgeInner />;
@@ -41,17 +38,14 @@ function SidebarMenuBridgeInner() {
   const desktopHosts = useMenuHosts('.nextra-menu-desktop');
   const mobileHosts = useMenuHosts('.nextra-menu-mobile');
 
-  const desktopItems = flattenDirectories(docsDirectories);
-  const mobileItems = flattenDirectories(directories);
-
   return (
     <>
       {desktopHosts.map((host, index) =>
         createPortal(
-          <DocsHookSidebar
+          <DocsNavSidebar
             key={`desktop-${index}`}
-            items={desktopItems}
-            color={BRAND_RAIL}
+            directories={docsDirectories}
+            onlyCurrentDocs
             className="max-md:hidden"
           />,
           host,
@@ -59,10 +53,9 @@ function SidebarMenuBridgeInner() {
       )}
       {mobileHosts.map((host, index) =>
         createPortal(
-          <DocsHookSidebar
+          <DocsNavSidebar
             key={`mobile-${index}`}
-            items={mobileItems}
-            color={BRAND_RAIL}
+            directories={directories}
             className="md:hidden"
           />,
           host,

@@ -1,13 +1,5 @@
 import type { HookSidebarItem } from '@/components/ui/hook-sidebar';
-
-type DirectoryItem = {
-  type?: string;
-  title?: string;
-  name?: string;
-  route?: string;
-  href?: string;
-  children?: DirectoryItem[];
-};
+import type { DirectoryItem } from './directory-types';
 
 export function flattenDirectories(
   directories: DirectoryItem[] | undefined,

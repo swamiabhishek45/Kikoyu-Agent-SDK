@@ -26,9 +26,9 @@
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-/* Nextra docs — Rare UI hook sidebar replaces default menu lists */
-.nextra-menu-desktop > ul,
-.nextra-menu-mobile > ul {
+/* Nextra docs — custom nav is portaled into the menu ul; hide default items only */
+ul.nextra-menu-desktop > li,
+ul.nextra-menu-mobile > li {
   display: none !important;
 }
 
