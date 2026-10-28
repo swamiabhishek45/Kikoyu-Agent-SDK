@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ChevronDown, Github, Menu, X } from 'lucide-react';
 import { KikoyuLogo } from './KikoyuLogo';
 import { Button } from './ui/button';
+import { VengeanceCtaButton } from './VengeanceCtaButton';
 import { cn } from '../lib/utils';
 import { SITE } from '../lib/site-config';
 
@@ -90,11 +91,9 @@ export function SiteHeader() {
           >
             <Github className="h-4 w-4" />
           </a>
-          <Link href="/quickstart" className="no-underline">
-            <Button variant="primary" size="sm">
-              Get started
-            </Button>
-          </Link>
+          <VengeanceCtaButton href="/quickstart" className="px-4 py-1.5 text-sm">
+            Get started
+          </VengeanceCtaButton>
         </div>
 
         <button
@@ -155,11 +154,15 @@ export function SiteHeader() {
               {link.label}
             </Link>
           ))}
-          <Link href="/quickstart" className="pt-2 no-underline" onClick={() => setMobileOpen(false)}>
-            <Button variant="primary" className="w-full">
+          <div className="pt-2">
+            <VengeanceCtaButton
+              href="/quickstart"
+              className="w-full"
+              onClick={() => setMobileOpen(false)}
+            >
               Get started
-            </Button>
-          </Link>
+            </VengeanceCtaButton>
+          </div>
         </div>
       </div>
     </header>

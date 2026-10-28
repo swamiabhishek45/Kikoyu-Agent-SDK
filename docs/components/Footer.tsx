@@ -1,6 +1,6 @@
 import React from 'react';
-import Link from 'next/link';
 import { SITE } from '../lib/site-config';
+import { LineHoverLink } from './ui/line-hover-link';
 
 const FOOTER_LINKS = [
   { label: 'Quickstart', href: '/quickstart', external: false },
@@ -22,23 +22,25 @@ export function Footer() {
           <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2" aria-label="Footer">
             {FOOTER_LINKS.map((link) =>
               link.external ? (
-                <a
+                <LineHoverLink
                   key={link.label}
                   href={link.href}
                   target="_blank"
                   rel="noreferrer"
+                  variant="slide"
                   className="text-sm text-[var(--kikoyu-text-muted)] no-underline hover:text-[var(--kikoyu-text)]"
                 >
                   {link.label}
-                </a>
+                </LineHoverLink>
               ) : (
-                <Link
+                <LineHoverLink
                   key={link.label}
                   href={link.href}
+                  variant="fade"
                   className="text-sm text-[var(--kikoyu-text-muted)] no-underline hover:text-[var(--kikoyu-text)]"
                 >
                   {link.label}
-                </Link>
+                </LineHoverLink>
               )
             )}
           </nav>

@@ -25,6 +25,7 @@
   --kikoyu-text-muted: #a1a1aa;
   --kikoyu-accent: #f97316;
   --kikoyu-accent-hover: #ea580c;
+  --stripe-color: #ffffff;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -82,32 +83,40 @@ article code {
   .theme {
     --font-heading: var(--font-sans);
     --font-sans: var(--font-sans);
+    --color-vng-primary: var(--vng-primary);
+    --color-vng-secondary: var(--vng-secondary);
+    --color-vng-danger: var(--vng-danger);
+    --color-vng-success: var(--vng-success);
+    --color-vng-warning: var(--vng-warning);
+    --radius-sm: var(--vng-radius-sm);
+    --radius-md: var(--vng-radius-md);
+    --radius-lg: var(--vng-radius-lg);
   }
   :root {
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
+    --background: var(--vng-background);
+    --foreground: var(--vng-foreground);
     --card: oklch(1 0 0);
     --card-foreground: oklch(0.145 0 0);
     --popover: oklch(1 0 0);
     --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
+    --primary: var(--vng-primary);
+    --primary-foreground: var(--vng-primary-foreground);
+    --secondary: var(--vng-secondary);
+    --secondary-foreground: var(--vng-secondary-foreground);
     --muted: oklch(0.97 0 0);
     --muted-foreground: oklch(0.556 0 0);
     --accent: oklch(0.97 0 0);
     --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
+    --destructive: var(--vng-danger);
+    --border: var(--vng-border);
     --input: oklch(0.922 0 0);
-    --ring: oklch(0.708 0 0);
+    --ring: var(--vng-primary);
     --chart-1: oklch(0.87 0 0);
     --chart-2: oklch(0.556 0 0);
     --chart-3: oklch(0.439 0 0);
     --chart-4: oklch(0.371 0 0);
     --chart-5: oklch(0.269 0 0);
-    --radius: 0.625rem;
+    --radius: var(--vng-radius-lg);
     --sidebar: oklch(0.985 0 0);
     --sidebar-foreground: oklch(0.145 0 0);
     --sidebar-primary: oklch(0.205 0 0);
@@ -116,26 +125,46 @@ article code {
     --sidebar-accent-foreground: oklch(0.205 0 0);
     --sidebar-border: oklch(0.922 0 0);
     --sidebar-ring: oklch(0.708 0 0);
+    --vng-background: #ffffff;
+    --vng-foreground: #09090b;
+    --vng-border: #e4e4e7;
+    --vng-primary: #09090b;
+    --vng-primary-hover: #27272a;
+    --vng-primary-foreground: #ffffff;
+    --vng-secondary: #f4f4f5;
+    --vng-secondary-foreground: #09090b;
+    --vng-danger: #dc2626;
+    --vng-success: #16a34a;
+    --vng-warning: #eab308;
+    --vng-radius-sm: 4px;
+    --vng-radius-md: 6px;
+    --vng-radius-lg: 8px;
+    --vng-space-xs: 0.5rem;
+    --vng-space-sm: 0.75rem;
+    --vng-space-md: 1rem;
+    --vng-space-lg: 2rem;
+    --vng-transition-speed: 150ms;
+    --vng-transition-speed-slow: calc(var(--vng-transition-speed) * 2);
   }
   .dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
+    --background: var(--vng-background);
+    --foreground: var(--vng-foreground);
     --card: oklch(0.205 0 0);
     --card-foreground: oklch(0.985 0 0);
     --popover: oklch(0.205 0 0);
     --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.922 0 0);
-    --primary-foreground: oklch(0.205 0 0);
-    --secondary: oklch(0.269 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
+    --primary: var(--vng-primary);
+    --primary-foreground: var(--vng-primary-foreground);
+    --secondary: var(--vng-secondary);
+    --secondary-foreground: var(--vng-secondary-foreground);
     --muted: oklch(0.269 0 0);
     --muted-foreground: oklch(0.708 0 0);
     --accent: oklch(0.269 0 0);
     --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.704 0.191 22.216);
-    --border: oklch(1 0 0 / 10%);
+    --destructive: var(--vng-danger);
+    --border: var(--vng-border);
     --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.556 0 0);
+    --ring: var(--vng-primary);
     --chart-1: oklch(0.87 0 0);
     --chart-2: oklch(0.556 0 0);
     --chart-3: oklch(0.439 0 0);
@@ -149,6 +178,14 @@ article code {
     --sidebar-accent-foreground: oklch(0.985 0 0);
     --sidebar-border: oklch(1 0 0 / 10%);
     --sidebar-ring: oklch(0.556 0 0);
+    --vng-background: #09090b;
+    --vng-foreground: #ffffff;
+    --vng-border: #27272a;
+    --vng-primary: #ffffff;
+    --vng-primary-hover: #e4e4e7;
+    --vng-primary-foreground: #09090b;
+    --vng-secondary: #27272a;
+    --vng-secondary-foreground: #ffffff;
   }
   * {
     @apply border-border;
@@ -160,4 +197,48 @@ article code {
   html {
     @apply font-sans;
   }
+}
+
+/* Vengeance UI — GlowBorderCard + AnimatedRays utilities */
+@property --glow-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes glow-angle-rotate {
+  to {
+    --glow-angle: 1turn;
+  }
+}
+
+.glow-conic {
+  border-image: conic-gradient(
+      from var(--glow-angle),
+      var(--glow-color-1, #f97316),
+      var(--glow-color-2, #fb923c),
+      var(--glow-color-3, #fdba74),
+      var(--glow-color-4, #ea580c),
+      var(--glow-color-5, #c2410c),
+      var(--glow-color-6, #f97316),
+      var(--glow-color-7, #ffedd5),
+      var(--glow-color-8, #fed7aa),
+      var(--glow-color-9, #fb923c),
+      var(--glow-color-10, #f97316)
+    )
+    1;
+  animation: glow-angle-rotate var(--glow-animation-duration, 4s) linear infinite;
+}
+
+@keyframes aurora-smooth-bg {
+  from {
+    background-position: 50% 50%, 50% 50%;
+  }
+  to {
+    background-position: 350% 50%, 350% 50%;
+  }
+}
+
+.animate-aurora-bg {
+  animation: aurora-smooth-bg 60s linear infinite;
 }
