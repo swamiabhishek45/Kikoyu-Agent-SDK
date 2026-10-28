@@ -16,14 +16,31 @@
   --nextra-primary-lightness: 53%;
 }
 
-/* Landing page only — do not override Nextra docs body (breaks light theme) */
+/* Landing page only — fixed charcoal identity (independent of docs theme toggle) */
 .kikoyu-layout {
+  --kikoyu-bg: #09090b;
+  --kikoyu-bg-elevated: #18181b;
+  --kikoyu-border: rgba(255, 255, 255, 0.08);
+  --kikoyu-text: #fafafa;
+  --kikoyu-text-muted: #a1a1aa;
+  --kikoyu-accent: #f97316;
+  --kikoyu-accent-hover: #ea580c;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: var(--kikoyu-bg);
   color: var(--kikoyu-text);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kikoyu-layout *,
+  .kikoyu-layout *::before,
+  .kikoyu-layout *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Nextra docs — custom nav is portaled into the menu ul; hide default items only */

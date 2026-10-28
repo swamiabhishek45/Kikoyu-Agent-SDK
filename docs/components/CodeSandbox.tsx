@@ -40,7 +40,7 @@ export function CodeSandbox() {
   };
 
   return (
-    <Card className="overflow-hidden p-0">
+    <Card className="overflow-hidden border-[var(--kikoyu-border)] bg-[var(--kikoyu-bg-elevated)] p-0">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-zinc-200 px-4 py-3 dark:border-zinc-800">
         <div className="flex flex-wrap items-center gap-1 rounded-md border border-zinc-200 bg-zinc-50 p-1 dark:border-zinc-800 dark:bg-zinc-900/50">
           {CODE_EXAMPLE_TABS.map((tab) => (
