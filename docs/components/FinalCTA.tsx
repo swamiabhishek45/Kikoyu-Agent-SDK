@@ -10,7 +10,7 @@ import { SITE } from '../lib/site-config';
 export function FinalCTA() {
   return (
     <section className="relative overflow-hidden border-t border-[var(--kikoyu-border)] py-20 md:py-24">
-      <AnimatedRays className="absolute inset-0 opacity-20" />
+      <AnimatedRays className="pointer-events-none absolute inset-0 opacity-20" />
       <div className="relative mx-auto max-w-2xl px-4 text-center md:px-6">
         <div className="relative overflow-hidden rounded-2xl border border-[var(--kikoyu-border)] bg-[var(--kikoyu-bg-elevated)]/80 px-6 py-10 md:px-10">
           <BorderBeam
@@ -20,6 +20,7 @@ export function FinalCTA() {
             colorTo="#ea580c"
             borderWidth={1.5}
           />
+          <div className="relative z-10">
           <h2 className="text-2xl font-semibold tracking-tight text-[var(--kikoyu-text)] sm:text-3xl">
             Build your next agent with TypeScript
           </h2>
@@ -45,6 +46,7 @@ export function FinalCTA() {
           </div>
           <div className="mx-auto mt-8 max-w-md">
             <InstallCommand command={SITE.installNpm} />
+          </div>
           </div>
         </div>
       </div>

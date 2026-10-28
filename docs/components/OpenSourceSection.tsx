@@ -15,16 +15,23 @@ export function OpenSourceSection() {
           Inspect the source before you adopt it
         </h2>
         <p className="text-sm text-[var(--kikoyu-text-muted)]">
-          Published on npm, MIT licensed, with a typed API reference generated from the core package.
+          MIT licensed, published on npm, with API reference generated from TypeScript — so what you
+          read in docs is what the compiler exports.
         </p>
       </SectionHeader>
 
       <dl className="mx-auto grid max-w-3xl gap-4 sm:grid-cols-2">
         {[
-          { term: 'Package', value: SITE.packageName, href: SITE.npm },
-          { term: 'Version', value: `v${SITE.version}`, href: SITE.npm },
-          { term: 'License', value: SITE.license, href: `${SITE.github}/blob/main/LICENSE` },
-          { term: 'Test suite', value: `${VERIFIED_TEST_COUNT} Vitest cases`, href: `${SITE.github}/tree/main/packages/core/test` },
+          { term: 'Package', value: SITE.packageName, href: SITE.npm, detail: 'Install from npm; no vendor lock-in.' },
+          { term: 'Version', value: `v${SITE.version}`, href: SITE.npm, detail: 'Track releases on npm or GitHub tags.' },
+          { term: 'License', value: SITE.license, href: `${SITE.github}/blob/main/LICENSE`, detail: 'Use in commercial products.' },
+          {
+            term: 'Test suite',
+            value: `${VERIFIED_TEST_COUNT} Vitest cases`,
+            href: `${SITE.github}/tree/main/packages/core/test`,
+            detail:
+              'Core runner behavior is regression-tested. When docs show runner.run or runner.stream, those paths have automated coverage — not demo-only code.',
+          },
         ].map((row) => (
           <div
             key={row.term}
@@ -42,6 +49,7 @@ export function OpenSourceSection() {
               >
                 {row.value}
               </a>
+              <p className="mt-2 text-xs leading-relaxed text-[var(--kikoyu-text-muted)]">{row.detail}</p>
             </dd>
           </div>
         ))}
@@ -52,7 +60,7 @@ export function OpenSourceSection() {
         <a href={SITE.github} className="text-brand hover:underline" target="_blank" rel="noreferrer">
           {SITE.github.replace('https://', '')}
         </a>
-        . Contributions and issues welcome on GitHub.
+        . Open an issue or PR when something does not match the docs — we treat that as a product bug.
       </p>
     </Section>
   );

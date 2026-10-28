@@ -23,14 +23,18 @@ const EXAMPLES = [
   triageRouter,
   'Write binary search in TypeScript.'
 );
-// result.agent.name → Code Specialist`,
+// result.agent.name -> Code Specialist`,
   },
   {
     name: 'Session memory',
     description: 'Multi-turn conversation persisted with Session and InMemoryStore.',
     href: '/concepts/sessions',
     preview: `await runner.run(agent, 'My color is cerulean.', { session });
-const next = await runner.run(agent, 'What is my color?', { session });`,
+const next = await runner.run(
+  agent,
+  'What is my color?',
+  { session }
+);`,
   },
   {
     name: 'Streaming lifecycle',
@@ -53,8 +57,9 @@ export function ExamplesSection() {
           Patterns you can run today
         </h2>
         <p className="text-sm text-[var(--kikoyu-text-muted)]">
-          Worked examples in the docs mirror scripts in the monorepo{' '}
-          <code className="font-mono text-xs">examples/</code> package.
+          Each card is a real workflow from the docs. Copy the snippet, open the guide, or run the
+          matching script in the monorepo{' '}
+          <code className="font-mono text-xs">examples/</code> package — same APIs everywhere.
         </p>
       </SectionHeader>
 
@@ -62,7 +67,7 @@ export function ExamplesSection() {
         {EXAMPLES.map((example) => (
           <article
             key={example.name}
-            className="flex flex-col overflow-hidden rounded-xl border border-[var(--kikoyu-border)] bg-[var(--kikoyu-bg-elevated)]"
+            className="flex flex-col rounded-xl border border-[var(--kikoyu-border)] bg-[var(--kikoyu-bg-elevated)]"
           >
             <div className="p-6 pb-3">
               <h3 className="text-base font-semibold text-[var(--kikoyu-text)]">{example.name}</h3>
@@ -75,14 +80,16 @@ export function ExamplesSection() {
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
-            <CodeBlock
-              code={example.preview}
-              language="tsx"
-              accent="#f97316"
-              showFrame={false}
-              showLineNumbers={false}
-              className="mt-auto rounded-none border-0 border-t border-[var(--kikoyu-border)]"
-            />
+            <div className="mt-auto overflow-x-auto rounded-b-xl border-t border-[var(--kikoyu-border)]">
+              <CodeBlock
+                code={example.preview}
+                language="tsx"
+                accent="#f97316"
+                showFrame={false}
+                showLineNumbers={false}
+                className="min-w-0 rounded-none border-0"
+              />
+            </div>
           </article>
         ))}
       </div>

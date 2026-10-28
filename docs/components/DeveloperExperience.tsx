@@ -7,6 +7,7 @@ import { Badge } from './ui/badge';
 const STEPS = [
   {
     title: 'Install the SDK',
+    why: 'Peer dependency on Zod keeps schemas in your codebase.',
     href: '/quickstart',
     code: `pnpm add @kikoyu/core zod`,
     language: 'bash',
@@ -14,6 +15,7 @@ const STEPS = [
   },
   {
     title: 'Configure an agent',
+    why: 'Tools, instructions, and model settings live on one builder.',
     href: '/concepts/agent',
     code: `const agent = Agent.builder()
   .setApiKey(process.env.OPENAI_API_KEY!)
@@ -26,6 +28,7 @@ const STEPS = [
   },
   {
     title: 'Execute a task',
+    why: 'Runner.run() is the same entry point used in docs, examples, and Vitest.',
     href: '/concepts/tools',
     code: `const runner = new Runner();
 const result = await runner.run(
@@ -50,11 +53,10 @@ export function DeveloperExperience() {
           Three steps to a working agent
         </h2>
         <p className="text-sm text-[var(--kikoyu-text-muted)]">
-          Examples use the same APIs as the{' '}
-          <Link href="/quickstart" className="text-brand no-underline">
-            quickstart guide
-          </Link>{' '}
-          and the <code className="font-mono text-xs">examples/</code> workspace package.
+          No code generators or hidden config — install, define an agent, call{' '}
+          <code className="font-mono text-xs">runner.run()</code>. If it appears in the quickstart, it
+          is covered by tests in{' '}
+          <code className="font-mono text-xs">packages/core/test</code>.
         </p>
       </SectionHeader>
 
@@ -62,9 +64,13 @@ export function DeveloperExperience() {
         {STEPS.map((step, index) => (
           <li key={step.title} className="flex flex-col">
             <span className="font-mono text-xs text-brand">Step {index + 1}</span>
-            <Link href={step.href} className="mt-1 text-base font-semibold text-[var(--kikoyu-text)] no-underline hover:text-brand">
+            <Link
+              href={step.href}
+              className="mt-1 text-base font-semibold text-[var(--kikoyu-text)] no-underline hover:text-brand"
+            >
               {step.title}
             </Link>
+            <p className="mt-2 text-xs leading-relaxed text-[var(--kikoyu-text-muted)]">{step.why}</p>
             <CodeBlock
               code={step.code}
               language={step.language}

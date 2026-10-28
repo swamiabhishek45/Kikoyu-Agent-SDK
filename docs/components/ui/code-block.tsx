@@ -345,8 +345,9 @@ export function CodeBlock({
                 aria-label={filename ?? `${safeLanguage} code`}
                 tabIndex={0}
                 className={cn(
-                    'min-h-0 flex-1 overflow-auto outline-none selection:bg-(--cb-selection) focus-visible:ring-2 focus-visible:ring-(--cb-accent)/40 [scrollbar-width:thin] [scrollbar-color:var(--cb-border)_transparent]',
+                    'min-h-0 flex-1 overflow-x-auto overflow-y-hidden outline-none selection:bg-(--cb-selection) focus-visible:ring-2 focus-visible:ring-(--cb-accent)/40 [scrollbar-width:thin] [scrollbar-color:var(--cb-border)_transparent]',
                     showFrame && 'py-3',
+                    !(showFrame && showHeader) && showCopyButton && 'pr-12',
                 )}
             >
                 <Highlight code={trimmed} language={safeLanguage} theme={theme}>
